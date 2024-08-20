@@ -1,13 +1,15 @@
 ---
 import "../styles/styles.css"
 import IndexMenu from "../components/indexMenu.astro"
+import AbautMe from "../components/abautMe.astro"
+import Galeria from "../components/galeria.astro"
 
 const menuOptions = [
 	{
-		title: "Sobre Mi",
+		title: "Blog",
 		img: {
-			src: "/img/abaut-me.png",
-			alt: "Sobre Mi",
+			src: "/img/blog.png",
+			alt: "Blog",
 		},
 		href:"#",
 	},
@@ -27,6 +29,43 @@ const menuOptions = [
 		},
 		href:"#",
 	},
+]
+const tecno = [
+		{
+			src: "/img/android-galery.png",
+			alt: "android",
+			href:"https://developer.android.com/?hl=es-419",
+		},
+	 	{
+			src: "/img/astro-galery.png",
+			alt: "astro",
+			href:"https://astro.build/blog/astro-4140/",
+		},
+		{
+			src: "/img/react-galery.png",
+			alt: "react",
+			href:"https://es.react.dev/",
+		},
+		{
+			src: "/img/python-galery.png",
+			alt: "python",
+			href:"https://es.python.org/",
+		},
+		{
+			src: "/img/js-galery.png",
+			alt: "JavaScript",
+			href:"https://developer.mozilla.org/es/docs/Web/JavaScript",
+		},
+		{
+			src: "/img/bootstrap-galery.png",
+			alt: "HTML",
+			href:"https://developer.mozilla.org/es/docs/Web/HTML",
+		},
+		{
+			src: "/img/css-galery.png",
+			alt: "CSS",
+			href:"https://developer.mozilla.org/es/docs/Web/CSS",
+		}
 ]
 
 ---
@@ -55,10 +94,17 @@ const menuOptions = [
 		</div>
 	</div>
 	</div>
+	<AbautMe />
 	<div class="container-fluid">
 			<IndexMenu
 				title="Menu"
 				menu={menuOptions}
+			/>
+	</div>
+	<div class="container-fluid">
+			<Galeria
+			title="Tecnologias"
+			img={tecno}
 			/>
 	</div>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
