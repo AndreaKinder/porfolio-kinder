@@ -1,0 +1,22 @@
+:root {
+  --button: #E8DACE;
+  --text: #644f44;
+  --text-white: white;
+}
+body {
+    text-align: center;
+    background-image: url("/img/porfolio-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: var(--text);
+    font-family: monospace;
+}
+h1{
+    color: var(--text);
+    font-size: 5em;
+}
+h2, h3, h4, h5, h6, p{
+  color: var(--text);
+}
