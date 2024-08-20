@@ -11,26 +11,31 @@ const { title, img } = Astro.props;
 ---
 <div class="container-fluid vh-100 min-vh-100">
     <div class="p-2"><h2 class="fw-bold fs-1">{title}</h2></div>
-    <div class="row">
-        <div class="col-4">
-            <a href={img[0].href}><img src={img[0].src} class="rounded pb-1" alt={img[0].alt}></a>
+    <div class="card-group">
+        <div class="card">
+            <a href={img[0].href}><img src={img[0].src} class="rounded pb-1" alt={img[0].alt} ></a>
         </div>
-        <div class="col-4">
+        <div class="card">
             <a href={img[1].href}><img src={img[1].src} class="rounded pb-1" alt={img[1].alt}></a>
         </div>
-        <div class="col-4">
+        <div class="card">
             <a href={img[2].href}><img src={img[2].src} class="rounded pb-1 " alt={img[2].alt}></a>
         </div>
     </div>
-    <div class="row">
-        <div class="col-4">
+    <div class="card-group">
+        <div class="card">
             <a href={img[3].href}><img src={img[3].src} class="rounded" alt={img[3].alt}></a>
         </div>
-        <div class="col-4">
+        <div class="card">
             <a href={img[4].href}><img src={img[4].src} class="rounded" alt={img[4].alt}></a>
         </div>
-        <div class="col-4">
+        <div class="card">
             <a href={img[5].href}><img src={img[5].src} class="rounded" alt={img[5].alt}></a>
         </div>
     </div>
 </div>
+<style>
+    .card{
+        background-color: rgba(199, 191, 176, 0.456);
+    }
+</style>
