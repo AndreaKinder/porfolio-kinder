@@ -2,6 +2,7 @@
 import Progect from "../components/progect.astro"
 import Footer from "../components/footer.astro"
 import "../styles/styles.css"
+import HerderLink from "../components/herderLink.astro"
 const progects = [{
         title: "AI Tols",
         href: "https://hug-ai-tools.andreavillar.tech/",
@@ -31,6 +32,9 @@ const progects = [{
                 return <Progect {...progect} />
             })
         }
+    </div>
+    <div class="container-fluid">
+        <HerderLink href={"/"} class="btn btn-light">Home</HerderLink>
     </div>
     <div class="container-fluid">
         <Footer />

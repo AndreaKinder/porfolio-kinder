@@ -2,6 +2,7 @@
 import EntradaBlog from "../components/entrada-blog.astro";
 import Footer from "../components/footer.astro";
 import "../styles/styles.css";
+import HerderLink from "../components/herderLink.astro";
 const blogEntry = [{
         title: "AI Tols",
         href: "#",
@@ -31,6 +32,9 @@ const blogEntry = [{
                 return <EntradaBlog {...blogEntry} />
             })
         }
+    </div>
+    <div class="container-fluid">
+        <HerderLink href={"/"} class="btn btn-light">Home</HerderLink>
     </div>
     <div class="container-fluid">
         <Footer />
