@@ -4,6 +4,7 @@ import IndexMenu from "../components/indexMenu.astro"
 import AbautMe from "../components/abautMe.astro"
 import Galeria from "../components/galeria.astro"
 import Footer from "../components/footer.astro"
+import Contact from "../components/contact.astro"
 
 const menuOptions = [
 	{
@@ -21,6 +22,14 @@ const menuOptions = [
 			alt: "Biblioteca De Proyectos",
 		},
 		href:"/galery-progects",
+	},
+	{
+		title: "Certificados",
+		img: {
+			src: "/img/experiencia.png",
+			alt: "Certificados",
+		},
+		href:"#",
 	},
 ]
 const tecno = [
@@ -101,6 +110,10 @@ const tecno = [
 				title="Menu"
 				menu={menuOptions}
 			/>
+	</div>
+	<div class="border-top border-danger m-5"></div>
+	<div class="container-fluid mt-5">
+			<Contact />
 	</div>
 	<div class="border-top border-danger m-5"></div>
 	<div class="container-fluid mt-5">

@@ -33,5 +33,12 @@ const { title, menu } = Astro.props;
         <HerderLink href={menu[1].href} class="btn btn-light">Ir a la Pagina</HerderLink>
       </div>
     </div>
+    <div class="card">
+      <img src=`${menu[2].img.src}` class="card-img-top" alt=`${menu[2].img.src}`>
+      <div class="card-body">
+        <h5 class="card-title">{menu[2].title}</h5>
+        <HerderLink href={menu[2].href} class="btn btn-light">Ir a la Pagina</HerderLink>
+      </div>
+    </div>
   </div>
 </div>

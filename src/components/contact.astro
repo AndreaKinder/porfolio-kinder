@@ -1,0 +1,94 @@
+---
+import "../styles/styles.css"
+---
+<!--Contacto-->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script type="text/javascript">
+    (function() {
+        // https://dashboard.emailjs.com/admin/account
+        emailjs.init({
+        publicKey: "hSD1VQPNhVyqiQAxx",
+        });
+    })();
+</script>
+<script type="text/javascript">
+    window.onload = function() {
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            emailjs.sendForm('service_84t9w75', 'template_nfgerqa', this)
+                .then(() => {
+                    console.log('SUCCESS!');
+                    document.getElementById("contact-form").reset()
+                }, (error) => {
+                    console.log('FAILED...', error);
+                });
+        });
+    }
+</script>
+<div class="container-fluid">
+    <div class="col p-5 mt-4">
+    <h1>Contact</h1>
+    <form id="contact-form">
+        <input type="hidden" name="contact_number">
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" name="user_name">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input class="form-control" type="email" name="user_email">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Message</label>
+            <textarea class="form-control" name="message"></textarea>
+            <input class="mt-3 btn btn-outline-danger" id="submit" type="submit" value="Send">
+        </div>
+    </form>
+</div>
+</div>
+<style>
+#contact-form {
+    max-width: 1000px; 
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.form-control {
+    border-radius: 3px;
+    border: 1px solid #ced4da;
+    padding: 8px 12px;
+}
+
+textarea.form-control {
+    resize: vertical; 
+}
+
+/* Button Styling */
+#submit {
+    background-color: #dc6235; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+}
+
+#submit:hover {
+    background-color: #f88691;
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+    #contact-form {
+        max-width: 90%;
+    }
+}
+</style>
