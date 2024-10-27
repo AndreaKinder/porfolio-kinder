@@ -61,8 +61,8 @@ const certificates = [{
         <div class="container-fluid">
             <h1 class="fw-bold p-5 text-center">Galeria de Certificados</h1>
         </div>
-	    <div class="container-fluid vh-100 min-vh-100 d-flex justify-content-center p-5">
-        <div class="row row-cols-1 row-cols-md-4 g-4">
+	    <div class="container-fluid min-vh-100 d-flex justify-content-center p-5">
+        <div class="row row-cols-1 row-cols-md-4 g-4" style="height: 100%; overflow: auto;">
             {certificates.map(certificate => (
                 <div class="col">
                     <Progect {...certificate} />
