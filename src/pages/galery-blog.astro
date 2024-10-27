@@ -21,7 +21,7 @@ const posts = await Astro.glob('./blog/*.md');
         <div class="container-fluid">
             <h1 class="fw-bold p-5 fs-4 text-center">Blog</h1>
         </div>
-    <div class="container-fluid vh-100 min-vh-100 d-flex justify-content-center align-items-start">
+    <div class="container-fluid d-flex justify-content-center align-items-start" style={`min-height: calc(${posts.length * 25}rem + 10rem)`}>
         <div class="row">
           {posts.map(post =>   
             <div class="col-sm-6 mb-3 mb-sm-0 mt-3">

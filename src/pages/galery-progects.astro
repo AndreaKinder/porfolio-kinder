@@ -31,7 +31,7 @@ const progects = [{
         <div class="container-fluid">
             <h1 class="fw-bold p-5 fs-4 text-center">Proyectos</h1>
         </div>
-        <div class="container-fluid vh-100 min-vh-100 d-flex justify-content-center align-items-start">
+        <div class="container-fluid d-flex justify-content-center align-items-start" style={`min-height: calc(${progects.length * 25}rem + 10rem)`}>
             <div class="row">
         {
             progects.map(progect => {

@@ -59,8 +59,8 @@ const certificates = [{
         <div class="container-fluid">
             <h1 class="fw-bold p-5 fs-4 text-center">Certificados</h1>
         </div>
-<div class="container-fluid vh-100 min-vh-100 d-flex justify-content-center align-items-start">
-    <div class="row">
+        <div class="container-fluid d-flex justify-content-center align-items-start" style={`min-height: calc(${certificates.length * 25}rem + 10rem)`}>
+            <div class="row">
       {certificates.map(certificate =>   
         <div class="col-sm-6 mb-3 mb-sm-0 mt-3">
             <div class="card">
