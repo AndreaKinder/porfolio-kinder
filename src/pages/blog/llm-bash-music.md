@@ -16,43 +16,45 @@ Fue entonces cuando descubrí el poder de los systemprompts y los LLMs. Decidí 
 
 El primer paso fue crear un systemprompt claro y conciso para guiar al LLM. Aquí está el que utilicé:
 
-```
-I give you the name of a song and you have to give me the properties in Spanish:
-- Title
-- Artist
-- Album
-- Album artist
-- Composer
-- Genre
-- Track number
-- Album number
-- Year
-- GPM
-- Comment
+``` md
+    
+    I give you the name of a song and you have to give me the properties in Spanish:
+        - Title
+        - Artist
+        - Album
+        - Album artist
+        - Composer
+        - Genre
+        - Track number
+        - Album number
+        - Year
+        - GPM
+        - Comment
+
 ```
 
 #### **¡Manos a la obra!** 
 
 Con mi systemprompt listo, comencé a probarlo con algunas canciones. Los resultados fueron sorprendentes:
 
-**Prompt:** "STRAVAGANZZA - HIJO DE LA LUNA"
+**Prompt:** *"STRAVAGANZZA - HIJO DE LA LUNA"*
 
 **Respuesta:**
+``` md
+
+    - Title: Hijo de la Luna
+    - Artist: Stravaganzza
+    - Album: EP: "Hijo Del Miedo" (2006)
+    - Album artist: Stravaganzza
+    - Composer: José María Cano
+    - Genere: Rock en Español, Heavy Metal
+    - Track number: 2
+    - Album number: N/A
+    - Year: 2006 (EP release)
+    - GPM: N/A
+    - Comment: N/A
 
 ```
-Title: Hijo de la Luna
-Artist: Stravaganzza
-Album: EP: "Hijo Del Miedo" (2006)
-Album artist: Stravaganzza
-Composer: José María Cano
-Genre: Rock en Español, Heavy Metal
-Track number: 2
-Album number: N/A
-Year: 2006 (EP release)
-GPM: N/A
-Comment: N/A
-```
-
 ¡Increíble! El LLM no solo identificó correctamente la canción, sino que también proporcionó detalles como el compositor, el género e incluso si formaba parte de un EP.
 
 ### **Automatizando con Bash** 
