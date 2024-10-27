@@ -61,12 +61,14 @@ const certificates = [{
         <div class="container-fluid">
             <h1 class="fw-bold p-5 text-center">Galeria de Certificados</h1>
         </div>
-	<div class="container-fluid vh-100 min-vh-100 d-flex justify-content-center">
-        {
-            certificates.map(certificate => {
-                return <Progect {...certificate} />
-            })
-        }
+	    <div class="container-fluid vh-100 min-vh-100 d-flex justify-content-center">
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            {certificates.map(certificate => (
+                <div class="col">
+                    <Progect {...certificate} />
+                </div>
+            ))}
+        </div>
     </div>
     <div class="container-fluid">
         <HerderLink href={"/"} class="btn btn-light">Home</HerderLink>
