@@ -6,13 +6,12 @@ interface Props {
 };
 const { title, href, description } = Astro.props;
 ---
-<div class="card-body">
       <div class="col-sm-6 mb-3 mb-sm-0 mt-3">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">{title}</h5>
             <p class="card-text">{description}</p>
             <a href={href} class="btn btn-light" >Ir al Proyecto</a>
-        </div>
+         </div>
       </div>
     </div>
