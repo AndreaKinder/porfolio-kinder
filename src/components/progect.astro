@@ -2,14 +2,11 @@
 interface Props {
         title: string;
         href: string;
-        src: string;
-        alt: string;
         description: string;
 };
-const { title, href, src, alt, description } = Astro.props;
+const { title, href, description } = Astro.props;
 ---
 <div class="card-body">
-    <img src={src} class="card-img-top" alt={alt}>
       <div class="col-sm-6 mb-3 mb-sm-0 mt-3">
         <div class="card">
           <div class="card-body">
