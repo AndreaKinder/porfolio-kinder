@@ -8,11 +8,11 @@ description: Relato de mi primera Hackaton y el proyecto realizado en el.
 
 ## 1. Introducción
 
-En el marco de mi desarrollo profesional y mi interés por la innovación en el sector de la construcción, participé en ConstruHack2024, un evento que representó un punto de inflexión en mi carrera. Este hackathon congregó a profesionales destacados y estudiantes prometedores del sector, unidos por el objetivo de desarrollar soluciones innovadoras y sostenibles para los desafíos actuales de nuestra industria.
+En el marco de mi desarrollo profesional y mi interés por la innovación en el sector de la construcción, participé en [ConstruHack2024](https://www.viladecans.cat/es/hack2024), un evento que representó un punto de inflexión en mi carrera. Este hackathon congregó a profesionales destacados y estudiantes prometedores del sector, unidos por el objetivo de desarrollar soluciones innovadoras y sostenibles para los desafíos actuales de nuestra industria.
 
 ## 2. El Evento
 
-ConstruHack se distinguió como un evento de alto nivel. Durante tres días intensivos, equipos multidisciplinarios colaboramos en la conceptualización, desarrollo y presentación de propuestas con el potencial de transformar el sector de la construcción. El ambiente profesional y dinámico, caracterizado por la creatividad y la colaboración, hizo de esta una experiencia excepcional.
+[ConstruHack](https://www.viladecans.cat/es/hack2024) se distinguió como un evento de alto nivel. Durante tres días intensivos, equipos multidisciplinarios colaboramos en la conceptualización, desarrollo y presentación de propuestas con el potencial de transformar el sector de la construcción. El ambiente profesional y dinámico, caracterizado por la creatividad y la colaboración, hizo de esta una experiencia excepcional.
 
 ## 3. Nuestro Proyecto
 
@@ -32,4 +32,5 @@ ConstruHack2024 se distinguió por su ambiente de colaboración profesional y ne
 
 La participación en ConstruHack2024 fue una experiencia enriquecedora que me permitió aplicar y expandir mis conocimientos técnicos. Además, contribuyó significativamente al desarrollo de competencias profesionales esenciales. Entre los beneficios más notables, destaca la mejora en mis habilidades de comunicación oral, especialmente en la presentación de ideas complejas. La experiencia también fortaleció mi capacidad para trabajar eficazmente bajo presión en un entorno multidisciplinario. Asimismo, profundicé mi comprensión sobre la importancia crítica de la sostenibilidad en el sector de la construcción, un aspecto que sin duda influirá en mi enfoque profesional futuro.
 
+**Link al Evento:** [ConstruHack Viladecans](https://www.viladecans.cat/es/hack2024)
 ***Nota***: *Podéis encontrar el repositorio de código junto a su documentación en [construhack2024](https://github.com/AndreaKinder/construhack2024).*
