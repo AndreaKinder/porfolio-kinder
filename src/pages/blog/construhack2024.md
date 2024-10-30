@@ -4,7 +4,6 @@ title: ConstruHack Viladecans 2024
 author: Andrea Villar
 description: Relato de mi primera Hackaton y el proyecto realizado en el.
 ---
-## Experiencia en ConstruHack2024: Innovación y Desarrollo Profesional en el Sector de la Construcción
 
 ## 1. Introducción
 
