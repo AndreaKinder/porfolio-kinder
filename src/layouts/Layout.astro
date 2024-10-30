@@ -18,8 +18,8 @@ const { title, frontmatter } = Astro.props;
 	<body>
         <HeaderMenu />
         <div class="container-fluid">
-			<h1 class="fs-2 fw-bold" >{frontmatter.title}</h1>
-			<h3>Autor del artículo: {frontmatter.author}</h3>
+			<h1 class="fs-2 fw-bold pt-2" >{frontmatter.title}</h1>
+			<h3 class="fs-3">Autor del artículo: {frontmatter.author}</h3>
 			<p>{frontmatter.description}</p>
   	<main class="text-start p-5">
 		<slot />
