@@ -134,7 +134,7 @@ Para crear una versión distribuible de tu aplicación, usa:
 
 ```bash
 
-npm run build
+  npm run build
 
 ```
 
