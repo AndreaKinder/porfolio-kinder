@@ -1,38 +1,81 @@
 ---
-import HerderLink from "./herderLink.astro"
+import HerderLink from "./herderLink.astro";
 ---
-<nav class="navbar bg-transparent fixed-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" id="title" href="#">Andrea Villar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Andrea Villar</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-            <li class="nav-item">
-              <HerderLink class="nav-link active" aria-current="page" href="/">Home</HerderLink>
-            </li>
-            <li class="nav-item">
-              <HerderLink class="nav-link" href="/galery-blog">Blog</HerderLink>
-            </li>
-            <li class="nav-item">
-                <HerderLink class="nav-link" href="/galery-progects">Proyectos</HerderLink>
-            </li>
-            <li class="nav-item">
-                <HerderLink class="nav-link" href="/galery-certificates">Certificados</HerderLink>
-            </li>
-          </ul>
-        </div>
-      </div>
+<style>
+  nav {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    background: linear-gradient(145deg, #f6d6c9, #f8e9e0);
+    border-bottom: white 1px solid;
+  }
+
+  nav.shrink {
+    transform: translateY(-30%);
+    opacity: 0.5;
+    background: white;
+  }
+
+  nav .navbar-brand,
+  nav .nav-link {
+    transition: font-size 0.3s ease;
+  }
+  nav.shrink .nav-link {
+    font-size: 0.7em;
+  }
+
+  nav.shrink #title {
+    font-size: 0.7em;
+    margin-top: 20px;
+  }
+  nav.shrink #blog-link {
+    display: none;
+  }
+</style>
+<nav class="navbar navbar-expand-lg bg-body-tertiary" id="navbar">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarSupportedContent" aria-controls="staticBackdrop">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <HerderLink class="mx-3 navbar-brand fs-2" href="/"><h3 id="title">Andrea Villar</h3></HerderLink>
+    <div class="offcanvas offcanvas-start" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item m-2">
+            <HerderLink class="nav-link" href="/">Inicio</HerderLink>
+        </li>
+        <li class="nav-item m-2">
+          <HerderLink class="nav-link" href="#skills">Habilidades</HerderLink>
+        </li>
+        <li class="nav-item m-2">
+          <HerderLink class="nav-link" href="#projects">Proyectos</HerderLink>
+        </li>
+        <li class="nav-item m-2">
+          <HerderLink class="nav-link" href="#services">Servicios</HerderLink>
+        </li>
+        <li class="nav-item m-2">
+          <HerderLink class="nav-link" href="#contact">Contacto</HerderLink>
+        </li>
+        <li class="nav-item">
+            <HerderLink class="nav-link" href="/galery-blog" id="blog-link">
+            <button style="background: linear-gradient(145deg, #f6d6c9, #f8e9e0);
+                color: black; border-radius: 50px; padding: 8px 16px; border: none; box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);">Blog</button>
+            </HerderLink>
+        </li>
+      </ul>
     </div>
-  </nav>
-  <style>
-    #title {
-        visibility: hidden;
+  </div>
+</nav>
+
+<script>
+  window.addEventListener('scroll', function() {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 50 && window.innerWidth > 992) {
+      navbar.classList.add('shrink');
+    } else {
+      navbar.classList.remove('shrink');
     }
-  </style>
+  });
+</script>

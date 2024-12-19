@@ -1,0 +1,89 @@
+---
+
+---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+        }
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        .card {
+            background: linear-gradient(145deg, #f6d6c9, #f8e9e0);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
+        }
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .card-description {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: #555;
+        }
+        .card-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+    </style>
+    <h2 id="services">Servicios</h2>
+    <div class="container">
+        <!-- Básico -->
+        <div class="card">
+            <div class="card-title">Básico (Estático)</div>
+            <div class="card-description">Páginas HTML/CSS simples</div>
+            <div class="card-price">10 - 12 €/h</div>
+        </div>
+        <!-- Intermedio -->
+        <div class="card">
+            <div class="card-title">Intermedio (Front-End Dinámico)</div>
+            <div class="card-description">Frameworks, integración básica de APIs</div>
+            <div class="card-price">13 - 16 €/h</div>
+        </div>
+        <!-- Avanzado -->
+        <div class="card">
+            <div class="card-title">Avanzado (Full-Stack)</div>
+            <div class="card-description">Front-end + Back-end, BBDD, optimización</div>
+            <div class="card-price">17 - 20 €/h</div>
+        </div>
+        <!-- Premium -->
+        <div class="card">
+            <div class="card-title">Premium (Consultoría + Mantenimiento)</div>
+            <div class="card-description">Auditorías, soporte continuo</div>
+            <div class="card-price">20 - 25 €/h</div>
+        </div>
+        <!-- App Android -->
+        <div class="card">
+            <div class="card-title">App Android</div>
+            <div class="card-description">Desarrollo de aplicaciones móviles nativas para Android</div>
+            <div class="card-price">A negociar</div>
+        </div>
+        <!-- Otros -->
+        <div class="card">
+            <div class="card-title">Otros</div>
+            <div class="card-description">Servicios personalizados según las necesidades del cliente</div>
+            <div class="card-price">A negociar</div>
+        </div>
+    </div>
+</body>
+</html>
