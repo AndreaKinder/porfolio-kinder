@@ -34,6 +34,12 @@ import HerderLink from "./herderLink.astro";
   nav.shrink #blog-link {
     display: none;
   }
+  nav .nav-link:hover {
+    color: #ff6347;
+    transform: scale(1.1);
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+
 </style>
 <nav class="navbar navbar-expand-lg bg-body-tertiary" id="navbar">
   <div class="container-fluid">
@@ -47,16 +53,16 @@ import HerderLink from "./herderLink.astro";
             <HerderLink class="nav-link" href="/">Inicio</HerderLink>
         </li>
         <li class="nav-item m-2">
-          <HerderLink class="nav-link" href="#skills">Habilidades</HerderLink>
+          <HerderLink class="nav-link" href="/#skills">Habilidades</HerderLink>
         </li>
         <li class="nav-item m-2">
-          <HerderLink class="nav-link" href="#projects">Proyectos</HerderLink>
+          <HerderLink class="nav-link" href="/#projects">Proyectos</HerderLink>
         </li>
         <li class="nav-item m-2">
-          <HerderLink class="nav-link" href="#services">Servicios</HerderLink>
+          <HerderLink class="nav-link" href="/#services">Servicios</HerderLink>
         </li>
         <li class="nav-item m-2">
-          <HerderLink class="nav-link" href="#contact">Contacto</HerderLink>
+          <HerderLink class="nav-link" href="/#contact">Contacto</HerderLink>
         </li>
         <li class="nav-item">
             <HerderLink class="nav-link" href="/galery-blog" id="blog-link">
@@ -68,6 +74,23 @@ import HerderLink from "./herderLink.astro";
     </div>
   </div>
 </nav>
+
+<style>
+  @media (max-width: 992px) {
+    nav .navbar-brand {
+      text-align: center;
+      font-size: 1.5em;
+    }
+    nav .navbar-nav{
+      margin: 4em 0;
+    }
+    nav .nav-link {
+      text-align: center;
+      font-size: 1.2em;
+      margin: 0.5em 7em;
+    }
+  }
+</style>
 
 <script>
   window.addEventListener('scroll', function() {
