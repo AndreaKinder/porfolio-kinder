@@ -6,18 +6,21 @@ import HerderLink from "../components/herderLink.astro";
 import HeaderMenu from "../components/headerMenu.astro";
 const progects = [{
         title: "AI Tols",
+        image: "/img/ai-tools-progect.jpg",
         href: "https://hug-ai-tools.andreavillar.tech/",
         description: "Conjunto de herramientas de escritorio desarrolladas con Python de IA Generativa."
     },
     {
-        title: "mymind Electron App",
-        href: "https://github.com/AndreaKinder/mymind-electron-app",
-        description: "Aplcacion mymind web para escritorio."
-    },
-    {
         title: "Construhack 2024",
+        image: "/img/construhack.png",
         href: "https://github.com/AndreaKinder/construhack2024",
         description: "Prueba piloto del proyecto Construhack 2024, una aplicacion de inteligencia artificial para la clasificacion automatica de sobrantes de obras civiles, con el objetivo de promover un sistema de economia circular."
+    },
+    {
+      title: "Kinder.Dots",
+      image: "/img/Kinder-Dots.png",
+      href: "https://github.com/AndreaKinder/Kinder.Dots",
+      description: "Configuración customizada de Arch Linux."
     },
 ]
 ---
@@ -33,11 +36,38 @@ const progects = [{
 	</head>
 	<body>
         <HeaderMenu />
-        <div class="container-fluid">
-            <h1 class="fw-bold p-5 fs-3 text-center">Proyectos</h1>
-        </div>
-        <div class="container-fluid d-flex justify-content-center align-items-start" style={`min-height: calc(${progects.length * 25}rem + 10rem)`}>
-            <div class="row">
+        <style>
+            /* Reset Básico */
+            body, html {
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+              background: linear-gradient(145deg, #f6d6c9, #f8e9e0);
+            }
+        
+            /* Sección de Proyectos */
+            .projects-section {
+              padding: 4rem 1rem;
+              text-align: center;
+            }
+        
+            .projects-section h2 {
+              font-size: 2.5rem;
+              margin-bottom: 2rem;
+              font-weight: bold;
+              text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            }
+        
+            .projects-container {
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+              gap: 2rem;
+              padding: 0 2rem;
+            }
+        </style>
+  <div class="projects-section" id="projects">
+    <h2 class="m-5">Proyectos</h2>
+    <div class="projects-container">
         {
             progects.map(progect => {
                 return <Progect {...progect} />
@@ -46,7 +76,13 @@ const progects = [{
             </div>
     </div>
     <div class="container-fluid">
-        <HerderLink href={"/"} class="btn btn-light">Home</HerderLink>
+        <button style="
+        background: linear-gradient(145deg, #f6d6c9, #f8e9e0);
+        color: black; border-radius: 50px; padding: 8px 16px; border: none; box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2); transition: transform 0.2s;">
+        <HerderLink class="nav-link" href="/" id="galery-progects-link" style="text-decoration: none;">
+            Home
+        </HerderLink>
+      </button>    
     </div>
     <div class="container-fluid">
         <Footer />
