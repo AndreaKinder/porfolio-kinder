@@ -1,5 +1,5 @@
 ---
-
+import "../styles/styles.css"
 ---
 <style>
     /* Reset Básico */
@@ -19,7 +19,7 @@
       font-size: 2.5rem;
       margin-bottom: 2rem;
       font-weight: bold;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+      text-shadow: var(--shadow);
     }
 
     .skills-container {
@@ -30,22 +30,24 @@
     }
 
     .skill-chip {
-      background: linear-gradient(145deg, #f6d6c9, #f8e9e0);
+      background: var(--button-gradient);
       padding: 0.75rem 1.5rem;
       border-radius: 20px;
       font-size: 1rem;
       font-weight: bold;
-      box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2), -3px -3px 6px rgba(255, 255, 255, 0.8);
+      box-shadow: var(--shadow), -3px -3px 6px rgba(255, 255, 255, 0.8);
       transition: transform 0.3s, box-shadow 0.3s;
     }
 
     .skill-chip:hover {
       transform: translateY(-5px);
-      box-shadow: 3px 6px 12px rgba(0, 0, 0, 0.3), -3px -3px 12px rgba(255, 255, 255, 0.9);
+      box-shadow: var(--shadow), -3px -3px 12px rgba(255, 255, 255, 0.9);
+    }
+    h2, a {
+        color: var(--text);
     }
     a{
-        text-decoration: none;
-        color: black;
+      text-decoration: none;
     }
   </style>
 

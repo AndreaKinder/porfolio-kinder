@@ -1,9 +1,7 @@
 ---
-
+import '../styles/styles.css';
 ---
-<!DOCTYPE html>
-<html lang="es">
-<head>
+    
 
     <style>
         .container {
@@ -16,10 +14,10 @@
             font-size: 2.5rem;
             margin-bottom: 2rem;
             font-weight: bold;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            text-shadow: var(--shadow);
         }
         .card {
-            background: linear-gradient(145deg, #f6d6c9, #f8e9e0);
+            background: var(--button-gradient);
             border-radius: 20px;
             box-shadow: var(--shadow);
             padding: 1.5rem;
@@ -28,22 +26,24 @@
         }
         .card:hover {
             transform: scale(1.05);
-            box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
+            box-shadow: var(--shadow);
         }
         .card-title {
             font-size: 1.25rem;
             font-weight: bold;
             color: var(--primary-color);
             margin-bottom: 1rem;
+            color: var(--text);
         }
         .card-description {
             font-size: 1rem;
             margin-bottom: 1rem;
-            color: #555;
+            color: var(--text);
         }
         .card-price {
             font-size: 1.5rem;
             font-weight: bold;
+            color: var(--text);
         }
     </style>
     <h2 id="services">Servicios</h2>
@@ -85,5 +85,4 @@
             <div class="card-price">A negociar</div>
         </div>
     </div>
-</body>
-</html>
+

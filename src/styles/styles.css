@@ -1,7 +1,66 @@
 :root {
-  --button: pink;
   --text: black;
-  --text-white: white;
+  --button-gradient: linear-gradient(145deg, #f6d6c9, #f8e9e0);
+  --backgrown-2nd: white;
+  --shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  --button-gradient-social: linear-gradient(145deg, #f6d6c9, #f8e9e0);
+}
+[data-theme="dark"] {
+  --text: white;
+  --button-gradient: linear-gradient(145deg, #333, #555);
+  --backgrown-2nd: #121212;
+  --shadow: 0px 4px 6px rgba(255, 255, 255, 0.3);
+  --button-gradient-social: white;
+}
+
+#home {
+  background-image: url('/img/fondo.jpg');
+  background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+[data-theme="dark"] #home {
+  background-image: url('/img/fondo-black.png');
+  background-size: cover;
+	background-position: center;
+  background-repeat: no-repeat;
+}
+
+[data-theme="dark"] body {
+  position: relative;
+  z-index: 0;
+  background-color: var(--backgrown-2nd);
+}
+
+.slider-button {
+  position: relative;
+  width: 60px;
+  height: 30px;
+  background: var(--button-gradient);
+  border-radius: 50px;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.slider-circle {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 20px;
+  height: 20px;
+  background: var(--text);
+  border-radius: 50%;
+  transition: left 0.3s, background 0.3s;
+}
+
+[data-theme="dark"] .slider-circle {
+  left: 35px;
+  background: var(--text);
+}
+
+[data-theme="dark"] .slider-button {
+  background: var(--button-gradient);
 }
 body {
     text-align: center;
@@ -20,3 +79,4 @@ h1{
 h2, h3, h4, h5, h6, p{
   color: var(--text);
 }
+
