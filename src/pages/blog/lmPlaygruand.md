@@ -1,5 +1,5 @@
 ---
-ayout: ../../layouts/Layout.astro
+layout: ../../layouts/Layout.astro
 title: Explora Modelos de Lenguaje Avanzados en tu Dispositivo Android con LM Playground
 author: Andrea Villar
 description: LM Playground es una aplicación que permite experimentar con modelos de lenguaje avanzados directamente en dispositivos Android, de forma local, optimizando rendimiento y almacenamiento.
