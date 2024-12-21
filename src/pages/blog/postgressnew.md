@@ -4,7 +4,9 @@ title: Herramientas con IA para desarrolladores de bases de datos
 author: Andrea Villar
 description: postgres.new permite a los desarrolladores ejecutar consultas en PostgreSQL sin configuración, apoyados por IA para optimizar y simplificar el uso de SQL.
 ---
+
 ## Explorando postgres.new: Herramienta de Pruebas Rápidas en PostgreSQL con IA Integrada
+
 
 **postgres.new** no solo ofrece una interfaz rápida para ejecutar consultas en PostgreSQL, sino que también incorpora inteligencia artificial para mejorar la experiencia de los desarrolladores. Esta herramienta ayuda a probar, optimizar y escribir consultas SQL sin configuraciones complicadas ni necesidad de instalar bases de datos localmente.
 
