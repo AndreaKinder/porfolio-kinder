@@ -25,48 +25,51 @@ import "../styles/styles.css"
         });
     }
 </script>
-<div id="contact" class="container-fluid">
-    <div class="col p-5 mt-4">
-        <div class="p-2">
-            <h2 class="fw-bold fs-1" >Contacto</h2>
+<div id="contact" class="container">
+    <div class="col">
+        <div class="text-center pb-3 mb-4">
+            <h2 class="fw-bold fs-1">Contacto</h2>
         </div>
-        <form id="contact-form" class="border" style="background: var(--button-gradient);">
+        <form id="contact-form" class="border text-start" style="background: var(--button-gradient);">
             <input type="hidden" name="contact_number">
-            <div class="mb-4">
-                <label class="form-label">Nombre</label>
-                <input type="text" class="form-control material-input" name="user_name" placeholder="Tu nombre">
-            </div>
-            <div class="mb-4">
-                <label class="form-label">Correo Electrónico</label>
-                <input class="form-control material-input" type="email" name="user_email" placeholder="Tu email">
-            </div>
-            <div class="mb-4">
-                <label class="form-label">Mensaje</label>
-                <textarea class="form-control material-input" name="message" rows="4" placeholder="Tu mensaje"></textarea>
-            </div>
-            <div>
-                <button class="border" id="submit" type="submit" style="background: var(--button-gradient);
-                color: var(--text); border-radius: 50px; padding: 8px 16px; border: none; box-shadow: var(--shadow); transition: transform 0.2s;">
-                Enviar
+            <div class="row flex-column flex-md-row">
+                <div class="col">
+                    <div class="mb-4">
+                        <label class="form-label">Nombre</label>
+                        <input type="text" class="form-control material-input" name="user_name" placeholder="Tu nombre">
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Correo Electrónico</label>
+                        <input class="form-control material-input" type="email" name="user_email" placeholder="Tu email">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="mb-4">
+                        <label class="form-label">Mensaje</label>
+                        <textarea class="form-control material-input" name="message" rows="6" placeholder="Tu mensaje"></textarea>
+                    </div>
+                </div>
+                <button class="w-100 border" id="submit" type="submit" style="background: var(--button-gradient);
+                    color: var(--text); border-radius: 50px; padding: 7px 16px; border: none; box-shadow: var(--shadow); transition: transform 0.2s;">
+                    Enviar
                 </button>
-
-                <script>
-                    document.getElementById('submit').addEventListener('click', function() {
-                        this.style.transform = 'scale(0.95)';
-                        setTimeout(() => {
-                            this.style.transform = 'scale(1)';
-                        }, 150);
-                    });
-
-                    document.getElementById('submit').addEventListener('mouseover', function() {
-                        this.style.transform = 'scale(1.05)';
-                    });
-
-                    document.getElementById('submit').addEventListener('mouseout', function() {
-                        this.style.transform = 'scale(1)';
-                    });
-                </script>
             </div>
+            <script>
+                document.getElementById('submit').addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+
+                document.getElementById('submit').addEventListener('mouseover', function() {
+                    this.style.transform = 'scale(1.05)';
+                });
+
+                document.getElementById('submit').addEventListener('mouseout', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            </script>
         </form>
     </div>
 </div>
@@ -75,8 +78,6 @@ import "../styles/styles.css"
 /* General Styles */
 
 #contact-form {
-    max-width: 1340px;
-    margin: 20px auto;
     padding: 20px;
     border-radius: 20px;
     box-shadow: var(--shadow);
@@ -127,12 +128,5 @@ import "../styles/styles.css"
     box-shadow: var(--shadow);
 }
 
-/* Responsive Design */
-@media (max-width: 576px) {
-    #contact-form {
-        max-width: 90%;
-        padding: 15px;
-    }
-}
 </style>
 

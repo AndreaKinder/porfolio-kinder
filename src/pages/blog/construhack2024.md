@@ -3,8 +3,8 @@ layout: ../../layouts/Layout.astro
 title: ConstruHack Viladecans 2024
 author: Andrea Villar
 description: Relato de mi primera Hackaton y el proyecto realizado en el.
+tag: 
 ---
-
 ## 1. Introducción
 
 En el marco de mi desarrollo profesional y mi interés por la innovación en el sector de la construcción, participé en [ConstruHack2024](https://www.viladecans.cat/es/hack2024), un evento que representó un punto de inflexión en mi carrera. Este hackathon congregó a profesionales destacados y estudiantes prometedores del sector, unidos por el objetivo de desarrollar soluciones innovadoras y sostenibles para los desafíos actuales de nuestra industria.

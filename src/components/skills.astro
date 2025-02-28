@@ -1,14 +1,53 @@
 ---
 import "../styles/styles.css"
+import ProjectCard from "./project-card.astro"
+
+const progects = [
+  {
+    title: "Construhack 2024",
+    image: "/img/construhack.png",
+    href: "https://github.com/AndreaKinder/construhack2024",
+    description: "Prueba piloto del proyecto Construhack 2024, una aplicacion de inteligencia artificial para la clasificacion automatica de sobrantes de obras civiles, con el objetivo de promover un sistema de economia circular.",
+    tag: "react react-native git html javascript android"
+  },
+  {
+    title: "Kinder.Dots",
+    image: "/img/Kinder-Dots.png",
+    href: "https://github.com/AndreaKinder/Kinder.Dots",
+    description: "Configuración customizada de Arch Linux.",
+    tag: "linux bash git"
+  },
+  {
+    title: "AI Notebook",
+    image: "/img/ai-notebook.png",
+    href: "https://hug-ai-tools.andreavillar.tech/",
+    description: "Conjunto de herramientas de escritorio desarrolladas con Python de IA Generativa.",
+    tag: "python git api"
+  },
+  {
+    title: "Porfolio",
+    image: "/img/abatar-ia.jpg",
+    href: "https://github.com/AndreaKinder/porfolio-kinder",
+    description: "Mi portfolio personal, creado con Astro.",
+    tag: "astro git bootstrap html javascript"
+  },
+  {
+    title: "Wowfinder",
+    image: "/img/wowfinder.png",
+    href: "https://github.com/edurne85/wowfinder",
+    description: "Paquete de utilidades para la campa a 'Wowfinder' (campa a de rol basada en el sistema Pathfinder 1ed y ambientada en el universo Warcraft de Blizzard).",
+    tag: "react git html javascript"
+  }
+
+]
 ---
 <style>
-    /* Reset Básico */
-    body, html {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
 
+    .progects-container{
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
     /* Sección de Habilidades */
     .skills-section {
       padding: 4rem 1rem;
@@ -26,17 +65,19 @@ import "../styles/styles.css"
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 1.5rem;
+      gap: 10px;
     }
 
     .skill-chip {
-      background: var(--button-gradient);
+      background: var(--backgrown-2nd);
+      height: 50px;
       padding: 0.75rem 1.5rem;
       border-radius: 20px;
       font-size: 1rem;
       font-weight: bold;
       box-shadow: var(--shadow), -3px -3px 6px rgba(255, 255, 255, 0.8);
       transition: transform 0.3s, box-shadow 0.3s;
+      border: var(--text) 1px solid;
     }
 
     .skill-chip:hover {
@@ -49,26 +90,51 @@ import "../styles/styles.css"
     a{
       text-decoration: none;
     }
+    .active {
+      background: var(--button-gradient);
+    }
+    .non{
+      display: none;
+    }
   </style>
 
-  <section class="skills-section" id="skills">
-    <h2>Mis Habilidades</h2>
-    <div class="skills-container">
-        <div class="skill-chip"><a href="https://www.python.org/doc/" target="_blank">Python</a></div>
-        <div class="skill-chip"><a href="https://www.kernel.org/doc/html/latest/" target="_blank">Linux</a></div>
-        <div class="skill-chip"><a href="https://www.gnu.org/software/bash/manual/bash.html" target="_blank">Bash</a></div>
-        <div class="skill-chip"><a href="https://reactjs.org/docs/getting-started.html" target="_blank">React</a></div>
-        <div class="skill-chip"><a href="https://reactnative.dev/docs/getting-started" target="_blank">React Native</a></div>
-        <div class="skill-chip"><a href="https://git-scm.com/doc" target="_blank">Git</a></div>
-        <div class="skill-chip"><a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank">HTML & CSS</a></div>
-        <div class="skill-chip"><a href="https://restfulapi.net/" target="_blank">APIs REST</a></div>
-        <div class="skill-chip"><a href="https://developer.android.com/kotlin" target="_blank">Android Kotlin</a></div>
-        <div class="skill-chip"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">JavaScript</a></div>
-        <div class="skill-chip"><a href="https://docs.astro.build/" target="_blank">Astro</a></div>
-        <div class="skill-chip"><a href="https://en.wikipedia.org/wiki/Automation" target="_blank">Automation</a></div>
-        <div class="skill-chip"><a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/" target="_blank">Bootstrap</a></div>
-        <div class="skill-chip"><a href="https://docs.docker.com/" target="_blank">Docker</a></div>
-        <div class="skill-chip"><a href="https://firebase.google.com/docs" target="_blank">Firebase</a></div>
+  <section class="continer" id="projects">
+    <h2 class="m-4">Mis Proyectos</h2>
+    <div class="row">
+      <div class="col p-4">
+        <div class="row row-cols-1 row-cols-md-3 g-4 skills-container">
+        <div id="python" class="skill-chip active">Python</div>
+        <div id="linux" class="skill-chip">Linux</div>
+        <div id="bash" class="skill-chip">Bash</div>
+        <div id="react" class="skill-chip">React</div>
+        <div id="react-native" class="skill-chip">React Native</div>
+        <div id="git" class="skill-chip">Git</div>
+        <div id="html" class="skill-chip">HTML & CSS</div>
+        <div id="api" class="skill-chip">APIs REST</div>
+        <div id="javascript" class="skill-chip">JavaScript</div>
+        <div id="astro" class="skill-chip">Astro</div>
+        <div id="bootstrap" class="skill-chip">Bootstrap</div>
+        <div id="android" class="skill-chip">Android</div>
     </div>
+      </div>
+      
+    <div class="col non progects-container p-4 align-items-center">
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        {
+        progects.map(progect => {
+          return (
+            <ProjectCard
+              title={progect.title}
+              href={progect.href}
+              description={progect.description}
+              tag={progect.tag}
+            />
+          );
+        })
+      }
+      </div>
+    </div>
+  </div>
+  <script src="../js/tagProgectSelector.js"></script>
   </section>
 
