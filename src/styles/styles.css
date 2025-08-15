@@ -6,11 +6,11 @@
   --button-gradient-social: linear-gradient(145deg, #f6d6c9, #f8e9e0);
 }
 [data-theme="dark"] {
-  --text: white;
-  --button-gradient: linear-gradient(145deg, #333, #555);
-  --backgrown-2nd: #121212;
-  --shadow: 0px 4px 6px rgba(255, 255, 255, 0.3);
-  --button-gradient-social: white;
+  --text: #f8e9e0;
+  --button-gradient: linear-gradient(145deg, #232526, #414345);
+  --backgrown-2nd: #181818;
+  --shadow: 0px 1px 2px rgba(0, 0, 0, 0.7);
+  --button-gradient-social: linear-gradient(145deg, #232526, #414345);
 }
 
 #home {
@@ -24,7 +24,6 @@
   border-radius: 20px;
   background: var(--button-gradient);
   box-shadow: var(--shadow);
-
 }
 
 [data-theme="dark"] body {
@@ -41,7 +40,9 @@
   border-radius: 50px;
   box-shadow: var(--shadow);
   cursor: pointer;
-  transition: background 0.3s, box-shadow 0.3s;
+  transition:
+    background 0.3s,
+    box-shadow 0.3s;
 }
 
 .slider-circle {
@@ -52,7 +53,9 @@
   height: 20px;
   background: var(--text);
   border-radius: 50%;
-  transition: left 0.3s, background 0.3s;
+  transition:
+    left 0.3s,
+    background 0.3s;
 }
 
 [data-theme="dark"] .slider-circle {
@@ -64,19 +67,34 @@
   background: var(--button-gradient);
 }
 body {
-    text-align: center;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    color: var(--text);
-    background-color: var(--text-white);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  }
-h1{
-    color: var(--text);
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: var(--text);
+  background-color: var(--text-white);
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
 }
-h2, h3, h4, h5, h6, p{
+h1 {
   color: var(--text);
 }
-
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: var(--text);
+}
