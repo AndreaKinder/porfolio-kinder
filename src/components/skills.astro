@@ -1,163 +1,206 @@
 ---
-import "../styles/styles.css"
-import ProjectCard from "./project-card.astro"
+import "../styles/styles.css";
+import ProjectCard from "./project-card.astro";
 
 const progects = [
-  {
-    title: "Construhack 2024",
-    image: "/img/construhack.png",
-    href: "https://github.com/AndreaKinder/construhack2024",
-    description: "Prueba piloto del proyecto Construhack 2024, una aplicacion de inteligencia artificial para la clasificacion automatica de sobrantes de obras civiles, con el objetivo de promover un sistema de economia circular.",
-    tag: "react react-native git html javascript android"
-  },
-  {
-    title: "ArchKinder.Dots",
-    image: "/img/Kinder-Dots.png",
-    href: "https://github.com/AndreaKinder/ArchKinder.Dots",
-    description: "Configuración customizada de Arch Linux.",
-    tag: "linux bash git"
-  },
-  {
-    title: "AI Notebook",
-    image: "/img/ai-notebook.png",
-    href: "https://hug-ai-tools.andreavillar.tech/",
-    description: "Conjunto de herramientas de escritorio desarrolladas con Python de IA Generativa.",
-    tag: "python git api"
-  },
-  {
-    title: "Porfolio",
-    image: "/img/abatar-ia.jpg",
-    href: "https://github.com/AndreaKinder/porfolio-kinder",
-    description: "Mi portfolio personal, creado con Astro.",
-    tag: "astro git bootstrap html javascript"
-  },
-  {
-    title: "Wowfinder",
-    image: "/img/wowfinder.png",
-    href: "https://github.com/edurne85/wowfinder",
-    description: "Paquete de utilidades para la campa a 'Wowfinder' (campa a de rol basada en el sistema Pathfinder 1ed y ambientada en el universo Warcraft de Blizzard).",
-    tag: "react git html javascript"
-  },
-  {
-    title: "SecureWallet",
-  image: "https://github.com/AndreaKinder/secureWallet/blob/main/assets/photo_2025-03-03_21-11-52.jpg",
-  description: "Proyecto presentado en el Hackathon Open Gateway 2025, obteniendo el 4to lugar en la competencia.",
-  href: "https://github.com/AndreaKinder/secureWallet/tree/main",
-  tag: "react react-native git api javascript android"
-  },
-  {
-    title: "Kinder.Vim",
-    image: "https://github.com/AndreaKinder/Kinder.Vim/blob/main/neovim-logo.png",
-    description: "Configuracion de Neovim para el repositorio [ArchKinder.Dots](https://github.com/AndreaKinder/ArchKinder.Dots) (Arch Linux customizado).",
-    href: "https://github.com/AndreaKinder/Kinder.Vim",
-    tag: "linux bash git nvim"
-  },
-  {
-    title: "Docker Node Neovim Env",
-    image: "http://github.com/AndreaKinder/Kinder.Vim/blob/main/neovim-logo.png",
-    description: "Contenedor Docker con Node.js y Neovim para development",
-    href: "https://github.com/AndreaKinder/nodejs-neovim-environment",
-    tag: "linux bash git docker nvim"
-  }
-
-]
+    {
+        title: "Construhack 2024",
+        image: "/img/construhack.png",
+        href: "https://github.com/AndreaKinder/construhack2024",
+        description:
+            "Prueba piloto del proyecto Construhack 2024, una aplicacion de inteligencia artificial para la clasificacion automatica de sobrantes de obras civiles, con el objetivo de promover un sistema de economia circular.",
+        tag: "react react-native git html javascript android",
+    },
+    {
+        title: "ArchKinder.Dots",
+        image: "/img/Kinder-Dots.png",
+        href: "https://github.com/AndreaKinder/ArchKinder.Dots",
+        description: "Configuración customizada de Arch Linux.",
+        tag: "linux bash git",
+    },
+    {
+        title: "AI Notebook",
+        image: "/img/ai-notebook.png",
+        href: "https://hug-ai-tools.andreavillar.tech/",
+        description:
+            "Conjunto de herramientas de escritorio desarrolladas con Python de IA Generativa.",
+        tag: "python git api",
+    },
+    {
+        title: "Porfolio",
+        image: "/img/abatar-ia.jpg",
+        href: "https://github.com/AndreaKinder/porfolio-kinder",
+        description: "Mi portfolio personal, creado con Astro.",
+        tag: "astro git bootstrap html javascript",
+    },
+    {
+        title: "Wowfinder",
+        image: "/img/wowfinder.png",
+        href: "https://github.com/edurne85/wowfinder",
+        description:
+            "Paquete de utilidades para la campa a 'Wowfinder' (campa a de rol basada en el sistema Pathfinder 1ed y ambientada en el universo Warcraft de Blizzard).",
+        tag: "react git html javascript",
+    },
+    {
+        title: "SecureWallet",
+        image: "https://github.com/AndreaKinder/secureWallet/blob/main/assets/photo_2025-03-03_21-11-52.jpg",
+        description:
+            "Proyecto presentado en el Hackathon Open Gateway 2025, obteniendo el 4to lugar en la competencia.",
+        href: "https://github.com/AndreaKinder/secureWallet/tree/main",
+        tag: "react react-native git api javascript android",
+    },
+    {
+        title: "Kinder.Vim",
+        image: "https://github.com/AndreaKinder/Kinder.Vim/blob/main/neovim-logo.png",
+        description:
+            "Configuracion de Neovim para el repositorio [ArchKinder.Dots](https://github.com/AndreaKinder/ArchKinder.Dots) (Arch Linux customizado).",
+        href: "https://github.com/AndreaKinder/Kinder.Vim",
+        tag: "linux bash git nvim",
+    },
+    {
+        title: "Docker Node Neovim Env",
+        image: "http://github.com/AndreaKinder/Kinder.Vim/blob/main/neovim-logo.png",
+        description: "Contenedor Docker con Node.js y Neovim para development",
+        href: "https://github.com/AndreaKinder/nodejs-neovim-environment",
+        tag: "linux bash git docker nvim",
+    },
+];
 ---
-<style>
 
-    .progects-container{
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: center;
+<style>
+    .progects-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
     }
     /* Sección de Habilidades */
     .skills-section {
-      padding: 4rem 1rem;
-      text-align: center;
+        padding: 4rem 1rem;
+        text-align: center;
     }
 
     .skills-section h2 {
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      font-weight: bold;
-      text-shadow: var(--shadow);
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        font-weight: bold;
+        text-shadow: var(--shadow);
     }
 
     .skills-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
     }
 
     .skill-chip {
-      background: var(--backgrown-2nd);
-      height: 50px;
-      padding: 0.75rem 1.5rem;
-      border-radius: 20px;
-      font-size: 1rem;
-      font-weight: bold;
-      box-shadow: var(--shadow), -3px -3px 6px rgba(255, 255, 255, 0.8);
-      transition: transform 0.3s, box-shadow 0.3s;
-      border: var(--text) 1px solid;
+        background: var(--backgrown-2nd);
+        height: 50px;
+        padding: 0.75rem 1.5rem;
+        border-radius: 20px;
+        font-size: 1rem;
+        font-weight: bold;
+        box-shadow:
+            var(--shadow),
+            -3px -3px 6px rgba(255, 255, 255, 0.8);
+        transition:
+            transform 0.3s,
+            box-shadow 0.3s;
+        border: var(--text) 1px solid;
     }
 
     .skill-chip:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow), -3px -3px 12px rgba(255, 255, 255, 0.9);
+        transform: translateY(-5px);
+        box-shadow:
+            var(--shadow),
+            -3px -3px 12px rgba(255, 255, 255, 0.9);
     }
-    h2, a {
+    h2,
+    a {
         color: var(--text);
     }
-    a{
-      text-decoration: none;
+    a {
+        text-decoration: none;
     }
-    .active {
-      background: var(--button-gradient);
+    .active-chip {
+        background-color: var(--nes-error) !important;
     }
-    .non{
-      display: none;
+    .non {
+        display: none;
     }
-  </style>
 
-  <section class="continer" id="projects">
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .skills-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        .skill-chip {
+            font-size: 0.75rem;
+            padding: 0.6rem 1.2rem;
+            height: auto;
+            min-height: 40px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .skills-section {
+            padding: 2rem 0.5rem;
+        }
+        .skills-section h2 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        .skill-chip {
+            font-size: 0.65rem;
+            padding: 0.5rem 1rem;
+            height: auto;
+            min-height: 35px;
+        }
+        .skills-container {
+            gap: 8px;
+        }
+    }
+</style>
+
+<section class="continer" id="projects">
     <h2 class="m-4">Mis Proyectos</h2>
     <div class="row">
-      <div class="col p-4">
-        <div class="row row-cols-1 row-cols-md-3 g-4 skills-container">
-        <div id="python" class="skill-chip active">Python</div>
-        <div id="linux" class="skill-chip">Linux</div>
-        <div id="bash" class="skill-chip">Bash</div>
-        <div id="react" class="skill-chip">React</div>
-        <div id="react-native" class="skill-chip">React Native</div>
-        <div id="git" class="skill-chip">Git</div>
-        <div id="html" class="skill-chip">HTML & CSS</div>
-        <div id="api" class="skill-chip">APIs REST</div>
-        <div id="javascript" class="skill-chip">JavaScript</div>
-        <div id="astro" class="skill-chip">Astro</div>
-        <div id="bootstrap" class="skill-chip">Bootstrap</div>
-        <div id="android" class="skill-chip">Android</div>
-        <div id="nvim" class="skill-chip">Neovim</div>
-        <div id="docker" class="skill-chip">Docker</div>
-    </div>
-      </div>
-      
-    <div class="col non progects-container p-4 align-items-center">
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-        {
-        progects.map(progect => {
-          return (
-            <ProjectCard
-              title={progect.title}
-              href={progect.href}
-              description={progect.description}
-              tag={progect.tag}
-            />
-          );
-        })
-      }
-      </div>
-    </div>
-  </div>
-  <script src="../js/tagProgectSelector.js"></script>
-  </section>
+        <div class="col p-4">
+            <div class="row row-cols-1 row-cols-md-3 g-4 skills-container">
+                <div id="python" class="skill-chip active-chip">Python</div>
+                <div id="linux" class="skill-chip">Linux</div>
+                <div id="bash" class="skill-chip">Bash</div>
+                <div id="react" class="skill-chip">React</div>
+                <div id="react-native" class="skill-chip">React Native</div>
+                <div id="git" class="skill-chip">Git</div>
+                <div id="html" class="skill-chip">HTML & CSS</div>
+                <div id="api" class="skill-chip">APIs REST</div>
+                <div id="javascript" class="skill-chip">JavaScript</div>
+                <div id="astro" class="skill-chip">Astro</div>
+                <div id="bootstrap" class="skill-chip">Bootstrap</div>
+                <div id="android" class="skill-chip">Android</div>
+                <div id="nvim" class="skill-chip">Neovim</div>
+                <div id="docker" class="skill-chip">Docker</div>
+            </div>
+        </div>
 
+        <div class="col non progects-container p-4 align-items-center">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {
+                    progects.map((progect) => {
+                        return (
+                            <ProjectCard
+                                title={progect.title}
+                                href={progect.href}
+                                description={progect.description}
+                                tag={progect.tag}
+                            />
+                        );
+                    })
+                }
+            </div>
+        </div>
+    </div>
+    <script src="../js/tagProgectSelector.js"></script>
+</section>
