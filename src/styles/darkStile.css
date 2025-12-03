@@ -1,3 +1,7 @@
+/* ===================================
+   NES.css Dark Theme Overrides
+   =================================== */
+
 body {
   text-align: center;
   background-size: cover;
@@ -5,32 +9,78 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   color: var(--text);
-  background-color: var(--text);
-  font-family:
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    "Open Sans",
-    "Helvetica Neue",
-    sans-serif;
+  background-color: var(--bg-primary);
+  font-family: var(--ness-font);
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
 }
+
 #home {
   background-color: var(--backgrown-2nd);
+  border: 4px solid var(--border-color);
+  box-shadow: var(--shadow);
 }
+
+/* 8-bit style headings - Dark mode specific */
 h1 {
-  color: var(--text);
+  color: var(--text) !important;
+  font-family: 'Press Start 2P', cursive !important;
   font-size: 5em;
+  line-height: 1.6 !important;
+  text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.7);
+  letter-spacing: 2px;
 }
-h2,
-h3,
-h4,
-h5,
-h6,
+
+h2 {
+  color: var(--text) !important;
+  font-family: 'Press Start 2P', cursive !important;
+  line-height: 1.6 !important;
+  text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.6);
+  letter-spacing: 1px;
+}
+
+h3 {
+  color: var(--text) !important;
+  font-family: 'Press Start 2P', cursive !important;
+  line-height: 1.6 !important;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+}
+
+h4, h5, h6 {
+  color: var(--text) !important;
+  font-family: var(--system-font);
+  font-weight: bold;
+}
+
 p {
-  color: var(--text);
+  color: var(--text) !important;
+  font-family: var(--system-font);
+  line-height: 1.8;
+}
+
+/* NES.css container styles */
+.nes-container,
+.card,
+.project-card {
+  background: var(--bg-secondary) !important;
+  border: 4px solid var(--border-color) !important;
+  box-shadow: var(--shadow) !important;
+  color: var(--text) !important;
+  image-rendering: pixelated;
+}
+
+/* NES.css input styles */
+input, textarea, select {
+  border: 4px solid var(--border-color) !important;
+  background: var(--bg-primary) !important;
+  color: var(--text) !important;
+  box-shadow: inset 2px 2px 0px rgba(0, 0, 0, 0.2) !important;
+  image-rendering: pixelated;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none !important;
+  border-color: var(--nes-primary) !important;
+  box-shadow: var(--shadow) !important;
 }
