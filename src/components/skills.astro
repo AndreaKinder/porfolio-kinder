@@ -2,33 +2,29 @@
 import "../styles/styles.css";
 import ProjectCard from "./project-card.astro";
 
-const progects = [
+const projects = [
     {
         title: "Construhack 2024",
-        image: "/img/construhack.png",
         href: "https://github.com/AndreaKinder/construhack2024",
         description:
             "Prueba piloto del proyecto Construhack 2024, una aplicacion de inteligencia artificial para la clasificacion automatica de sobrantes de obras civiles, con el objetivo de promover un sistema de economia circular.",
         tag: "react react-native git html javascript android",
     },
     {
-        title: "Porfolio",
-        image: "/img/abatar-ia.jpg",
+        title: "Portfolio",
         href: "https://github.com/AndreaKinder/porfolio-kinder",
         description: "Mi portfolio personal, creado con Astro.",
         tag: "astro git bootstrap html javascript",
     },
     {
         title: "Wowfinder",
-        image: "/img/wowfinder.png",
         href: "https://github.com/edurne85/wowfinder",
         description:
-            "Paquete de utilidades para la campa a 'Wowfinder' (campa a de rol basada en el sistema Pathfinder 1ed y ambientada en el universo Warcraft de Blizzard).",
+            "Paquete de utilidades para la campaña 'Wowfinder' (campaña de rol basada en el sistema Pathfinder 1ed y ambientada en el universo Warcraft de Blizzard).",
         tag: "react git html javascript",
     },
     {
         title: "SecureWallet",
-        image: "https://github.com/AndreaKinder/secureWallet/blob/main/assets/photo_2025-03-03_21-11-52.jpg",
         description:
             "Proyecto presentado en el Hackathon Open Gateway 2025, obteniendo el 4to lugar en la competencia.",
         href: "https://github.com/AndreaKinder/secureWallet/tree/main",
@@ -36,17 +32,44 @@ const progects = [
     },
     {
         title: "Kinder.Vim",
-        image: "https://github.com/AndreaKinder/Kinder.Vim/blob/main/neovim-logo.png",
         description:
-            "Configuracion de Neovim para el repositorio [ArchKinder.Dots](https://github.com/AndreaKinder/ArchKinder.Dots) (Arch Linux customizado).",
+            "Configuración personalizada de Neovim.",
         href: "https://github.com/AndreaKinder/Kinder.Vim",
         tag: "linux bash git nvim",
+    },
+    {
+        title: "Copilot CLI Neovim",
+        description:
+            "Plugin de Neovim que integra GitHub Copilot CLI para generar y ejecutar comandos de terminal desde el editor.",
+        href: "https://github.com/AndreaKinder/copilot-cli.nvim",
+        tag: "linux bash git nvim",
+    },
+    {
+        title: "Kinder.Dots",
+        description:
+            "Esta es mi colección personal de dotfiles, diseñados para crear un entorno de desarrollo y escritorio cohesivo y productivo.",
+        href: "https://github.com/AndreaKinder/Kinder.Dots",
+        tag: "linux bash git",
+    },
+    {
+        title: "Kinder.Shell",
+        description:
+            "Configuraciones modernas y unificadas de shell para Fish, Bash y Zsh, diseñadas para desarrollo profesional.",
+        href: "https://github.com/AndreaKinder/Kinder.Shell",
+        tag: "linux bash git",
+    },
+    {
+        title: "RomsManager",
+        description:
+            "Gestor de ROMs para organizar y administrar colecciones de juegos retro.",
+        href: "https://github.com/AndreaKinder/RomsManager",
+        tag: "linux bash git",
     },
 ];
 ---
 
 <style>
-    .progects-container {
+    .projects-container {
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
@@ -113,8 +136,7 @@ const progects = [
     <div class="row">
         <div class="col p-4">
             <div class="row row-cols-1 row-cols-md-3 g-4 skills-container">
-                <div id="python" class="skill-chip active">Python</div>
-                <div id="linux" class="skill-chip">Linux</div>
+                <div id="linux" class="skill-chip active-chip">Linux</div>
                 <div id="bash" class="skill-chip">Bash</div>
                 <div id="react" class="skill-chip">React</div>
                 <div id="react-native" class="skill-chip">React Native</div>
@@ -126,20 +148,19 @@ const progects = [
                 <div id="bootstrap" class="skill-chip">Bootstrap</div>
                 <div id="android" class="skill-chip">Android</div>
                 <div id="nvim" class="skill-chip">Neovim</div>
-                <div id="docker" class="skill-chip">Docker</div>
             </div>
         </div>
 
-        <div class="col non progects-container p-4 align-items-center">
+        <div class="col non projects-container p-4 align-items-center">
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 {
-                    progects.map((progect) => {
+                    projects.map((project) => {
                         return (
                             <ProjectCard
-                                title={progect.title}
-                                href={progect.href}
-                                description={progect.description}
-                                tag={progect.tag}
+                                title={project.title}
+                                href={project.href}
+                                description={project.description}
+                                tag={project.tag}
                             />
                         );
                     })
@@ -147,5 +168,5 @@ const progects = [
             </div>
         </div>
     </div>
-    <script src="../js/tagProgectSelector.js"></script>
+    <script src="../js/tagProjectSelector.js"></script>
 </section>

@@ -4,7 +4,7 @@ import Footer from "../components/footer.astro";
 import "../styles/styles.css";
 import HerderLink from "../components/herderLink.astro";
 import HeaderMenu from "../components/headerMenu.astro";
-const progects = [
+const projects = [
     {
         title: "Construhack 2024",
         image: "/img/construhack.png",
@@ -71,7 +71,7 @@ const progects = [
             <h2 class="m-5">Proyectos</h2>
             <div class="projects-container">
                 {
-                    progects.map((progect) => {
+                    projects.map((progect) => {
                         return <Progect {...progect} />;
                     })
                 }
@@ -86,7 +86,7 @@ const progects = [
                 <HerderLink
                     class="nav-link"
                     href="/"
-                    id="galery-progects-link"
+                    id="galery-projects-link"
                     style="text-decoration: none;"
                 >
                     Home

@@ -8,66 +8,66 @@
 */
 
 :root {
-    /* Colors - NES.css compatible palette */
-    --nes-primary: #e76e55;
-    --nes-success: #92cc41;
-    --nes-warning: #f7d51d;
-    --nes-error: #e76e55;
-    --nes-white: #fff;
-    --nes-black: #212529;
+  /* Colors - NES.css compatible palette */
+  --nes-primary: #e76e55;
+  --nes-success: #92cc41;
+  --nes-warning: #f7d51d;
+  --nes-error: #e76e55;
+  --nes-white: #fff;
+  --nes-black: #212529;
 
-    /* Custom theme variables */
-    --text: #212529;
-    --bg-primary: #fff;
-    --bg-secondary: #f5f5f5;
-    --button-gradient: #e7e7e7;
-    --backgrown-2nd: white;
-    --shadow: 4px 4px 0px rgba(0, 0, 0, 0.3);
-    --button-gradient-social: #e7e7e7;
-    --border-color: #212529;
+  /* Custom theme variables */
+  --text: #212529;
+  --bg-primary: #fff;
+  --bg-secondary: #f5f5f5;
+  --button-gradient: #e7e7e7;
+  --backgrown-2nd: white;
+  --shadow: 4px 4px 0px rgba(0, 0, 0, 0.3);
+  --button-gradient-social: #e7e7e7;
+  --border-color: #212529;
 
-    /* NES.css pixel font override */
-    --nes-font: "Press Start 2P", cursive;
-    --ness-font: "Press Start 2P", cursive;
+  /* NES.css pixel font override */
+  --nes-font: "Press Start 2P", cursive;
+  --ness-font: "Press Start 2P", cursive;
 }
 
 [data-theme="dark"] {
-    /* Dark mode NES.css palette */
-    --nes-primary: #5cb3ff;
-    --nes-success: #b8e986;
-    --nes-warning: #fce94f;
-    --nes-error: #ff9999;
-    --nes-white: #212529;
-    --nes-black: #fff;
+  /* Dark mode NES.css palette */
+  --nes-primary: #5cb3ff;
+  --nes-success: #b8e986;
+  --nes-warning: #fce94f;
+  --nes-error: #ff9999;
+  --nes-white: #212529;
+  --nes-black: #fff;
 
-    /* Dark theme variables */
-    --text: #f8e9e0;
-    --bg-primary: #212529;
-    --bg-secondary: #2c2c2c;
-    --button-gradient: #3a3a3a;
-    --backgrown-2nd: #1a1a1a;
-    --shadow: 4px 4px 0px rgba(255, 255, 255, 0.2);
-    --button-gradient-social: #3a3a3a;
-    --border-color: #f8e9e0;
+  /* Dark theme variables */
+  --text: #f8e9e0;
+  --bg-primary: #212529;
+  --bg-secondary: #2c2c2c;
+  --button-gradient: #3a3a3a;
+  --backgrown-2nd: #1a1a1a;
+  --shadow: 4px 4px 0px rgba(255, 255, 255, 0.2);
+  --button-gradient-social: #3a3a3a;
+  --border-color: #f8e9e0;
 }
 
 #home {
-    background-color: var(--backgrown-2nd);
+  background-color: var(--backgrown-2nd);
 }
 [data-theme="dark"] #home {
-    background-color: var(--backgrown-2nd);
+  background-color: var(--backgrown-2nd);
 }
 
 #home-init {
-    border-radius: 20px;
-    background: var(--button-gradient);
-    box-shadow: var(--shadow);
+  border-radius: 20px;
+  background: var(--button-gradient);
+  box-shadow: var(--shadow);
 }
 
 [data-theme="dark"] body {
-    position: relative;
-    z-index: 0;
-    background-color: var(--backgrown-2nd);
+  position: relative;
+  z-index: 0;
+  background-color: var(--backgrown-2nd);
 }
 
 /* ===================================
@@ -75,132 +75,132 @@
    =================================== */
 
 .slider-button {
-    position: relative;
-    width: 60px;
-    height: 30px;
-    background: var(--nes-error);
-    border: 4px solid var(--border-color);
-    box-shadow: var(--shadow);
-    cursor: pointer;
-    transition: none; /* Remove smooth transitions for pixel-perfect look */
-    image-rendering: pixelated;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: crisp-edges;
+  position: relative;
+  width: 60px;
+  height: 30px;
+  background: var(--nes-error);
+  border: 4px solid var(--border-color);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: none; /* Remove smooth transitions for pixel-perfect look */
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
 }
 
 .slider-circle {
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    width: 16px;
-    height: 16px;
-    background: var(--text);
-    border: 2px solid var(--border-color);
-    transition: left 0.1s steps(4); /* Stepped animation for retro feel */
-    image-rendering: pixelated;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  background: var(--text);
+  border: 2px solid var(--border-color);
+  transition: left 0.1s steps(4); /* Stepped animation for retro feel */
+  image-rendering: pixelated;
 }
 
 [data-theme="dark"] .slider-circle {
-    left: 33px;
-    background: var(--text);
+  left: 33px;
+  background: var(--text);
 }
 
 [data-theme="dark"] .slider-button {
-    background: var(--button-gradient);
-    border-color: var(--border-color);
+  background: var(--button-gradient);
+  border-color: var(--border-color);
 }
 /* ===================================
    NES.css Body & Typography
    =================================== */
 
 body {
-    text-align: center;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    color: var(--text);
-    background-color: var(--bg-primary);
-    font-family: var(--ness-font);
-    image-rendering: pixelated;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: crisp-edges;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: var(--text);
+  background-color: var(--bg-primary);
+  font-family: var(--ness-font);
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
 }
 
 /* Typography - Press Start 2P for headings */
 h1 {
-    font-family: var(--ness-font) !important;
-    line-height: 1.6 !important;
-    color: var(--text) !important;
-    font-size: 2.5rem !important;
-    margin-bottom: 1.5rem !important;
-    text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+  font-family: var(--ness-font) !important;
+  line-height: 1.6 !important;
+  color: var(--text) !important;
+  font-size: 2.5rem !important;
+  margin-bottom: 1.5rem !important;
+  text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
 }
 
 h2 {
-    font-family: var(--ness-font) !important;
-    line-height: 1.6 !important;
-    color: var(--text) !important;
-    font-size: 1.5rem !important;
-    margin-bottom: 1.2rem !important;
-    text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.15);
+  font-family: var(--ness-font) !important;
+  line-height: 1.6 !important;
+  color: var(--text) !important;
+  font-size: 1.5rem !important;
+  margin-bottom: 1.2rem !important;
+  text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.15);
 }
 
 h3 {
-    font-family: var(--ness-font) !important;
-    line-height: 1.6 !important;
-    color: var(--text) !important;
-    font-size: 1.4rem !important;
-    margin-bottom: 1rem !important;
-    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+  font-family: var(--ness-font) !important;
+  line-height: 1.6 !important;
+  color: var(--text) !important;
+  font-size: 1.4rem !important;
+  margin-bottom: 1rem !important;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
 h4 {
-    font-family: var(--ness-font);
-    color: var(--text);
-    font-size: 1.3rem;
-    font-weight: bold;
-    margin-bottom: 0.8rem;
+  font-family: var(--ness-font);
+  color: var(--text);
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 0.8rem;
 }
 
 h5,
 h6 {
-    font-size: 1.2rem;
-    font-family: var(--ness-font);
-    color: var(--text);
-    font-weight: bold;
-    margin-bottom: 0.6rem;
+  font-size: 1.2rem;
+  font-family: var(--ness-font);
+  color: var(--text);
+  font-weight: bold;
+  margin-bottom: 0.6rem;
 }
 
 p {
-    font-family: var(--ness-font) !important;
-    color: var(--text);
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 1rem;
+  font-family: var(--ness-font) !important;
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
 }
 
 /* NES.css compatible buttons */
 .nes-btn,
 button:not(.navbar-toggler) {
-    border: 4px solid var(--border-color) !important;
-    box-shadow: var(--shadow) !important;
-    background: var(--button-gradient) !important;
-    color: var(--text) !important;
-    transition: none !important;
-    image-rendering: pixelated;
+  border: 4px solid var(--border-color) !important;
+  box-shadow: var(--shadow) !important;
+  background: var(--button-gradient) !important;
+  color: var(--text) !important;
+  transition: none !important;
+  image-rendering: pixelated;
 }
 
 .nes-btn:hover,
 button:not(.navbar-toggler):hover {
-    transform: translate(2px, 2px);
-    box-shadow: 2px 2px 0px var(--border-color) !important;
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px var(--border-color) !important;
 }
 
 .nes-btn:active,
 button:not(.navbar-toggler):active {
-    transform: translate(4px, 4px);
-    box-shadow: none !important;
+  transform: translate(4px, 4px);
+  box-shadow: none !important;
 }
 
 /* ===================================
@@ -212,58 +212,58 @@ button:not(.navbar-toggler):active {
 .nes-container,
 .card,
 .project-card {
-    border: 4px solid var(--border-color) !important;
-    box-shadow: var(--shadow) !important;
-    background: var(--button-gradient) !important;
-    border-radius: 0 !important; /* Remove border-radius for pixel-perfect look */
-    image-rendering: pixelated;
+  border: 4px solid var(--border-color) !important;
+  box-shadow: var(--shadow) !important;
+  background: var(--button-gradient) !important;
+  border-radius: 0 !important; /* Remove border-radius for pixel-perfect look */
+  image-rendering: pixelated;
 }
 
 /* Images with pixel-art style */
 img {
-    image-rendering: pixelated;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: crisp-edges;
-    border: 4px solid var(--border-color);
-    box-shadow: var(--shadow);
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  border: 4px solid var(--border-color);
+  box-shadow: var(--shadow);
 }
 
 /* Remove rounded corners for pixelated aesthetic */
 .rounded-circle {
-    border-radius: 0 !important;
-    /* If you want to keep circular images, comment the line above */
+  border-radius: 0 !important;
+  /* If you want to keep circular images, comment the line above */
 }
 
 /* Border dividers with NES.css style */
 .border-top,
 .border-danger {
-    border-top: 1px solid var(--nes-error) !important;
-    border-style: dashed !important;
-    image-rendering: pixelated;
+  border-top: 1px solid var(--nes-error) !important;
+  border-style: dashed !important;
+  image-rendering: pixelated;
 }
 
 /* Skills chips with 8-bit style */
 .skill-chip {
-    border: 4px solid var(--border-color) !important;
-    box-shadow: var(--shadow) !important;
-    background: var(--button-gradient) !important;
-    border-radius: 0 !important;
-    font-family: "Press Start 2P", cursive;
-    font-size: 0.7rem !important;
-    padding: 0.75rem 1.5rem !important;
-    transition: transform 0.1s steps(2) !important;
-    image-rendering: pixelated;
+  border: 4px solid var(--border-color) !important;
+  box-shadow: var(--shadow) !important;
+  background: var(--button-gradient) !important;
+  border-radius: 0 !important;
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.7rem !important;
+  padding: 0.75rem 1.5rem !important;
+  transition: transform 0.1s steps(2) !important;
+  image-rendering: pixelated;
 }
 
 .skill-chip:hover {
-    transform: translate(2px, 2px) !important;
-    box-shadow: 2px 2px 0px var(--border-color) !important;
+  transform: translate(2px, 2px) !important;
+  box-shadow: 2px 2px 0px var(--border-color) !important;
 }
 
-.skill-chip.active {
-    background: var(--nes-primary) !important;
-    border-color: var(--nes-black) !important;
-    color: var(--nes-white) !important;
+.skill-chip.active-chip {
+  background: var(--nes-primary) !important;
+  border-color: var(--nes-black) !important;
+  color: var(--nes-white) !important;
 }
 
 /* Forms with NES.css style */
@@ -271,127 +271,127 @@ input.form-control,
 textarea.form-control,
 .material-input,
 .nes-input {
-    border: 4px solid var(--border-color) !important;
-    box-shadow: inset 2px 2px 0px rgba(0, 0, 0, 0.2) !important;
-    background: var(--bg-primary) !important;
-    color: var(--text) !important;
-    border-radius: 0 !important;
-    font-family: var(--ness-font);
-    padding: 0.75rem !important;
-    image-rendering: pixelated;
+  border: 4px solid var(--border-color) !important;
+  box-shadow: inset 2px 2px 0px rgba(0, 0, 0, 0.2) !important;
+  background: var(--bg-primary) !important;
+  color: var(--text) !important;
+  border-radius: 0 !important;
+  font-family: var(--ness-font);
+  padding: 0.75rem !important;
+  image-rendering: pixelated;
 }
 
 input.form-control:focus,
 textarea.form-control:focus,
 .material-input:focus,
 .nes-input:focus {
-    outline: none !important;
-    border-color: var(--nes-primary) !important;
-    box-shadow: var(--shadow) !important;
+  outline: none !important;
+  border-color: var(--nes-primary) !important;
+  box-shadow: var(--shadow) !important;
 }
 
 /* Navbar with NES.css style */
 nav.navbar {
-    border: 4px solid var(--border-color) !important;
-    box-shadow: var(--shadow) !important;
-    border-radius: 0 !important;
-    background: var(--button-gradient) !important;
-    image-rendering: pixelated;
+  border: 4px solid var(--border-color) !important;
+  box-shadow: var(--shadow) !important;
+  border-radius: 0 !important;
+  background: var(--button-gradient) !important;
+  image-rendering: pixelated;
 }
 
 /* Links with retro hover effect */
 a.nav-link {
-    font-family: "Press Start 2P", cursive;
-    font-size: 0.7rem;
-    transition: transform 0.1s steps(2);
-    color: var(--text) !important;
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.7rem;
+  transition: transform 0.1s steps(2);
+  color: var(--text) !important;
 }
 
 a.nav-link:hover {
-    transform: scale(1.05);
-    color: var(--nes-error) !important;
+  transform: scale(1.05);
+  color: var(--nes-error) !important;
 }
 
 /* Footer with NES.css style */
 footer {
-    border-top: 4px solid var(--border-color) !important;
-    background: var(--button-gradient) !important;
-    padding: 2rem 0;
-    image-rendering: pixelated;
+  border-top: 4px solid var(--border-color) !important;
+  background: var(--button-gradient) !important;
+  padding: 2rem 0;
+  image-rendering: pixelated;
 }
 
 /* Social icons container */
 #social-div {
-    border: 4px solid var(--border-color) !important;
-    box-shadow: var(--shadow) !important;
-    background: var(--button-gradient-social) !important;
-    border-radius: 0 !important;
-    padding: 1rem;
+  border: 4px solid var(--border-color) !important;
+  box-shadow: var(--shadow) !important;
+  background: var(--button-gradient-social) !important;
+  border-radius: 0 !important;
+  padding: 1rem;
 }
 
 /* Special heading styles */
 h1.fw-bold,
 h1.text-uppercase {
-    font-family: "Press Start 2P", cursive !important;
-    line-height: 1.6 !important;
-    text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.25);
-    color: var(--text) !important;
-    letter-spacing: 2px !important;
+  font-family: "Press Start 2P", cursive !important;
+  line-height: 1.6 !important;
+  text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.25);
+  color: var(--text) !important;
+  letter-spacing: 2px !important;
 }
 
 h2.fw-bold {
-    font-family: "Press Start 2P", cursive !important;
-    line-height: 1.6 !important;
-    text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
-    color: var(--text) !important;
-    letter-spacing: 1px !important;
+  font-family: "Press Start 2P", cursive !important;
+  line-height: 1.6 !important;
+  text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
+  color: var(--text) !important;
+  letter-spacing: 1px !important;
 }
 
 h3.fw-bold {
-    font-family: "Press Start 2P", cursive !important;
-    line-height: 1.6 !important;
-    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15);
-    color: var(--text) !important;
+  font-family: "Press Start 2P", cursive !important;
+  line-height: 1.6 !important;
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15);
+  color: var(--text) !important;
 }
 
 /* Regular text with better spacing */
 .fs-4,
 .fs-5 {
-    line-height: 1.8 !important;
-    margin-bottom: 1rem !important;
+  line-height: 1.8 !important;
+  margin-bottom: 1rem !important;
 }
 
 .text {
-    font-family: var(--ness-font) !important;
-    color: var(--text) !important;
+  font-family: var(--ness-font) !important;
+  color: var(--text) !important;
 }
 
 /* NES.css text colors */
 .text-primary {
-    color: var(--nes-primary) !important;
+  color: var(--nes-primary) !important;
 }
 .text-success {
-    color: var(--nes-success) !important;
+  color: var(--nes-success) !important;
 }
 .text-warning {
-    color: var(--nes-warning) !important;
+  color: var(--nes-warning) !important;
 }
 .text-error {
-    color: var(--nes-error) !important;
+  color: var(--nes-error) !important;
 }
 
 /* Background colors */
 .bg-primary {
-    background-color: var(--nes-primary) !important;
+  background-color: var(--nes-primary) !important;
 }
 .bg-success {
-    background-color: var(--nes-success) !important;
+  background-color: var(--nes-success) !important;
 }
 .bg-warning {
-    background-color: var(--nes-warning) !important;
+  background-color: var(--nes-warning) !important;
 }
 .bg-error {
-    background-color: var(--nes-error) !important;
+  background-color: var(--nes-error) !important;
 }
 
 /* ===================================
@@ -400,65 +400,65 @@ h3.fw-bold {
 
 /* Mobile devices (portrait) */
 @media (max-width: 576px) {
-    h1 {
-        font-size: 1.5rem !important;
-        line-height: 1.8 !important;
-    }
+  h1 {
+    font-size: 1.5rem !important;
+    line-height: 1.8 !important;
+  }
 
-    h2 {
-        font-size: 1.2rem !important;
-    }
+  h2 {
+    font-size: 1.2rem !important;
+  }
 
-    h3 {
-        font-size: 0.9rem !important;
-    }
+  h3 {
+    font-size: 0.9rem !important;
+  }
 
-    .skill-chip {
-        font-size: 0.6rem !important;
-        padding: 0.5rem 1rem !important;
-    }
+  .skill-chip {
+    font-size: 0.6rem !important;
+    padding: 0.5rem 1rem !important;
+  }
 
-    a.nav-link {
-        font-size: 0.6rem;
-    }
+  a.nav-link {
+    font-size: 0.6rem;
+  }
 
-    button {
-        font-size: 0.7rem !important;
-    }
+  button {
+    font-size: 0.7rem !important;
+  }
 }
 
 /* Tablets (portrait) */
 @media (min-width: 577px) and (max-width: 768px) {
-    h1 {
-        font-size: 2rem !important;
-    }
+  h1 {
+    font-size: 2rem !important;
+  }
 
-    h2 {
-        font-size: 1.3rem !important;
-    }
+  h2 {
+    font-size: 1.3rem !important;
+  }
 
-    h3 {
-        font-size: 1rem !important;
-    }
+  h3 {
+    font-size: 1rem !important;
+  }
 
-    .skill-chip {
-        font-size: 0.65rem !important;
-    }
+  .skill-chip {
+    font-size: 0.65rem !important;
+  }
 }
 
 /* Large screens - bigger headings */
 @media (min-width: 1200px) {
-    h1 {
-        font-size: 3rem !important;
-    }
+  h1 {
+    font-size: 3rem !important;
+  }
 
-    h2 {
-        font-size: 1.8rem !important;
-    }
+  h2 {
+    font-size: 1.8rem !important;
+  }
 
-    h3 {
-        font-size: 1.3rem !important;
-    }
+  h3 {
+    font-size: 1.3rem !important;
+  }
 }
 
 /* ===================================
@@ -468,52 +468,52 @@ h3.fw-bold {
 /* Better readability for paragraphs */
 .text-start p,
 .text-center p {
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Card text */
 .card-text {
-    font-family: var(--ness-font) !important;
-    font-size: 0.9rem !important;
-    line-height: 1.6 !important;
+  font-family: var(--ness-font) !important;
+  font-size: 0.9rem !important;
+  line-height: 1.6 !important;
 }
 
 .card-title {
-    font-family: "Press Start 2P", cursive !important;
-    font-size: 1rem !important;
-    line-height: 1.6 !important;
-    margin-bottom: 0.8rem !important;
+  font-family: "Press Start 2P", cursive !important;
+  font-size: 1rem !important;
+  line-height: 1.6 !important;
+  margin-bottom: 0.8rem !important;
 }
 
 .card-subtitle {
-    font-family: var(--ness-font);
-    font-size: 0.75rem;
-    opacity: 0.8;
+  font-family: var(--ness-font);
+  font-size: 0.75rem;
+  opacity: 0.8;
 }
 
 /* Form labels */
 .form-label {
-    font-family: "Press Start 2P", cursive !important;
-    font-size: 0.7rem !important;
-    margin-bottom: 0.5rem !important;
-    color: var(--text) !important;
+  font-family: "Press Start 2P", cursive !important;
+  font-size: 0.7rem !important;
+  margin-bottom: 0.5rem !important;
+  color: var(--text) !important;
 }
 
 /* Navbar brand */
 .navbar-brand h3 {
-    font-family: "Press Start 2P", cursive !important;
-    font-size: 1rem !important;
-    letter-spacing: 2px !important;
-    margin: 0 !important;
+  font-family: "Press Start 2P", cursive !important;
+  font-size: 1rem !important;
+  letter-spacing: 2px !important;
+  margin: 0 !important;
 }
 
 /* Footer text */
 footer p {
-    font-family: "Press Start 2P", cursive !important;
-    font-size: 0.8rem !important;
-    line-height: 1.8 !important;
+  font-family: "Press Start 2P", cursive !important;
+  font-size: 0.8rem !important;
+  line-height: 1.8 !important;
 }
 
 /* ===================================
@@ -523,14 +523,14 @@ footer p {
 [data-theme="dark"] h1,
 [data-theme="dark"] h2,
 [data-theme="dark"] h3 {
-    text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5);
+  text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5);
 }
 
 [data-theme="dark"] p,
 [data-theme="dark"] .text {
-    color: var(--text) !important;
+  color: var(--text) !important;
 }
 
 [data-theme="dark"] .card-subtitle {
-    opacity: 0.7;
+  opacity: 0.7;
 }
