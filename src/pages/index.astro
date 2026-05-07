@@ -12,21 +12,15 @@ import Contact from "../components/contact.astro";
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
-        <title>Andrea Villar</title>
+        <title>Andrea Villar — Desarrolladora de Software</title>
 
-        <!-- NES.css Framework (8-bit style) -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://unpkg.com/nes.css@latest/css/nes.min.css"
+            href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
             rel="stylesheet"
         />
 
-        <!-- Press Start 2P Font (NES.css official font) -->
-        <link
-            href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap"
-            rel="stylesheet"
-        />
-
-        <!-- Bootstrap -->
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -37,68 +31,59 @@ import Contact from "../components/contact.astro";
     <body>
         <HeaderMenu />
         <main>
-            <div class="mt-5">
-                <div
-                    id="home"
-                    class="container p-5 mt-5 rounded align-self-center"
-                >
-                    <div
-                        id="home-init"
-                        class="row pt-5 pb-5 mt-3 mt-md-5 mb-3 align-self-center"
-                    >
-                        <div
-                            class="col-12 col-md-6 p-3 text-center align-self-center"
-                        >
-                            <div class="d-inline-block">
+            <section class="section" style="padding-top: 7rem;">
+                <div class="container-wide">
+                    <div class="hero-container p-4 p-md-5">
+                        <div class="row align-items-center g-4 g-md-5">
+                            <div
+                                class="col-12 col-md-5 text-center"
+                            >
                                 <img
-                                    class="rounded-circle img-fluid"
-                                    style="max-width: 250px; width: 100%; height: auto;"
+                                    class="profile-image mx-auto"
                                     src="/img/profile-img.png"
                                     alt="Andrea Villar"
+                                    width="200"
+                                    height="200"
                                 />
                             </div>
-                        </div>
-                        <div
-                            class="col-12 col-md-6 p-4 text-md-start text-center align-self-center"
-                        >
-                            <h1
-                                class="fw-bold text text-uppercase mb-3"
-                                style="color: var(--text-home); font-size: clamp(1.5rem, 5vw, 2.5rem); line-height: 1.4;"
-                            >
-                                Andrea Villar
-                            </h1>
-                            <h5
-                                style="font-size: clamp(0.9rem, 2.5vw, 1.25rem); margin-bottom: 1rem;"
-                            >
-                                Desarrolladora de Software
-                            </h5>
-                            <p
-                                style="font-size: clamp(0.75rem, 2vw, 1rem); line-height: 1.8;"
-                            >
-                                Apasionada por el desarrollo web y el software
-                                libre. Especializada en crear soluciones
-                                digitales innovadoras para el sector sanitario
-                                en Goalmed, y desarrollando proyectos
-                                personalizados como freelancer. Entusiasta de
-                                Linux y Neovim. Basada en Barcelona, España. 🚀
-                            </p>
+                            <div class="col-12 col-md-7">
+                                <p class="hero-subtitle">Desarrolladora de Software</p>
+                                <h1 class="hero-title mb-2">
+                                    Andrea<br />Villar
+                                </h1>
+                                <p class="hero-bio mt-3">
+                                    Apasionada por el desarrollo web y el software
+                                    libre. Especializada en crear soluciones
+                                    digitales innovadoras para el sector sanitario
+                                    en Goalmed, y desarrollando proyectos
+                                    personalizados como freelancer. Entusiasta de
+                                    Linux y Neovim. Basada en Barcelona.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="border-danger m-5"></div>
-            <div class="container-fluid mt-5">
-                <Skills />
-            </div>
-            <div class="border-top border-danger m-5"></div>
-            <div class="container-fluid mt-5 mb-5">
-                <Contact />
-            </div>
-            <div class="border-top border-danger m-5"></div>
-            <div class="container-fluid mt-5"></div>
-            <Footer />
+            <hr class="section-divider" />
+
+            <section id="projects" class="section">
+                <div class="container-wide">
+                    <Skills />
+                </div>
+            </section>
+
+            <hr class="section-divider" />
+
+            <section id="contact" class="section">
+                <div class="container-narrow">
+                    <Contact />
+                </div>
+            </section>
         </main>
+
+        <Footer />
+
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

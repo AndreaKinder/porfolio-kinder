@@ -1,536 +1,979 @@
 /* ===================================
-   NES.css Integration Styles
+   Andrea Villar — Portfolio Styles
+   Minimalist | Human | Enterprise
    =================================== */
 
-/* Import NES.css from CDN - Add this link to your HTML head:
-   <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
-   <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-*/
+/* -----------------------------------
+   1. Design Tokens
+   ----------------------------------- */
 
 :root {
-  /* Colors - NES.css compatible palette */
-  --nes-primary: #e76e55;
-  --nes-success: #92cc41;
-  --nes-warning: #f7d51d;
-  --nes-error: #e76e55;
-  --nes-white: #fff;
-  --nes-black: #212529;
+  /* ---- Palette: Light ---- */
+  --color-bg: #faf8f5;
+  --color-surface: #ffffff;
+  --color-surface-hover: #f5f3f0;
+  --color-text: #1a1a1a;
+  --color-text-muted: #6b6b6b;
+  --color-text-subtle: #9e9e9c;
+  --color-border: #e8e5e0;
+  --color-border-hover: #d4d0c8;
+  --color-accent: #2d4a3e;
+  --color-accent-hover: #3d5f51;
+  --color-accent-soft: rgba(45, 74, 62, 0.06);
+  --color-warm: #c1755a;
+  --color-warm-hover: #d4866a;
+  --color-warm-soft: rgba(193, 117, 90, 0.08);
+  --color-overlay: rgba(26, 26, 26, 0.04);
 
-  /* Custom theme variables */
-  --text: #212529;
-  --bg-primary: #fff;
-  --bg-secondary: #f5f5f5;
-  --button-gradient: #e7e7e7;
-  --backgrown-2nd: white;
-  --shadow: 4px 4px 0px rgba(0, 0, 0, 0.3);
-  --button-gradient-social: #e7e7e7;
-  --border-color: #212529;
+  /* ---- Typography ---- */
+  --font-display: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
-  /* NES.css pixel font override */
-  --nes-font: "Press Start 2P", cursive;
-  --ness-font: "Press Start 2P", cursive;
+  /* ---- Spacing ---- */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 6rem;
+  --space-2xl: 10rem;
+
+  /* ---- Radii ---- */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  /* ---- Shadows ---- */
+  --shadow-xs: 0 1px 2px rgba(26, 26, 26, 0.04);
+  --shadow-sm: 0 1px 3px rgba(26, 26, 26, 0.06), 0 1px 2px rgba(26, 26, 26, 0.04);
+  --shadow-md: 0 4px 16px rgba(26, 26, 26, 0.07), 0 2px 4px rgba(26, 26, 26, 0.04);
+  --shadow-lg: 0 12px 40px rgba(26, 26, 26, 0.1), 0 4px 12px rgba(26, 26, 26, 0.05);
+
+  /* ---- Transitions ---- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+
+  /* ---- Layout ---- */
+  --content-width: 860px;
+  --content-wide: 1140px;
 }
+
+/* ---- Palette: Dark ---- */
 
 [data-theme="dark"] {
-  /* Dark mode NES.css palette */
-  --nes-primary: #5cb3ff;
-  --nes-success: #b8e986;
-  --nes-warning: #fce94f;
-  --nes-error: #ff9999;
-  --nes-white: #212529;
-  --nes-black: #fff;
+  --color-bg: #161614;
+  --color-surface: #20201e;
+  --color-surface-hover: #282826;
+  --color-text: #e8e4df;
+  --color-text-muted: #a0a09d;
+  --color-text-subtle: #6e6e6b;
+  --color-border: #2e2e2c;
+  --color-border-hover: #42423e;
+  --color-accent: #8ec0a4;
+  --color-accent-hover: #a0d0b4;
+  --color-accent-soft: rgba(142, 192, 164, 0.08);
+  --color-warm: #d4956e;
+  --color-warm-hover: #e0a57e;
+  --color-warm-soft: rgba(212, 149, 110, 0.08);
+  --color-overlay: rgba(255, 255, 255, 0.03);
 
-  /* Dark theme variables */
-  --text: #f8e9e0;
-  --bg-primary: #212529;
-  --bg-secondary: #2c2c2c;
-  --button-gradient: #3a3a3a;
-  --backgrown-2nd: #1a1a1a;
-  --shadow: 4px 4px 0px rgba(255, 255, 255, 0.2);
-  --button-gradient-social: #3a3a3a;
-  --border-color: #f8e9e0;
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.15);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.35), 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-#home {
-  background-color: var(--backgrown-2nd);
-}
-[data-theme="dark"] #home {
-  background-color: var(--backgrown-2nd);
+
+/* -----------------------------------
+   2. Reset & Base
+   ----------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-#home-init {
-  border-radius: 20px;
-  background: var(--button-gradient);
-  box-shadow: var(--shadow);
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
-
-[data-theme="dark"] body {
-  position: relative;
-  z-index: 0;
-  background-color: var(--backgrown-2nd);
-}
-
-/* ===================================
-   NES.css Theme Toggle (8-bit style)
-   =================================== */
-
-.slider-button {
-  position: relative;
-  width: 60px;
-  height: 30px;
-  background: var(--nes-error);
-  border: 4px solid var(--border-color);
-  box-shadow: var(--shadow);
-  cursor: pointer;
-  transition: none; /* Remove smooth transitions for pixel-perfect look */
-  image-rendering: pixelated;
-  image-rendering: -moz-crisp-edges;
-  image-rendering: crisp-edges;
-}
-
-.slider-circle {
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  width: 16px;
-  height: 16px;
-  background: var(--text);
-  border: 2px solid var(--border-color);
-  transition: left 0.1s steps(4); /* Stepped animation for retro feel */
-  image-rendering: pixelated;
-}
-
-[data-theme="dark"] .slider-circle {
-  left: 33px;
-  background: var(--text);
-}
-
-[data-theme="dark"] .slider-button {
-  background: var(--button-gradient);
-  border-color: var(--border-color);
-}
-/* ===================================
-   NES.css Body & Typography
-   =================================== */
 
 body {
-  text-align: center;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  color: var(--text);
-  background-color: var(--bg-primary);
-  font-family: var(--ness-font);
-  image-rendering: pixelated;
-  image-rendering: -moz-crisp-edges;
-  image-rendering: crisp-edges;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  text-align: left;
+  transition:
+    background-color var(--duration-slow) var(--ease-out),
+    color var(--duration-slow) var(--ease-out);
 }
 
-/* Typography - Press Start 2P for headings */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+a:hover {
+  color: var(--color-accent-hover);
+}
+
+
+/* -----------------------------------
+   3. Typography
+   ----------------------------------- */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+}
+
 h1 {
-  font-family: var(--ness-font) !important;
-  line-height: 1.6 !important;
-  color: var(--text) !important;
-  font-size: 2.5rem !important;
-  margin-bottom: 1.5rem !important;
-  text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  letter-spacing: -0.03em;
 }
 
 h2 {
-  font-family: var(--ness-font) !important;
-  line-height: 1.6 !important;
-  color: var(--text) !important;
-  font-size: 1.5rem !important;
-  margin-bottom: 1.2rem !important;
-  text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.15);
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  letter-spacing: -0.025em;
 }
 
 h3 {
-  font-family: var(--ness-font) !important;
-  line-height: 1.6 !important;
-  color: var(--text) !important;
-  font-size: 1.4rem !important;
-  margin-bottom: 1rem !important;
-  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: -0.01em;
 }
 
 h4 {
-  font-family: var(--ness-font);
-  color: var(--text);
-  font-size: 1.3rem;
-  font-weight: bold;
-  margin-bottom: 0.8rem;
+  font-size: 1.125rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0;
 }
 
-h5,
+h5 {
+  font-size: 1rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+}
+
 h6 {
-  font-size: 1.2rem;
-  font-family: var(--ness-font);
-  color: var(--text);
-  font-weight: bold;
-  margin-bottom: 0.6rem;
+  font-size: 0.875rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
 }
 
 p {
-  font-family: var(--ness-font) !important;
-  color: var(--text);
   font-size: 1rem;
-  line-height: 1.6;
+  line-height: 1.75;
   margin-bottom: 1rem;
+  color: var(--color-text-muted);
 }
 
-/* NES.css compatible buttons */
-.nes-btn,
-button:not(.navbar-toggler) {
-  border: 4px solid var(--border-color) !important;
-  box-shadow: var(--shadow) !important;
-  background: var(--button-gradient) !important;
-  color: var(--text) !important;
-  transition: none !important;
-  image-rendering: pixelated;
+p:last-child {
+  margin-bottom: 0;
 }
 
-.nes-btn:hover,
-button:not(.navbar-toggler):hover {
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0px var(--border-color) !important;
+.text-display {
+  font-family: var(--font-display);
 }
 
-.nes-btn:active,
-button:not(.navbar-toggler):active {
-  transform: translate(4px, 4px);
-  box-shadow: none !important;
+.text-body {
+  font-family: var(--font-body);
 }
 
-/* ===================================
-   NES.css Enhanced Components
-   =================================== */
-
-/* Containers with NES.css style */
-#home-init,
-.nes-container,
-.card,
-.project-card {
-  border: 4px solid var(--border-color) !important;
-  box-shadow: var(--shadow) !important;
-  background: var(--button-gradient) !important;
-  border-radius: 0 !important; /* Remove border-radius for pixel-perfect look */
-  image-rendering: pixelated;
+.text-muted {
+  color: var(--color-text-muted) !important;
 }
 
-/* Images with pixel-art style */
-img {
-  image-rendering: pixelated;
-  image-rendering: -moz-crisp-edges;
-  image-rendering: crisp-edges;
-  border: 4px solid var(--border-color);
-  box-shadow: var(--shadow);
+.text-accent {
+  color: var(--color-accent) !important;
 }
 
-/* Remove rounded corners for pixelated aesthetic */
-.rounded-circle {
-  border-radius: 0 !important;
-  /* If you want to keep circular images, comment the line above */
+.text-warm {
+  color: var(--color-warm) !important;
 }
 
-/* Border dividers with NES.css style */
-.border-top,
-.border-danger {
-  border-top: 1px solid var(--nes-error) !important;
-  border-style: dashed !important;
-  image-rendering: pixelated;
-}
 
-/* Skills chips with 8-bit style */
-.skill-chip {
-  border: 4px solid var(--border-color) !important;
-  box-shadow: var(--shadow) !important;
-  background: var(--button-gradient) !important;
-  border-radius: 0 !important;
-  font-family: "Press Start 2P", cursive;
-  font-size: 0.7rem !important;
-  padding: 0.75rem 1.5rem !important;
-  transition: transform 0.1s steps(2) !important;
-  image-rendering: pixelated;
-}
+/* -----------------------------------
+   4. Layout Utilities
+   ----------------------------------- */
 
-.skill-chip:hover {
-  transform: translate(2px, 2px) !important;
-  box-shadow: 2px 2px 0px var(--border-color) !important;
-}
-
-.skill-chip.active-chip {
-  background: var(--nes-primary) !important;
-  border-color: var(--nes-black) !important;
-  color: var(--nes-white) !important;
-}
-
-/* Forms with NES.css style */
-input.form-control,
-textarea.form-control,
-.material-input,
-.nes-input {
-  border: 4px solid var(--border-color) !important;
-  box-shadow: inset 2px 2px 0px rgba(0, 0, 0, 0.2) !important;
-  background: var(--bg-primary) !important;
-  color: var(--text) !important;
-  border-radius: 0 !important;
-  font-family: var(--ness-font);
-  padding: 0.75rem !important;
-  image-rendering: pixelated;
-}
-
-input.form-control:focus,
-textarea.form-control:focus,
-.material-input:focus,
-.nes-input:focus {
-  outline: none !important;
-  border-color: var(--nes-primary) !important;
-  box-shadow: var(--shadow) !important;
-}
-
-/* Navbar with NES.css style */
-nav.navbar {
-  border: 4px solid var(--border-color) !important;
-  box-shadow: var(--shadow) !important;
-  border-radius: 0 !important;
-  background: var(--button-gradient) !important;
-  image-rendering: pixelated;
-}
-
-/* Links with retro hover effect */
-a.nav-link {
-  font-family: "Press Start 2P", cursive;
-  font-size: 0.7rem;
-  transition: transform 0.1s steps(2);
-  color: var(--text) !important;
-}
-
-a.nav-link:hover {
-  transform: scale(1.05);
-  color: var(--nes-error) !important;
-}
-
-/* Footer with NES.css style */
-footer {
-  border-top: 4px solid var(--border-color) !important;
-  background: var(--button-gradient) !important;
-  padding: 2rem 0;
-  image-rendering: pixelated;
-}
-
-/* Social icons container */
-#social-div {
-  border: 4px solid var(--border-color) !important;
-  box-shadow: var(--shadow) !important;
-  background: var(--button-gradient-social) !important;
-  border-radius: 0 !important;
-  padding: 1rem;
-}
-
-/* Special heading styles */
-h1.fw-bold,
-h1.text-uppercase {
-  font-family: "Press Start 2P", cursive !important;
-  line-height: 1.6 !important;
-  text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.25);
-  color: var(--text) !important;
-  letter-spacing: 2px !important;
-}
-
-h2.fw-bold {
-  font-family: "Press Start 2P", cursive !important;
-  line-height: 1.6 !important;
-  text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
-  color: var(--text) !important;
-  letter-spacing: 1px !important;
-}
-
-h3.fw-bold {
-  font-family: "Press Start 2P", cursive !important;
-  line-height: 1.6 !important;
-  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15);
-  color: var(--text) !important;
-}
-
-/* Regular text with better spacing */
-.fs-4,
-.fs-5 {
-  line-height: 1.8 !important;
-  margin-bottom: 1rem !important;
-}
-
-.text {
-  font-family: var(--ness-font) !important;
-  color: var(--text) !important;
-}
-
-/* NES.css text colors */
-.text-primary {
-  color: var(--nes-primary) !important;
-}
-.text-success {
-  color: var(--nes-success) !important;
-}
-.text-warning {
-  color: var(--nes-warning) !important;
-}
-.text-error {
-  color: var(--nes-error) !important;
-}
-
-/* Background colors */
-.bg-primary {
-  background-color: var(--nes-primary) !important;
-}
-.bg-success {
-  background-color: var(--nes-success) !important;
-}
-.bg-warning {
-  background-color: var(--nes-warning) !important;
-}
-.bg-error {
-  background-color: var(--nes-error) !important;
-}
-
-/* ===================================
-   Responsive Typography
-   =================================== */
-
-/* Mobile devices (portrait) */
-@media (max-width: 576px) {
-  h1 {
-    font-size: 1.5rem !important;
-    line-height: 1.8 !important;
-  }
-
-  h2 {
-    font-size: 1.2rem !important;
-  }
-
-  h3 {
-    font-size: 0.9rem !important;
-  }
-
-  .skill-chip {
-    font-size: 0.6rem !important;
-    padding: 0.5rem 1rem !important;
-  }
-
-  a.nav-link {
-    font-size: 0.6rem;
-  }
-
-  button {
-    font-size: 0.7rem !important;
-  }
-}
-
-/* Tablets (portrait) */
-@media (min-width: 577px) and (max-width: 768px) {
-  h1 {
-    font-size: 2rem !important;
-  }
-
-  h2 {
-    font-size: 1.3rem !important;
-  }
-
-  h3 {
-    font-size: 1rem !important;
-  }
-
-  .skill-chip {
-    font-size: 0.65rem !important;
-  }
-}
-
-/* Large screens - bigger headings */
-@media (min-width: 1200px) {
-  h1 {
-    font-size: 3rem !important;
-  }
-
-  h2 {
-    font-size: 1.8rem !important;
-  }
-
-  h3 {
-    font-size: 1.3rem !important;
-  }
-}
-
-/* ===================================
-   Text Utilities
-   =================================== */
-
-/* Better readability for paragraphs */
-.text-start p,
-.text-center p {
-  max-width: 800px;
+.container-narrow {
+  max-width: var(--content-width);
   margin-left: auto;
   margin-right: auto;
+  padding-left: var(--space-sm);
+  padding-right: var(--space-sm);
 }
 
-/* Card text */
-.card-text {
-  font-family: var(--ness-font) !important;
-  font-size: 0.9rem !important;
-  line-height: 1.6 !important;
+.container-wide {
+  max-width: var(--content-wide);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-sm);
+  padding-right: var(--space-sm);
+}
+
+.section {
+  padding-top: var(--space-2xl);
+  padding-bottom: var(--space-2xl);
+}
+
+.section-sm {
+  padding-top: var(--space-xl);
+  padding-bottom: var(--space-xl);
+}
+
+/* Subtle section divider */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--color-border);
+  margin: 0;
+  border: none;
+}
+
+
+/* -----------------------------------
+   5. Buttons
+   ----------------------------------- */
+
+.btn-primary,
+.btn-secondary,
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--radius-full);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-out);
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--color-accent);
+  color: #ffffff;
+  border-color: var(--color-accent);
+}
+
+.btn-primary:hover {
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-text);
+  color: var(--color-text);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-text);
+  border-color: transparent;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.btn-ghost:hover {
+  background: var(--color-overlay);
+  color: var(--color-text);
+}
+
+
+/* -----------------------------------
+   6. Cards
+   ----------------------------------- */
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xs);
+  transition:
+    transform var(--duration-normal) var(--ease-out),
+    box-shadow var(--duration-normal) var(--ease-out),
+    border-color var(--duration-normal) var(--ease-out);
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-border-hover);
+}
+
+.card-body {
+  padding: var(--space-md);
 }
 
 .card-title {
-  font-family: "Press Start 2P", cursive !important;
-  font-size: 1rem !important;
-  line-height: 1.6 !important;
-  margin-bottom: 0.8rem !important;
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
 }
 
 .card-subtitle {
-  font-family: var(--ness-font);
-  font-size: 0.75rem;
-  opacity: 0.8;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.75rem;
 }
 
-/* Form labels */
+.card-text {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}
+
+
+/* -----------------------------------
+   7. Forms
+   ----------------------------------- */
+
+.form-group {
+  margin-bottom: var(--space-md);
+}
+
 .form-label {
-  font-family: "Press Start 2P", cursive !important;
-  font-size: 0.7rem !important;
-  margin-bottom: 0.5rem !important;
-  color: var(--text) !important;
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.02em;
 }
 
-/* Navbar brand */
-.navbar-brand h3 {
-  font-family: "Press Start 2P", cursive !important;
-  font-size: 1rem !important;
-  letter-spacing: 2px !important;
-  margin: 0 !important;
+.form-control {
+  display: block;
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  transition:
+    border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out);
+  outline: none;
 }
 
-/* Footer text */
-footer p {
-  font-family: "Press Start 2P", cursive !important;
-  font-size: 0.8rem !important;
-  line-height: 1.8 !important;
+.form-control::placeholder {
+  color: var(--color-text-subtle);
 }
 
-/* ===================================
-   Dark Mode Text Adjustments
-   =================================== */
-
-[data-theme="dark"] h1,
-[data-theme="dark"] h2,
-[data-theme="dark"] h3 {
-  text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5);
+.form-control:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-soft);
+  background: var(--color-surface);
 }
 
-[data-theme="dark"] p,
-[data-theme="dark"] .text {
-  color: var(--text) !important;
+textarea.form-control {
+  min-height: 140px;
+  resize: vertical;
+  line-height: 1.6;
 }
 
-[data-theme="dark"] .card-subtitle {
+
+/* -----------------------------------
+   8. Navigation
+   ----------------------------------- */
+
+.navbar-custom {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1040;
+  background: rgba(250, 248, 245, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--color-border);
+  transition:
+    background var(--duration-normal) var(--ease-out),
+    box-shadow var(--duration-normal) var(--ease-out);
+}
+
+[data-theme="dark"] .navbar-custom {
+  background: rgba(22, 22, 20, 0.85);
+}
+
+.navbar-custom.scrolled {
+  box-shadow: var(--shadow-sm);
+}
+
+.navbar-brand {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--color-text) !important;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: opacity var(--duration-fast) var(--ease-out);
+}
+
+.navbar-brand:hover {
   opacity: 0.7;
+  color: var(--color-text) !important;
+}
+
+.nav-link-custom {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-full);
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.nav-link-custom:hover {
+  color: var(--color-text);
+  background: var(--color-overlay);
+}
+
+.nav-link-custom.active {
+  color: var(--color-accent);
+}
+
+/* Offcanvas mobile menu */
+.offcanvas {
+  background-color: var(--color-bg);
+  border-right: 1px solid var(--color-border);
+}
+
+.offcanvas .nav-link {
+  color: var(--color-text);
+  font-size: 1.125rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.offcanvas .nav-link:hover {
+  color: var(--color-accent);
+}
+
+/* Navbar toggler */
+.navbar-toggler {
+  border: none;
+  padding: 0.5rem;
+  background: transparent;
+  color: var(--color-text);
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.navbar-toggler-icon {
+  background-image: none;
+  position: relative;
+  width: 22px;
+  height: 2px;
+  background: var(--color-text);
+  display: block;
+  transition: background var(--duration-fast) var(--ease-out);
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 22px;
+  height: 2px;
+  background: var(--color-text);
+  transition: transform var(--duration-normal) var(--ease-out);
+}
+
+.navbar-toggler-icon::before {
+  top: -7px;
+}
+
+.navbar-toggler-icon::after {
+  top: 7px;
+}
+
+
+/* -----------------------------------
+   9. Theme Toggle
+   ----------------------------------- */
+
+.theme-toggle {
+  position: relative;
+  width: 48px;
+  height: 26px;
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: background var(--duration-normal) var(--ease-out);
+  border: none;
+  padding: 0;
+}
+
+.theme-toggle:hover {
+  background: var(--color-border-hover);
+}
+
+.theme-toggle-knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  background: var(--color-surface);
+  border-radius: 50%;
+  box-shadow: var(--shadow-xs);
+  transition:
+    transform var(--duration-normal) var(--ease-in-out),
+    background var(--duration-normal) var(--ease-out);
+}
+
+[data-theme="dark"] .theme-toggle-knob {
+  transform: translateX(22px);
+  background: var(--color-accent);
+}
+
+
+/* -----------------------------------
+   10. Profile / Hero
+   ----------------------------------- */
+
+.profile-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+  transition:
+    border-color var(--duration-normal) var(--ease-out),
+    box-shadow var(--duration-normal) var(--ease-out);
+}
+
+.profile-image:hover {
+  border-color: var(--color-border-hover);
+  box-shadow: var(--shadow-lg);
+}
+
+.hero-container {
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.hero-subtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 1.5rem;
+}
+
+.hero-bio {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--color-text-muted);
+  max-width: 480px;
+}
+
+
+/* -----------------------------------
+   11. Filter Chips
+   ----------------------------------- */
+
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.filter-chip {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: 0.5rem 1.125rem;
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-out);
+  user-select: none;
+}
+
+.filter-chip:hover {
+  color: var(--color-text);
+  border-color: var(--color-border-hover);
+  background: var(--color-surface-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-xs);
+}
+
+.filter-chip.active-chip {
+  color: #ffffff;
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-sm);
+}
+
+.filter-chip.active-chip:hover {
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+  color: #ffffff;
+}
+
+
+/* -----------------------------------
+   12. Project Grid & Cards
+   ----------------------------------- */
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-md);
+}
+
+.project-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  transition:
+    transform var(--duration-normal) var(--ease-out),
+    box-shadow var(--duration-normal) var(--ease-out),
+    border-color var(--duration-normal) var(--ease-out);
+  display: none;
+  flex-direction: column;
+}
+
+.project-card.visible {
+  display: flex;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-border-hover);
+}
+
+.project-card-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--color-text);
+  margin-bottom: 0.25rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.project-card-tags {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-accent);
+  margin-bottom: 0.75rem;
+}
+
+.project-card-desc {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--color-text-muted);
+  flex: 1;
+  margin-bottom: 1rem;
+}
+
+.project-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  text-decoration: none;
+  margin-top: auto;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.project-card-link:hover {
+  color: var(--color-accent-hover);
+}
+
+.project-card-link svg {
+  width: 18px;
+  height: 18px;
+}
+
+
+/* -----------------------------------
+   13. Blog Cards
+   ----------------------------------- */
+
+.blog-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  transition:
+    transform var(--duration-normal) var(--ease-out),
+    box-shadow var(--duration-normal) var(--ease-out),
+    border-color var(--duration-normal) var(--ease-out);
+}
+
+.blog-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-border-hover);
+}
+
+.blog-card-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.blog-card-desc {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}
+
+.blog-link-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-accent);
+  background: transparent;
+  border: 1.5px solid var(--color-accent);
+  border-radius: var(--radius-full);
+  padding: 0.625rem 1.5rem;
+  text-decoration: none;
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.blog-link-btn:hover {
+  background: var(--color-accent);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+
+/* -----------------------------------
+   14. Footer
+   ----------------------------------- */
+
+.footer {
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-lg) 0;
+  text-align: center;
+}
+
+.footer-text {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-md);
+}
+
+.footer-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: 0.625rem 2rem;
+}
+
+.footer-social a {
+  display: flex;
+  align-items: center;
+  color: var(--color-text-muted);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.footer-social a:hover {
+  color: var(--color-warm);
+}
+
+.footer-social a:hover svg {
+  transform: scale(1.1);
+}
+
+.footer-social svg {
+  width: 22px;
+  height: 22px;
+  transition: transform var(--duration-normal) var(--ease-out);
+}
+
+
+/* -----------------------------------
+   15. Utilities
+   ----------------------------------- */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.fade-in {
+  animation: fadeIn var(--duration-slow) var(--ease-out) both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* -----------------------------------
+   16. Responsive
+   ----------------------------------- */
+
+@media (max-width: 768px) {
+  :root {
+    --space-2xl: 6rem;
+    --space-xl: 4rem;
+    --space-lg: 2.5rem;
+  }
+
+  .section {
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-xl);
+  }
+
+  .profile-image {
+    width: 140px;
+    height: 140px;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-container {
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 576px) {
+  :root {
+    --space-xl: 3rem;
+    --space-lg: 2rem;
+    --space-md: 1.5rem;
+  }
+
+  .profile-image {
+    width: 120px;
+    height: 120px;
+  }
+
+  .hero-title {
+    font-size: 1.75rem;
+  }
+
+  .filter-chip {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.9rem;
+  }
+
+  .blog-card {
+    padding: var(--space-sm);
+  }
+
+  .blog-card-title {
+    font-size: 1.25rem;
+  }
 }

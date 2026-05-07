@@ -5,200 +5,173 @@ import "../styles/styles.css";
 ---
 
 <style>
-    nav {
-        font-family: var(--nes-font);
-        position: fixed;
-        top: 0;
-        width: 100%;
-        z-index: 1000;
-        transition: all 0.3s ease;
-        background: var(--button-gradient);
-        border-bottom: var(--backgrown-2nd) 1px solid;
-        box-shadow: var(--shadow);
+    .navbar-custom {
+        padding: 0.75rem 0;
     }
 
-    nav.shrink {
-        transform: translateY(-30%);
-        opacity: 0.5;
-        background: var(--backgrown-2nd);
+    .navbar-custom .container-fluid {
+        max-width: var(--content-wide);
+        padding-left: var(--space-sm);
+        padding-right: var(--space-sm);
     }
 
-    nav .navbar-brand,
-    nav .nav-link {
-        transition: font-size 0.3s ease;
-        color: var(--text);
-    }
-    nav.shrink .nav-link {
-        font-size: 0.7em;
+    .nav-links-desktop {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
     }
 
-    nav.shrink #title {
-        font-size: 0.7em;
-        margin-top: 20px;
-    }
-    nav.shrink #blog-link {
-        display: none;
-    }
-    nav .nav-link:hover {
-        color: #ff6347;
-        transform: scale(1.1);
+    .nav-link-custom {
+        font-family: var(--font-body);
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--color-text-muted);
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        border-radius: var(--radius-full);
         transition:
-            transform 0.3s ease,
-            color 0.3s ease;
-    }
-    .navbar-toggler {
-        border-color: var(--text);
+            color var(--duration-fast) var(--ease-out),
+            background var(--duration-fast) var(--ease-out);
     }
 
-    .navbar-toggler-icon {
-        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    .nav-link-custom:hover {
+        color: var(--color-text);
+        background: var(--color-overlay);
     }
-    .offcanvas {
-        background-color: var(--backgrown-2nd);
-        color: var(--text);
+
+    .nav-link-custom.active {
+        color: var(--color-accent);
     }
+
+    .nav-blog-btn {
+        font-family: var(--font-body);
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: #ffffff;
+        background: var(--color-accent);
+        border: none;
+        border-radius: var(--radius-full);
+        padding: 0.45rem 1.125rem;
+        cursor: pointer;
+        transition:
+            background var(--duration-normal) var(--ease-out),
+            transform var(--duration-normal) var(--ease-out),
+            box-shadow var(--duration-normal) var(--ease-out);
+    }
+
+    .nav-blog-btn:hover {
+        background: var(--color-accent-hover);
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-sm);
+    }
+
     .offcanvas .nav-link {
-        color: var(--text);
-    }
-    .offcanvas .nav-link:hover {
-        color: #ff6347;
-    }
-    #btn-blog {
-        background: var(--button-gradient);
-        color: var(--text);
-        border-radius: 0 !important;
-        padding: 8px 16px;
-        border: 4px solid var(--text) !important;
-        box-shadow: var(--shadow);
-        transition:
-            transform 0.1s steps(2),
-            background-color 0.1s;
-        font-family: "Press Start 2P", cursive;
-        font-size: 0.7rem;
-        image-rendering: pixelated;
-        image-rendering: -moz-crisp-edges;
-        image-rendering: crisp-edges;
+        color: var(--color-text);
+        font-family: var(--font-body);
+        font-size: 1.125rem;
+        font-weight: 500;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--color-border);
+        text-decoration: none;
+        transition: color var(--duration-fast) var(--ease-out);
     }
 
-    #btn-blog:hover {
-        background-color: #e76e55 !important;
-        transform: translate(2px, 2px);
-        box-shadow: 2px 2px 0px var(--text) !important;
+    .offcanvas .nav-link:hover {
+        color: var(--color-accent);
     }
-    #title:hover {
-        color: #e76e55 !important;
-        transform: scale(1.05);
+
+    .offcanvas .nav-link.active {
+        color: var(--color-accent);
+    }
+
+    @media (max-width: 992px) {
+        .nav-links-desktop {
+            display: none;
+        }
+        .navbar-brand {
+            font-size: 1.125rem;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .navbar-toggler {
+            display: none;
+        }
     }
 </style>
-<nav class="navbar navbar-expand-lg bg-body-tertiary" id="navbar">
-    <div class="container-fluid">
+
+<nav class="navbar-custom" id="navbar">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
         <button
-            class="navbar-toggler"
+            class="navbar-toggler d-lg-none"
             type="button"
             data-bs-toggle="offcanvas"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="staticBackdrop"
+            data-bs-target="#navbarOffcanvas"
+            aria-controls="navbarOffcanvas"
+            aria-label="Abrir menu"
         >
             <span class="navbar-toggler-icon"></span>
         </button>
-        <HerderLink class="mx-3 navbar-brand fs-2" href="/"
-            ><h3 class="text text-uppercase fw-bold" id="title">
-                ANDREA KINDER
-            </h3></HerderLink
-        >
-        <div class="offcanvas offcanvas-start" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item m-2">
-                    <HerderLink class="nav-link" href="/">Inicio</HerderLink>
-                </li>
-                <li class="nav-item m-2">
-                    <HerderLink class="nav-link" href="/#projects"
-                        >Habilidades y Proyectos</HerderLink
-                    >
-                </li>
-                <li class="nav-item m-2">
-                    <HerderLink class="nav-link" href="/#contact"
-                        >Contacto</HerderLink
-                    >
-                </li>
-                <li class="nav-item">
-                    <HerderLink
-                        class="nav-link"
-                        href="/galery-blog"
-                        id="blog-link"
-                    >
-                        <button id="btn-blog">Blog</button>
-                    </HerderLink>
-                </li>
-                <li class="nav-item m-2">
-                    <div class="nav-link">
-                        <SliderTheme />
-                    </div>
-                </li>
-            </ul>
+
+        <HerderLink class="navbar-brand" href="/">
+            ANDREA KINDER
+        </HerderLink>
+
+        <div class="nav-links-desktop">
+            <HerderLink class="nav-link-custom" href="/">Inicio</HerderLink>
+            <HerderLink class="nav-link-custom" href="/#projects">Proyectos</HerderLink>
+            <HerderLink class="nav-link-custom" href="/#contact">Contacto</HerderLink>
+            <HerderLink class="nav-link-custom" href="/galery-blog">
+                <span class="nav-blog-btn">Blog</span>
+            </HerderLink>
+            <div style="padding: 0.5rem 0.5rem;">
+                <SliderTheme />
+            </div>
+        </div>
+
+        <div class="d-lg-none">
+            <SliderTheme />
+        </div>
+
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="navbarOffcanvas">
+            <div class="offcanvas-header">
+                <h5 class="navbar-brand">ANDREA KINDER</h5>
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="offcanvas"
+                    aria-label="Cerrar"
+                    style="filter: var(--color-text);"
+                ></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <HerderLink class="nav-link" href="/">Inicio</HerderLink>
+                    </li>
+                    <li class="nav-item">
+                        <HerderLink class="nav-link" href="/#projects">Proyectos</HerderLink>
+                    </li>
+                    <li class="nav-item">
+                        <HerderLink class="nav-link" href="/#contact">Contacto</HerderLink>
+                    </li>
+                    <li class="nav-item">
+                        <HerderLink class="nav-link" href="/galery-blog">Blog</HerderLink>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </nav>
 
-<style>
-    @media (max-width: 992px) {
-        nav .navbar-brand {
-            text-align: center;
-            font-size: 1.2em;
-        }
-        nav .navbar-nav {
-            margin: 2em 0;
-        }
-        nav .nav-link {
-            text-align: center;
-            font-size: 0.9em;
-            margin: 0.5em 2em;
-        }
-        #btn-blog {
-            font-size: 0.65rem;
-            padding: 6px 12px;
-        }
-        #title {
-            font-size: 0.9rem !important;
-        }
-    }
+<script>
+    const navbar = document.getElementById('navbar');
 
-    @media (max-width: 768px) {
-        nav .navbar-brand {
-            font-size: 1em;
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 60) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
         }
-        nav .nav-link {
-            font-size: 0.8em;
-            margin: 0.5em 1em;
-        }
-        #btn-blog {
-            font-size: 0.6rem;
-            padding: 5px 10px;
-        }
-        #title {
-            font-size: 0.75rem !important;
-            line-height: 1.4 !important;
-        }
-    }
-
-    @media (max-width: 576px) {
-        nav {
-            padding: 0.5rem;
-        }
-        nav .navbar-brand {
-            font-size: 0.8em;
-        }
-        nav .nav-link {
-            font-size: 0.7em;
-            margin: 0.3em 0.5em;
-        }
-        #btn-blog {
-            font-size: 0.55rem;
-            padding: 4px 8px;
-        }
-        #title {
-            font-size: 0.65rem !important;
-            line-height: 1.3 !important;
-        }
-    }
-</style>
+    });
+</script>

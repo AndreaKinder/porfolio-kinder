@@ -1,13 +1,13 @@
 ---
 import '../styles/styles.css';
 ---
-<div class="slider-button" id="themeToggle">
-    <div class="slider-circle"></div>
-</div>
+<button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema claro/oscuro">
+    <span class="theme-toggle-knob"></span>
+</button>
 
 <script>
     const themeToggle = document.getElementById('themeToggle');
-    
+
     if (localStorage.getItem('theme') === 'dark') {
         document.documentElement.dataset.theme = 'dark';
     }
