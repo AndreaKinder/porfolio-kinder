@@ -77,45 +77,67 @@ const projects = [
 
 <section>
     <div class="text-center mb-5">
-        <h6 class="mb-2">Proyectos</h6>
+        <p class="section-label">Proyectos</p>
         <h2 class="mb-3">Lo que construi</h2>
-        <p style="max-width: 520px; margin: 0 auto;">
+        <p class="section-desc">
             Una seleccion de proyectos personales y colaborativos. Filtra por tecnologia para explorar.
         </p>
     </div>
 
     <div class="filter-chips mb-5">
-        <span class="filter-chip active-chip" data-filter="linux">Linux</span>
-        <span class="filter-chip" data-filter="bash">Bash</span>
-        <span class="filter-chip" data-filter="react">React</span>
-        <span class="filter-chip" data-filter="react-native">React Native</span>
-        <span class="filter-chip" data-filter="git">Git</span>
-        <span class="filter-chip" data-filter="html">HTML & CSS</span>
-        <span class="filter-chip" data-filter="api">APIs REST</span>
-        <span class="filter-chip" data-filter="javascript">JavaScript</span>
-        <span class="filter-chip" data-filter="astro">Astro</span>
-        <span class="filter-chip" data-filter="bootstrap">Bootstrap</span>
-        <span class="filter-chip" data-filter="android">Android</span>
-        <span class="filter-chip" data-filter="nvim">Neovim</span>
+        <button class="filter-chip active-chip" data-filter="linux">Linux</button>
+        <button class="filter-chip" data-filter="bash">Bash</button>
+        <button class="filter-chip" data-filter="react">React</button>
+        <button class="filter-chip" data-filter="react-native">React Native</button>
+        <button class="filter-chip" data-filter="git">Git</button>
+        <button class="filter-chip" data-filter="html">HTML & CSS</button>
+        <button class="filter-chip" data-filter="api">APIs REST</button>
+        <button class="filter-chip" data-filter="javascript">JavaScript</button>
+        <button class="filter-chip" data-filter="astro">Astro</button>
+        <button class="filter-chip" data-filter="bootstrap">Bootstrap</button>
+        <button class="filter-chip" data-filter="android">Android</button>
+        <button class="filter-chip" data-filter="nvim">Neovim</button>
     </div>
 
     <div class="project-grid">
         {
-            projects.map((project) => {
-                return (
-                    <ProjectCard
-                        title={project.title}
-                        href={project.href}
-                        description={project.description}
-                        tag={project.tag}
-                    />
-                );
-            })
+            projects.map((project) => (
+                <ProjectCard
+                    title={project.title}
+                    href={project.href}
+                    description={project.description}
+                    tag={project.tag}
+                />
+            ))
         }
     </div>
 
-    <script src="../js/tagProjectSelector.js"></script>
 </section>
+
+<script is:inline>
+    (function() {
+        const chips = document.querySelectorAll('.filter-chip');
+        const cards = document.querySelectorAll('.project-card');
+        if (!chips.length || !cards.length) return;
+
+        chips.forEach(function(chip) {
+            chip.addEventListener('click', function() {
+                var filter = this.dataset.filter;
+
+                chips.forEach(function(c) { c.classList.remove('active-chip'); });
+                this.classList.add('active-chip');
+
+                cards.forEach(function(card) {
+                    var tags = card.dataset.tags || '';
+                    card.classList.remove('visible');
+                    if (tags.split(' ').indexOf(filter) !== -1) {
+                        card.classList.add('visible');
+                    }
+                });
+            });
+        });
+    })();
+</script>
 
 <style>
     .filter-chip {

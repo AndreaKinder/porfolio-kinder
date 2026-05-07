@@ -1,16 +1,29 @@
-document.querySelectorAll('.filter-chip').forEach(chip => {
-    chip.addEventListener('click', () => {
-        const filter = chip.dataset.filter;
+function initProjectFilter() {
+    const chips = document.querySelectorAll('.filter-chip');
+    const cards = document.querySelectorAll('.project-card');
 
-        document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active-chip'));
-        chip.classList.add('active-chip');
+    if (!chips.length || !cards.length) return;
 
-        document.querySelectorAll('.project-card').forEach(card => {
-            const tags = card.className.split(' ');
-            card.classList.remove('visible');
-            if (tags.includes(filter)) {
-                card.classList.add('visible');
-            }
+    chips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+            var filter = this.dataset.filter;
+
+            chips.forEach(function (c) { c.classList.remove('active-chip'); });
+            this.classList.add('active-chip');
+
+            cards.forEach(function (card) {
+                var tags = card.dataset.tags || '';
+                card.classList.remove('visible');
+                if (tags.split(' ').indexOf(filter) !== -1) {
+                    card.classList.add('visible');
+                }
+            });
         });
     });
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initProjectFilter);
+} else {
+    initProjectFilter();
+}
