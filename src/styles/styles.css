@@ -645,34 +645,8 @@ textarea.form-control {
 
 
 /* -----------------------------------
-   10. Profile / Hero
+   10. Hero
    ----------------------------------- */
-
-.profile-image {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--color-border);
-  box-shadow: var(--shadow-md);
-  transition:
-    border-color var(--duration-normal) var(--ease-out),
-    box-shadow var(--duration-normal) var(--ease-out);
-}
-
-.profile-image:hover {
-  border-color: var(--color-border-hover);
-  box-shadow: var(--shadow-lg);
-}
-
-/* Foto de perfil reducida (sección de contacto) */
-.profile-image--sm {
-  width: 96px;
-  height: 96px;
-  max-width: 96px;
-  max-height: 96px;
-  margin: 0 auto 1.25rem;
-}
 
 /* Escenario del hero — composición de egg3d: texto a la izquierda,
    huevo 3D a la derecha, textura de puntos y degradado radial. */
@@ -1064,11 +1038,6 @@ textarea.form-control {
     padding-bottom: var(--space-xl);
   }
 
-  .profile-image {
-    width: 140px;
-    height: 140px;
-  }
-
   .project-grid {
     grid-template-columns: 1fr;
   }
@@ -1099,11 +1068,6 @@ textarea.form-control {
     --space-xl: 2rem;
     --space-lg: 1.25rem;
     --space-md: 1.5rem;
-  }
-
-  .profile-image {
-    width: 120px;
-    height: 120px;
   }
 
   .hero-name {
