@@ -19,99 +19,100 @@ import "../styles/styles.css";
             .getElementById("contact-form")
             .addEventListener("submit", function (event) {
                 event.preventDefault();
+                const btn = document.getElementById("submit-btn");
+                const status = document.getElementById("form-status");
+                btn.disabled = true;
+                btn.textContent = "Enviando...";
+                status.hidden = true;
                 emailjs
                     .sendForm("service_84t9w75", "template_nfgerqa", this)
                     .then(
                         () => {
-                            console.log("SUCCESS!");
-                            document.getElementById("contact-form").reset();
+                            this.reset();
+                            status.textContent = "Mensaje enviado. \u00a1Gracias!";
+                            status.className = "form-status form-status--ok";
+                            status.hidden = false;
                         },
                         (error) => {
                             console.log("FAILED...", error);
+                            status.textContent = "No se pudo enviar. Intenta de nuevo.";
+                            status.className = "form-status form-status--error";
+                            status.hidden = false;
                         },
-                    );
+                    )
+                    .finally(() => {
+                        btn.disabled = false;
+                        btn.textContent = "Enviar mensaje";
+                    });
             });
     };
 </script>
 
-<div class="text-center mb-5">
-    <img
-        class="profile-image profile-image--sm"
-        src="/img/profile-img.png"
-        alt="Andrea Villar"
-        width="96"
-        height="96"
-    />
-    <p class="section-label"><span class="label-index">03</span> / Contacto</p>
-    <h2 class="mb-3">Hablemos</h2>
-    <p class="section-desc">
-        Si tenes un proyecto en mente o simplemente queres saludar,
-        no dudes en escribirme.
-    </p>
-</div>
-
-<form
-    id="contact-form"
-    style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-lg); box-shadow: var(--shadow-sm);"
->
-    <input type="hidden" name="contact_number" />
-    <div class="row g-4">
-        <div class="col-12 col-md-6">
-            <div class="form-group">
-                <label class="form-label" for="user_name">Nombre</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    id="user_name"
-                    name="user_name"
-                    placeholder="Tu nombre"
-                    required
-                />
-            </div>
-        </div>
-        <div class="col-12 col-md-6">
-            <div class="form-group">
-                <label class="form-label" for="user_email">Correo Electronico</label>
-                <input
-                    type="email"
-                    class="form-control"
-                    id="user_email"
-                    name="user_email"
-                    placeholder="tu@email.com"
-                    required
-                />
-            </div>
-        </div>
-        <div class="col-12">
-            <div class="form-group">
-                <label class="form-label" for="message">Mensaje</label>
-                <textarea
-                    class="form-control"
-                    id="message"
-                    name="message"
-                    rows="5"
-                    placeholder="Contame sobre tu proyecto..."
-                    required
-                ></textarea>
-            </div>
-        </div>
-        <div class="col-12">
-            <button type="submit" class="btn-primary w-100" id="submit-btn">
-                Enviar mensaje
-            </button>
-        </div>
+<div class="contact-panel">
+    <div class="contact-intro">
+        <img
+            class="profile-image profile-image--sm"
+            src="/img/profile-img.png"
+            alt="Andrea Villar"
+            width="96"
+            height="96"
+        />
+        <p class="section-label"><span class="label-index">03</span> / Contacto</p>
+        <h2>Hablemos</h2>
+        <p class="contact-lead">
+            Si tenes un proyecto en mente o simplemente queres saludar,
+            no dudes en escribirme. Respondo en cuanto puedo.
+        </p>
     </div>
-</form>
 
-<script>
-    const btn = document.getElementById('submit-btn');
-    btn.addEventListener('mousedown', () => {
-        btn.style.transform = 'scale(0.97)';
-    });
-    btn.addEventListener('mouseup', () => {
-        btn.style.transform = 'scale(1)';
-    });
-    btn.addEventListener('mouseleave', () => {
-        btn.style.transform = 'scale(1)';
-    });
-</script>
+    <form id="contact-form" class="contact-form">
+        <input type="hidden" name="contact_number" />
+        <div class="row g-4">
+            <div class="col-12 col-md-6">
+                <div class="form-group">
+                    <label class="form-label" for="user_name">Nombre</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="user_name"
+                        name="user_name"
+                        placeholder="Tu nombre"
+                        required
+                    />
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="form-group">
+                    <label class="form-label" for="user_email">Correo Electronico</label>
+                    <input
+                        type="email"
+                        class="form-control"
+                        id="user_email"
+                        name="user_email"
+                        placeholder="tu@email.com"
+                        required
+                    />
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <label class="form-label" for="message">Mensaje</label>
+                    <textarea
+                        class="form-control"
+                        id="message"
+                        name="message"
+                        rows="5"
+                        placeholder="Contame sobre tu proyecto..."
+                        required
+                    ></textarea>
+                </div>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn-primary w-100" id="submit-btn">
+                    Enviar mensaje
+                </button>
+                <p id="form-status" class="form-status" hidden></p>
+            </div>
+        </div>
+    </form>
+</div>

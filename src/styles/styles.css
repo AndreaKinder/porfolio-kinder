@@ -331,6 +331,16 @@ p:last-child {
   box-shadow: var(--shadow-md);
 }
 
+.btn-primary:active {
+  transform: translateY(0) scale(0.99);
+}
+
+.btn-primary:disabled {
+  opacity: 0.65;
+  cursor: wait;
+  transform: none;
+}
+
 .btn-secondary {
   background: transparent;
   color: var(--color-text);
@@ -459,6 +469,98 @@ textarea.form-control {
   min-height: 140px;
   resize: vertical;
   line-height: 1.6;
+}
+
+/* ---- Panel de contacto (estética egg3d) ---- */
+
+.contact-panel {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: var(--space-lg);
+  align-items: start;
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--hero-bg);
+}
+
+.contact-intro h2 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+}
+
+.contact-intro .profile-image--sm {
+  margin-left: 0;
+}
+
+.contact-lead {
+  color: var(--color-text-muted);
+  max-width: 320px;
+  margin: 0;
+}
+
+.contact-form .form-label {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-text-muted);
+}
+
+.contact-form .form-control {
+  border-width: 1px;
+  border-radius: var(--radius-control);
+}
+
+.contact-form .btn-primary {
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  min-height: 48px;
+}
+
+.form-status {
+  margin: 0.75rem 0 0;
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.form-status--ok {
+  color: var(--color-accent);
+}
+
+.form-status--error {
+  color: var(--color-warm);
+}
+
+@media (max-width: 900px) {
+  .contact-panel {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .contact-intro {
+    text-align: center;
+  }
+
+  .contact-intro .profile-image--sm {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .contact-lead {
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 
@@ -691,7 +793,8 @@ textarea.form-control {
   background: var(--hero-bg);
 }
 
-.hero-stage::before {
+.hero-stage::before,
+.contact-panel::before {
   position: absolute;
   z-index: -1;
   inset: 0;
@@ -704,7 +807,8 @@ textarea.form-control {
   -webkit-mask-image: linear-gradient(90deg, #000, transparent 85%);
 }
 
-[data-theme="dark"] .hero-stage::before {
+[data-theme="dark"] .hero-stage::before,
+[data-theme="dark"] .contact-panel::before {
   opacity: 0.18;
 }
 
