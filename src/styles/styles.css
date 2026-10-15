@@ -63,8 +63,8 @@
   --duration-slow: 500ms;
 
   /* ---- Layout ---- */
-  --content-width: 100%;
-  --content-wide: 100%;
+  --content-width: 860px;
+  --content-wide: 1140px;
 }
 
 /* ---- Palette: Dark — la estética egg3d literal ---- */
