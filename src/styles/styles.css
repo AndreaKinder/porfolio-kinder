@@ -46,7 +46,7 @@
   --radius-control: 2px;
 
   /* ---- Hero / textura de pantalla impresa ---- */
-  --hero-bg: radial-gradient(ellipse at 66% 48%, rgba(189, 117, 180, 0.14) 0, rgba(237, 67, 162, 0.07) 34%, transparent 62%), #faf5f8;
+  --hero-bg: radial-gradient(ellipse at 66% 48%, rgba(189, 117, 180, 0.14) 0, rgba(237, 67, 162, 0.07) 34%, transparent 62%);
   --hero-dot: rgba(237, 67, 162, 0.4);
 
   /* ---- Shadows ---- */
@@ -86,7 +86,7 @@
   --color-warm-soft: rgba(231, 85, 166, 0.12);
   --color-overlay: rgba(255, 240, 248, 0.04);
 
-  --hero-bg: radial-gradient(ellipse at 66% 48%, rgba(113, 48, 104, 0.4) 0, rgba(64, 36, 67, 0.26) 32%, transparent 60%), #201626;
+  --hero-bg: radial-gradient(ellipse at 66% 48%, rgba(113, 48, 104, 0.4) 0, rgba(64, 36, 67, 0.26) 32%, transparent 60%);
   --hero-dot: #e5a9d0;
 
   --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.15);
@@ -126,6 +126,22 @@ body {
   transition:
     background-color var(--duration-slow) var(--ease-out),
     color var(--duration-slow) var(--ease-out);
+}
+
+body::before {
+  /* Textura de puntos serigrafiada — cubre toda la web, fija al viewport */
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: radial-gradient(var(--hero-dot) 0.55px, transparent 0.55px);
+  background-size: 7px 7px;
+  opacity: 0.24;
+}
+
+[data-theme="dark"] body::before {
+  opacity: 0.18;
 }
 
 img {
@@ -655,7 +671,6 @@ textarea.form-control {
    huevo 3D a la derecha, textura de puntos y degradado radial. */
 .hero-stage {
   position: relative;
-  isolation: isolate;
   display: grid;
   grid-template-columns: minmax(0, 470px) minmax(0, 1fr);
   gap: var(--space-md);
@@ -665,23 +680,6 @@ textarea.form-control {
   border-radius: var(--radius-lg);
   overflow: hidden;
   background: var(--hero-bg);
-}
-
-.hero-stage::before {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  content: "";
-  opacity: 0.24;
-  pointer-events: none;
-  background-image: radial-gradient(var(--hero-dot) 0.55px, transparent 0.55px);
-  background-size: 7px 7px;
-  mask-image: linear-gradient(90deg, #000, transparent 85%);
-  -webkit-mask-image: linear-gradient(90deg, #000, transparent 85%);
-}
-
-[data-theme="dark"] .hero-stage::before {
-  opacity: 0.18;
 }
 
 .hero-eyebrow {
