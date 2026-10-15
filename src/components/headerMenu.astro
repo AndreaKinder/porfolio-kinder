@@ -22,9 +22,11 @@ import "../styles/styles.css";
     }
 
     .nav-link-custom {
-        font-family: var(--font-body);
-        font-size: 0.875rem;
+        font-family: var(--font-pixel);
+        font-size: 12px;
         font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
         color: var(--color-text-muted);
         text-decoration: none;
         padding: 0.5rem 1rem;
@@ -44,32 +46,40 @@ import "../styles/styles.css";
     }
 
     .nav-blog-btn {
-        font-family: var(--font-body);
-        font-size: 0.8125rem;
+        font-family: var(--font-pixel);
+        font-size: 12px;
         font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
         color: #ffffff;
         background: var(--color-accent);
-        border: none;
-        border-radius: var(--radius-full);
+        border: 1px solid var(--color-accent);
+        border-radius: var(--radius-control);
         padding: 0.45rem 1.125rem;
         cursor: pointer;
         transition:
             background var(--duration-normal) var(--ease-out),
+            border-color var(--duration-normal) var(--ease-out),
+            color var(--duration-normal) var(--ease-out),
             transform var(--duration-normal) var(--ease-out),
             box-shadow var(--duration-normal) var(--ease-out);
     }
 
     .nav-blog-btn:hover {
-        background: var(--color-accent-hover);
+        background: var(--color-surface);
+        border-color: var(--color-accent);
+        color: var(--color-accent);
         transform: translateY(-1px);
         box-shadow: var(--shadow-sm);
     }
 
     .offcanvas .nav-link {
         color: var(--color-text);
-        font-family: var(--font-body);
-        font-size: 1.125rem;
+        font-family: var(--font-pixel);
+        font-size: 0.9375rem;
         font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
         padding: 0.75rem 0;
         border-bottom: 1px solid var(--color-border);
         text-decoration: none;
@@ -114,6 +124,7 @@ import "../styles/styles.css";
         </button>
 
         <HerderLink class="navbar-brand" href="/">
+            <span class="wordmark-icon">k</span>
             ANDREA KINDER
         </HerderLink>
 
@@ -135,7 +146,7 @@ import "../styles/styles.css";
 
         <div class="offcanvas offcanvas-start" tabindex="-1" id="navbarOffcanvas">
             <div class="offcanvas-header">
-                <h5 class="navbar-brand">ANDREA KINDER</h5>
+                <h5 class="navbar-brand"><span class="wordmark-icon">k</span> ANDREA KINDER</h5>
                 <button
                     type="button"
                     class="btn-close"

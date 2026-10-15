@@ -1,0 +1,16 @@
+---
+// Se renderiza en el <head>: aplica el tema antes del primer pintado
+// para evitar el flash (FOUC). Dark es el valor por defecto.
+---
+
+<script is:inline>
+    (function () {
+        // ?theme=light|dark permite previsualizar un tema sin guardarlo.
+        var param = new URLSearchParams(location.search).get('theme');
+        var stored = localStorage.getItem('theme');
+        var theme = param === 'light' || param === 'dark'
+            ? param
+            : (stored === 'light' || stored === 'dark' ? stored : 'dark');
+        document.documentElement.dataset.theme = theme;
+    })();
+</script>

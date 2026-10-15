@@ -2,21 +2,24 @@
 import Footer from "../components/footer.astro";
 import "../styles/styles.css";
 import HeaderMenu from "../components/headerMenu.astro";
+import ThemeInit from "../components/themeInit.astro";
 const posts = await Astro.glob("./blog/*.md");
 ---
 
 <html lang="es">
     <head>
+        <ThemeInit />
         <meta charset="utf-8" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
+        <meta name="theme-color" content="#201626" />
         <title>Blog — Andrea Villar</title>
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
             rel="stylesheet"
         />
 
@@ -33,7 +36,7 @@ const posts = await Astro.glob("./blog/*.md");
         <div class="section" style="padding-top: 5rem;">
             <div class="container-narrow">
                 <div class="text-center mb-5">
-                    <p class="section-label">Blog</p>
+                    <p class="section-label"><span class="label-index">01</span> / Blog</p>
                     <h2 class="mb-3">Articulos y reflexiones</h2>
                     <p class="section-desc">
                         Pensamientos sobre desarrollo, tecnologia y software libre.

@@ -8,25 +8,26 @@
    ----------------------------------- */
 
 :root {
-  /* ---- Palette: Light ---- */
-  --color-bg: #faf8f5;
+  /* ---- Palette: Light — variante diurna de egg3d ---- */
+  --color-bg: #faf5f8;
   --color-surface: #ffffff;
-  --color-surface-hover: #f5f3f0;
-  --color-text: #1a1a1a;
-  --color-text-muted: #6b6b6b;
-  --color-text-subtle: #9e9e9c;
-  --color-border: #e8e5e0;
-  --color-border-hover: #d4d0c8;
-  --color-accent: #2d4a3e;
-  --color-accent-hover: #3d5f51;
-  --color-accent-soft: rgba(45, 74, 62, 0.06);
-  --color-warm: #c1755a;
-  --color-warm-hover: #d4866a;
-  --color-warm-soft: rgba(193, 117, 90, 0.08);
-  --color-overlay: rgba(26, 26, 26, 0.04);
+  --color-surface-hover: #f4ecf2;
+  --color-text: #2a1e2e;
+  --color-text-muted: #7a6478;
+  --color-text-subtle: #a896a6;
+  --color-border: #e9d9e6;
+  --color-border-hover: #d4bcd0;
+  --color-accent: #ed43a2;
+  --color-accent-hover: #c22f83;
+  --color-accent-soft: rgba(237, 67, 162, 0.08);
+  --color-warm: #bd75b4;
+  --color-warm-hover: #a862a1;
+  --color-warm-soft: rgba(189, 117, 180, 0.1);
+  --color-overlay: rgba(42, 30, 46, 0.05);
 
   /* ---- Typography ---- */
-  --font-display: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --font-display: "Pixelify Sans", "Plus Jakarta Sans", sans-serif;
+  --font-pixel: "Pixelify Sans", "Plus Jakarta Sans", sans-serif;
   --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   /* ---- Spacing ---- */
@@ -42,6 +43,11 @@
   --radius-md: 12px;
   --radius-lg: 20px;
   --radius-full: 9999px;
+  --radius-control: 2px;
+
+  /* ---- Hero / textura de pantalla impresa ---- */
+  --hero-bg: radial-gradient(ellipse at 66% 48%, rgba(189, 117, 180, 0.14) 0, rgba(237, 67, 162, 0.07) 34%, transparent 62%), #faf5f8;
+  --hero-dot: rgba(237, 67, 162, 0.4);
 
   /* ---- Shadows ---- */
   --shadow-xs: 0 1px 2px rgba(26, 26, 26, 0.04);
@@ -61,24 +67,27 @@
   --content-wide: 1140px;
 }
 
-/* ---- Palette: Dark ---- */
+/* ---- Palette: Dark — la estética egg3d literal ---- */
 
 [data-theme="dark"] {
-  --color-bg: #161614;
-  --color-surface: #20201e;
-  --color-surface-hover: #282826;
-  --color-text: #e8e4df;
-  --color-text-muted: #a0a09d;
-  --color-text-subtle: #6e6e6b;
-  --color-border: #2e2e2c;
-  --color-border-hover: #42423e;
-  --color-accent: #8ec0a4;
-  --color-accent-hover: #a0d0b4;
-  --color-accent-soft: rgba(142, 192, 164, 0.08);
-  --color-warm: #d4956e;
-  --color-warm-hover: #e0a57e;
-  --color-warm-soft: rgba(212, 149, 110, 0.08);
-  --color-overlay: rgba(255, 255, 255, 0.03);
+  --color-bg: #201626;
+  --color-surface: #2b1d31;
+  --color-surface-hover: #362540;
+  --color-text: #fff0f8;
+  --color-text-muted: #b69ab7;
+  --color-text-subtle: #7d6580;
+  --color-border: rgba(232, 171, 216, 0.22);
+  --color-border-hover: rgba(232, 171, 216, 0.45);
+  --color-accent: #ed43a2;
+  --color-accent-hover: #f58cbd;
+  --color-accent-soft: rgba(237, 67, 162, 0.14);
+  --color-warm: #e755a6;
+  --color-warm-hover: #ff70bb;
+  --color-warm-soft: rgba(231, 85, 166, 0.12);
+  --color-overlay: rgba(255, 240, 248, 0.04);
+
+  --hero-bg: radial-gradient(ellipse at 66% 48%, rgba(113, 48, 104, 0.4) 0, rgba(64, 36, 67, 0.26) 32%, transparent 60%), #201626;
+  --hero-dot: #e5a9d0;
 
   --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.15);
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.1);
@@ -148,6 +157,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h1, h2 {
   font-family: var(--font-display);
+  font-weight: 700;
   letter-spacing: -0.025em;
 }
 
@@ -182,13 +192,34 @@ p:last-child {
 }
 
 .section-label {
-  font-family: var(--font-body);
-  font-size: 0.8125rem;
+  font-family: var(--font-pixel);
+  font-size: 0.75rem;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   color: var(--color-accent);
   margin-bottom: 0.5rem;
+}
+
+.section-label .label-index {
+  color: var(--color-accent);
+  margin-right: 0.5em;
+}
+
+/* Microcopy estilo egg3d: eyebrow con numeración */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.eyebrow span {
+  color: var(--color-accent);
 }
 
 .section-desc {
@@ -279,7 +310,7 @@ p:last-child {
   letter-spacing: 0.01em;
   line-height: 1;
   padding: 0.75rem 1.75rem;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-control);
   border: 1.5px solid transparent;
   cursor: pointer;
   transition: all var(--duration-normal) var(--ease-out);
@@ -356,7 +387,7 @@ p:last-child {
 .card-title {
   font-family: var(--font-display);
   font-size: 1.375rem;
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: -0.02em;
   color: var(--color-text);
   margin-bottom: 0.5rem;
@@ -441,7 +472,7 @@ textarea.form-control {
   left: 0;
   right: 0;
   z-index: 1040;
-  background: rgba(250, 248, 245, 0.85);
+  background: rgba(250, 245, 248, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--color-border);
@@ -451,7 +482,7 @@ textarea.form-control {
 }
 
 [data-theme="dark"] .navbar-custom {
-  background: rgba(22, 22, 20, 0.85);
+  background: rgba(32, 22, 38, 0.85);
 }
 
 .navbar-custom.scrolled {
@@ -461,10 +492,13 @@ textarea.form-control {
 .navbar-brand {
   font-family: var(--font-display);
   font-size: 1.25rem;
-  font-weight: 400;
+  font-weight: 700;
   color: var(--color-text) !important;
-  letter-spacing: 0.04em;
+  letter-spacing: -0.02em;
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
   transition: opacity var(--duration-fast) var(--ease-out);
 }
 
@@ -473,10 +507,27 @@ textarea.form-control {
   color: var(--color-text) !important;
 }
 
+/* Icono "k" en círculo rosa — firma de egg3d */
+.wordmark-icon {
+  display: inline-grid;
+  width: 25px;
+  height: 25px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: #ffffff;
+  font-family: var(--font-pixel, var(--font-display));
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1;
+}
+
 .nav-link-custom {
-  font-family: var(--font-body);
-  font-size: 0.875rem;
+  font-family: var(--font-pixel, var(--font-body));
+  font-size: 12px;
   font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
   color: var(--color-text-muted);
   text-decoration: none;
   padding: 0.5rem 1rem;
@@ -614,21 +665,111 @@ textarea.form-control {
   box-shadow: var(--shadow-lg);
 }
 
-.hero-container {
-  border-radius: var(--radius-lg);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-sm);
+/* Foto de perfil reducida (sección de contacto) */
+.profile-image--sm {
+  width: 96px;
+  height: 96px;
+  max-width: 96px;
+  max-height: 96px;
+  margin: 0 auto 1.25rem;
 }
 
-.hero-title {
+/* Escenario del hero — composición de egg3d: texto a la izquierda,
+   huevo 3D a la derecha, textura de puntos y degradado radial. */
+.hero-stage {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 470px) minmax(0, 1fr);
+  gap: var(--space-md);
+  align-items: center;
+  min-height: 540px;
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--hero-bg);
+}
+
+.hero-stage::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  content: "";
+  opacity: 0.24;
+  pointer-events: none;
+  background-image: radial-gradient(var(--hero-dot) 0.55px, transparent 0.55px);
+  background-size: 7px 7px;
+  mask-image: linear-gradient(90deg, #000, transparent 85%);
+  -webkit-mask-image: linear-gradient(90deg, #000, transparent 85%);
+}
+
+[data-theme="dark"] .hero-stage::before {
+  opacity: 0.18;
+}
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin: 0 0 18px;
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.hero-eyebrow span {
+  color: var(--color-accent);
+}
+
+.hero-name {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3.25rem);
-  font-weight: 400;
-  line-height: 1.1;
+  font-size: clamp(2.75rem, 5.5vw, 4.5rem);
+  font-weight: 700;
+  line-height: 0.95;
   letter-spacing: -0.03em;
   color: var(--color-text);
-  margin-bottom: 0.5rem;
+  margin: 0;
+}
+
+.hero-name em {
+  font-style: normal;
+  color: var(--color-accent);
+}
+
+.hero-description {
+  margin: 22px 0 0;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--color-text-muted);
+  max-width: 450px;
+}
+
+/* Escena 3D */
+.egg-scene {
+  width: 100%;
+  min-width: 0;
+}
+
+.egg-canvas {
+  position: relative;
+  width: 100%;
+  height: 440px;
+}
+
+.egg-canvas canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  outline: none;
+}
+
+.egg-fallback {
+  display: grid;
+  place-items: center;
+  height: 100%;
 }
 
 
@@ -644,13 +785,15 @@ textarea.form-control {
 }
 
 .filter-chip {
-  font-family: var(--font-body);
-  font-size: 0.8125rem;
+  font-family: var(--font-pixel);
+  font-size: 0.75rem;
   font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   color: var(--color-text-muted);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-control);
   padding: 0.5rem 1.125rem;
   cursor: pointer;
   transition: all var(--duration-normal) var(--ease-out);
@@ -715,7 +858,7 @@ textarea.form-control {
 .project-card-title {
   font-family: var(--font-display);
   font-size: 1.25rem;
-  font-weight: 400;
+  font-weight: 600;
   color: var(--color-text);
   margin-bottom: 0.25rem;
   letter-spacing: -0.02em;
@@ -723,11 +866,11 @@ textarea.form-control {
 }
 
 .project-card-tags {
-  font-family: var(--font-body);
-  font-size: 0.75rem;
+  font-family: var(--font-pixel);
+  font-size: 0.6875rem;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: var(--color-accent);
   margin-bottom: 0.75rem;
 }
@@ -787,7 +930,7 @@ textarea.form-control {
 .blog-card-title {
   font-family: var(--font-display);
   font-size: 1.5rem;
-  font-weight: 400;
+  font-weight: 600;
   color: var(--color-text);
   margin-bottom: 0.5rem;
   letter-spacing: -0.02em;
@@ -804,13 +947,15 @@ textarea.form-control {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-body);
-  font-size: 0.875rem;
+  font-family: var(--font-pixel);
+  font-size: 12px;
   font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
   color: var(--color-accent);
   background: transparent;
-  border: 1.5px solid var(--color-accent);
-  border-radius: var(--radius-full);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-control);
   padding: 0.625rem 1.5rem;
   text-decoration: none;
   transition: all var(--duration-normal) var(--ease-out);
@@ -928,11 +1073,24 @@ textarea.form-control {
     grid-template-columns: 1fr;
   }
 
-  .hero-container {
-    border: none;
-    background: transparent;
-    box-shadow: none;
-    border-radius: 0;
+  .hero-stage {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    gap: var(--space-sm);
+    padding: var(--space-sm);
+  }
+
+  .egg-canvas {
+    height: 340px;
+  }
+
+  .hero-name {
+    font-size: clamp(2.5rem, 9vw, 4rem);
+  }
+
+  .hero-description {
+    margin-top: 14px;
+    font-size: 0.9375rem;
   }
 }
 
@@ -948,12 +1106,16 @@ textarea.form-control {
     height: 120px;
   }
 
-  .hero-title {
-    font-size: 1.75rem;
+  .hero-name {
+    font-size: clamp(2.5rem, 9vw, 4rem);
+  }
+
+  .egg-canvas {
+    height: 300px;
   }
 
   .filter-chip {
-    font-size: 0.75rem;
+    font-size: 0.6875rem;
     padding: 0.4rem 0.9rem;
   }
 

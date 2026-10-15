@@ -4,20 +4,28 @@ import HeaderMenu from "../components/headerMenu.astro";
 import Skills from "../components/skills.astro";
 import Footer from "../components/footer.astro";
 import Contact from "../components/contact.astro";
+import EggScene from "../components/egg-scene.astro";
+import ThemeInit from "../components/themeInit.astro";
 ---
 
 <html lang="es">
     <head>
+        <ThemeInit />
         <meta charset="utf-8" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
+        <meta name="theme-color" content="#201626" />
+        <meta
+            name="description"
+            content="Portfolio de Andrea Villar — Desarrolladora de Software."
+        />
         <title>Andrea Villar — Desarrolladora de Software</title>
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
             rel="stylesheet"
         />
 
@@ -33,34 +41,24 @@ import Contact from "../components/contact.astro";
         <main>
             <section class="section" style="padding-top: 5rem;">
                 <div class="container-wide">
-                    <div class="hero-container p-4 p-md-5">
-                        <div class="row align-items-center g-4 g-md-5">
-                            <div
-                                class="col-12 col-md-5 text-center"
-                            >
-                                <img
-                                    class="profile-image mx-auto"
-                                    src="/img/profile-img.png"
-                                    alt="Andrea Villar"
-                                    width="200"
-                                    height="200"
-                                />
-                            </div>
-                            <div class="col-12 col-md-7">
-                                <p class="section-label" style="margin-bottom:0.25rem;">Desarrolladora de Software</p>
-                                <h1 class="hero-title mb-2">
-                                    Andrea<br />Villar
-                                </h1>
-                                <p class="section-desc mt-3" style="text-align:left; max-width:100%; margin-left:0;">
-                                    Apasionada por el desarrollo web y el software
-                                    libre. Especializada en crear soluciones
-                                    digitales innovadoras para el sector sanitario
-                                    en Goalmed, y desarrollando proyectos
-                                    personalizados como freelancer. Entusiasta de
-                                    Linux y Neovim. Basada en Barcelona.
-                                </p>
-                            </div>
+                    <div class="hero-stage">
+                        <div class="hero-copy">
+                            <p class="hero-eyebrow">
+                                <span>01</span> / Desarrolladora de Software
+                            </p>
+                            <h1 class="hero-name">
+                                Andrea<br /><em>Villar</em>
+                            </h1>
+                            <p class="hero-description">
+                                Apasionada por el desarrollo web y el software
+                                libre. Especializada en crear soluciones
+                                digitales innovadoras para el sector sanitario
+                                en Goalmed, y desarrollando proyectos
+                                personalizados como freelancer. Entusiasta de
+                                Linux y Neovim. Basada en Barcelona.
+                            </p>
                         </div>
+                        <EggScene />
                     </div>
                 </div>
             </section>

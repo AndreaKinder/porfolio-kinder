@@ -2,22 +2,25 @@
 import Footer from "../components/footer.astro";
 import "../styles/styles.css";
 import HeaderMenu from "../components/headerMenu.astro";
+import ThemeInit from "../components/themeInit.astro";
 const { frontmatter } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="es">
     <head>
+        <ThemeInit />
         <meta charset="utf-8" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content="Astro" />
+        <meta name="theme-color" content="#201626" />
         <title>{frontmatter.title} — Andrea Villar</title>
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
             rel="stylesheet"
         />
 
@@ -39,7 +42,7 @@ const { frontmatter } = Astro.props;
             h1 {
                 font-family: var(--font-display);
                 font-size: clamp(2rem, 5vw, 3.5rem);
-                font-weight: 400;
+                font-weight: 700;
                 letter-spacing: -0.03em;
                 line-height: 1.1;
                 color: var(--color-text);
@@ -49,7 +52,7 @@ const { frontmatter } = Astro.props;
             h2 {
                 font-family: var(--font-display);
                 font-size: 1.75rem;
-                font-weight: 400;
+                font-weight: 700;
                 letter-spacing: -0.02em;
                 color: var(--color-text);
                 margin-top: 2.5rem;
@@ -83,8 +86,10 @@ const { frontmatter } = Astro.props;
             }
 
             .blog-meta {
-                font-family: var(--font-body);
-                font-size: 0.875rem;
+                font-family: var(--font-pixel);
+                font-size: 12px;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
                 color: var(--color-text-muted);
                 margin-bottom: 2rem;
                 padding-bottom: 2rem;
@@ -92,21 +97,23 @@ const { frontmatter } = Astro.props;
             }
 
             .blog-meta span {
-                font-weight: 600;
-                color: var(--color-text);
+                font-weight: 700;
+                color: var(--color-accent);
             }
 
             .back-btn {
                 display: inline-flex;
                 align-items: center;
                 justify-content: center;
-                font-family: var(--font-body);
-                font-size: 0.875rem;
+                font-family: var(--font-pixel);
+                font-size: 12px;
                 font-weight: 500;
+                text-transform: uppercase;
+                letter-spacing: 0.12em;
                 color: var(--color-accent);
                 background: transparent;
-                border: 1.5px solid var(--color-accent);
-                border-radius: var(--radius-full);
+                border: 1px solid var(--color-accent);
+                border-radius: var(--radius-control);
                 padding: 0.625rem 1.5rem;
                 text-decoration: none;
                 transition: all var(--duration-normal) var(--ease-out);

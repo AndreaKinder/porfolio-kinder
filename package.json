@@ -20,6 +20,10 @@
     "firebase-tools": "^13.32.0",
     "nes.css": "^2.2.1",
     "rehype-slug": "^6.0.0",
+    "three": "^0.186.1",
     "typescript": "^5.5.4"
+  },
+  "devDependencies": {
+    "@types/three": "^0.186.0"
   }
 }
