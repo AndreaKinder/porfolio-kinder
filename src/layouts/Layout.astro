@@ -14,7 +14,7 @@ const { frontmatter } = Astro.props;
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content="Astro" />
-        <meta name="theme-color" content="#201626" />
+        <meta name="theme-color" content="#191115" />
         <title>{frontmatter.title} — Andrea Villar</title>
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -33,134 +33,181 @@ const { frontmatter } = Astro.props;
         <style>
             body {
                 font-family: var(--font-body);
-                background: var(--color-bg);
-                color: var(--color-text);
+                background: var(--md-sys-color-surface);
+                color: var(--md-sys-color-on-surface);
                 margin: 0;
                 padding: 0;
             }
 
             h1 {
                 font-family: var(--font-display);
-                font-size: clamp(2rem, 5vw, 3.5rem);
+                font-size: clamp(2rem, 4.5vw, 3.25rem);
                 font-weight: 700;
-                letter-spacing: -0.03em;
-                line-height: 1.1;
-                color: var(--color-text);
-                margin-bottom: 2rem;
-            }
-
-            h2 {
-                font-family: var(--font-display);
-                font-size: 1.75rem;
-                font-weight: 700;
-                letter-spacing: -0.02em;
-                color: var(--color-text);
-                margin-top: 2.5rem;
-                margin-bottom: 1rem;
-            }
-
-            p {
-                font-size: 1rem;
-                line-height: 1.8;
-                color: var(--color-text-muted);
-                margin-bottom: 1.5rem;
+                letter-spacing: -0.025em;
+                line-height: 1.15;
+                color: var(--md-sys-color-on-surface);
+                margin-bottom: 1.25rem;
             }
 
             main {
                 font-size: 1rem;
-                line-height: 1.8;
-                color: var(--color-text);
+                line-height: 1.75;
+                color: var(--md-sys-color-on-surface);
                 max-width: var(--content-width);
                 margin: 0 auto;
-                padding: var(--space-md);
+                padding: var(--space-md) 0;
             }
 
-            main a {
-                color: var(--color-accent);
+            main :global(h2) {
+                font-family: var(--font-display);
+                font-size: 1.65rem;
+                font-weight: 700;
+                letter-spacing: -0.02em;
+                color: var(--md-sys-color-on-surface);
+                margin-top: 2.5rem;
+                margin-bottom: 1rem;
+            }
+
+            main :global(h3) {
+                font-family: var(--font-body);
+                font-size: 1.25rem;
+                font-weight: 600;
+                color: var(--md-sys-color-on-surface);
+                margin-top: 1.75rem;
+                margin-bottom: 0.75rem;
+            }
+
+            main :global(p) {
+                font-size: 1rem;
+                line-height: 1.75;
+                color: var(--md-sys-color-on-surface-variant);
+                margin-bottom: 1.25rem;
+                max-width: 70ch;
+            }
+
+            main :global(strong) {
+                color: var(--md-sys-color-on-surface);
+                font-weight: 600;
+            }
+
+            main :global(a) {
+                color: var(--md-sys-color-primary);
                 text-decoration: underline;
                 text-underline-offset: 2px;
             }
 
-            main a:hover {
-                color: var(--color-accent-hover);
+            main :global(ul),
+            main :global(ol) {
+                color: var(--md-sys-color-on-surface-variant);
+                margin-bottom: 1.5rem;
+                padding-left: 1.5rem;
+                max-width: 70ch;
+            }
+
+            main :global(li) {
+                margin-bottom: 0.5rem;
+                line-height: 1.7;
+            }
+
+            main :global(code) {
+                font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+                font-size: 0.875em;
+                background: var(--md-sys-color-surface-container);
+                border: 1px solid var(--md-sys-color-outline-variant);
+                border-radius: var(--md-sys-shape-corner-extra-small);
+                padding: 0.15em 0.4em;
+                color: var(--md-sys-color-primary);
+            }
+
+            main :global(pre) {
+                background: var(--md-sys-color-surface-container-low) !important;
+                border: 1px solid var(--md-sys-color-outline-variant);
+                border-radius: var(--md-sys-shape-corner-medium);
+                padding: 1.25rem;
+                margin-bottom: 1.5rem;
+                overflow-x: auto;
+            }
+
+            main :global(pre code) {
+                background: transparent;
+                border: none;
+                padding: 0;
+                color: inherit;
+                font-size: 0.875rem;
+            }
+
+            main :global(table) {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 2rem;
+                font-size: 0.9375rem;
+                background: var(--md-sys-color-surface-container-low);
+                border: 1px solid var(--md-sys-color-outline-variant);
+                border-radius: var(--md-sys-shape-corner-medium);
+                overflow: hidden;
+            }
+
+            main :global(th),
+            main :global(td) {
+                padding: 0.75rem 1rem;
+                border-bottom: 1px solid var(--md-sys-color-outline-variant);
+                text-align: left;
+            }
+
+            main :global(th) {
+                font-family: var(--font-body);
+                font-size: 0.8125rem;
+                font-weight: 600;
+                color: var(--md-sys-color-on-surface);
+                background: var(--md-sys-color-surface-container);
+            }
+
+            main :global(td) {
+                color: var(--md-sys-color-on-surface-variant);
             }
 
             .blog-meta {
-                font-family: var(--font-pixel);
-                font-size: 12px;
-                letter-spacing: 0.08em;
-                text-transform: uppercase;
-                color: var(--color-text-muted);
-                margin-bottom: 2rem;
-                padding-bottom: 2rem;
-                border-bottom: 1px solid var(--color-border);
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-family: var(--font-body);
+                font-size: 0.875rem;
+                color: var(--md-sys-color-on-surface-variant);
+                margin-bottom: 1.5rem;
+                padding-bottom: 1.5rem;
+                border-bottom: 1px solid var(--md-sys-color-outline-variant);
             }
 
             .blog-meta span {
-                font-weight: 700;
-                color: var(--color-accent);
-            }
-
-            .back-btn {
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                font-family: var(--font-pixel);
-                font-size: 12px;
-                font-weight: 500;
-                text-transform: uppercase;
-                letter-spacing: 0.12em;
-                color: var(--color-accent);
-                background: transparent;
-                border: 1px solid var(--color-accent);
-                border-radius: var(--radius-control);
-                padding: 0.625rem 1.5rem;
-                text-decoration: none;
-                transition: all var(--duration-normal) var(--ease-out);
-                cursor: pointer;
-                margin-bottom: 2rem;
-            }
-
-            .back-btn:hover {
-                background: var(--color-accent);
-                color: #ffffff;
-                transform: translateY(-1px);
-                box-shadow: var(--shadow-sm);
+                font-weight: 600;
+                color: var(--md-sys-color-primary);
             }
 
             @media (max-width: 768px) {
                 h1 {
-                    font-size: 1.75rem;
-                }
-                main {
-                    padding: var(--space-sm);
-                }
-            }
-
-            @media (max-width: 576px) {
-                h1 {
-                    font-size: 1.5rem;
+                    font-size: 1.85rem;
                 }
             }
         </style>
     </head>
     <body>
         <HeaderMenu />
-        <div class="container-narrow" style="padding-top: 5rem;">
+        <div class="container-narrow" style="padding-top: 5.5rem;">
             <h1>{frontmatter.title}</h1>
             <div class="blog-meta">
-                <span>Autor del articulo: </span>
+                <span>Autora:</span>
                 {frontmatter.author}
             </div>
             <main>
                 <slot />
             </main>
         </div>
-        <div class="text-center my-5">
-            <a href="/galery-blog" class="back-btn">Volver al Blog</a>
+        <div class="container-narrow my-5">
+            <a href="/galery-blog" class="btn-secondary">Volver al blog</a>
         </div>
         <Footer />
         <script
+            is:inline
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>

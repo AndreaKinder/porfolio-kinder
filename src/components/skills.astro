@@ -7,68 +7,69 @@ const projects = [
         title: "Construhack 2025",
         href: "https://github.com/AndreaKinder/construhack2025",
         description:
-            "Proyecto para ConstruHack 2025. Muestra con react native de app para solucion integral de gestion inteligente para viviendas y comunidades sostenibles.",
+            "Proyecto para ConstruHack 2025. Muestra con React Native de app para solución integral de gestión inteligente para viviendas y comunidades sostenibles.",
         tag: "react react-native git html javascript android",
+    },
+    {
+        title: "SecureWallet",
+        description:
+            "Proyecto presentado en el Hackathon Open Gateway 2025, obteniendo el 4.º lugar en la competencia mediante integración de APIs de red y seguridad móvil.",
+        href: "https://github.com/AndreaKinder/secureWallet/tree/main",
+        tag: "react react-native git api javascript android",
     },
     {
         title: "Construhack 2024",
         href: "https://github.com/AndreaKinder/construhack2024",
         description:
-            "Proyecto prueba piloto del proyecto Construhack 2024, una aplicacion de inteligencia artificial para la clasificacion automatica de sobrantes de obras civiles, con el objetivo de promover un sistema de economia circular.",
+            "Prueba piloto de una aplicación con inteligencia artificial para la clasificación automática de sobrantes de obras civiles, promoviendo un sistema de economía circular.",
         tag: "react react-native git html javascript android",
     },
     {
-        title: "Portfolio",
+        title: "Portfolio Kinder",
         href: "https://github.com/AndreaKinder/porfolio-kinder",
-        description: "Mi portfolio personal, creado con Astro.",
+        description:
+            "Portfolio y CV interactivo 3D/2D con el Huevo-K central y blog editorial, creado con Astro 5, Three.js y sistema de diseño Material 3.",
         tag: "astro git bootstrap html javascript",
     },
     {
         title: "Wowfinder",
         href: "https://github.com/edurne85/wowfinder",
         description:
-            "Paquete de utilidades para la campana 'Wowfinder' (campana de rol basada en el sistema Pathfinder 1ed y ambientada en el universo Warcraft de Blizzard).",
+            "Paquete de utilidades para la campaña 'Wowfinder' (campaña de rol basada en el sistema Pathfinder 1ed y ambientada en el universo Warcraft de Blizzard).",
         tag: "react git html javascript",
-    },
-    {
-        title: "SecureWallet",
-        description:
-            "Proyecto presentado en el Hackathon Open Gateway 2025, obteniendo el 4to lugar en la competencia.",
-        href: "https://github.com/AndreaKinder/secureWallet/tree/main",
-        tag: "react react-native git api javascript android",
     },
     {
         title: "Kinder.Vim",
         description:
-            "Configuracion personalizada de Neovim.",
+            "Configuración modular personalizada de Neovim enfocada en velocidad, LSP e integración con terminal en Linux.",
         href: "https://github.com/AndreaKinder/Kinder.Vim",
         tag: "linux bash git nvim",
     },
     {
         title: "Copilot CLI Neovim",
         description:
-            "Plugin de Neovim que integra GitHub Copilot CLI para generar y ejecutar comandos de terminal desde el editor.",
+            "Plugin de Neovim que integra GitHub Copilot CLI para generar y ejecutar comandos de terminal directamente desde el editor.",
         href: "https://github.com/AndreaKinder/copilot-cli.nvim",
         tag: "linux bash git nvim",
     },
     {
         title: "Kinder.Dots",
         description:
-            "Esta es mi coleccion personal de dotfiles, disenados para crear un entorno de desarrollo y escritorio cohesivo y productivo.",
+            "Colección personal de dotfiles diseñados para crear un entorno de desarrollo y escritorio en Linux cohesivo y productivo.",
         href: "https://github.com/AndreaKinder/Kinder.Dots",
         tag: "linux bash git",
     },
     {
         title: "Kinder.Shell",
         description:
-            "Configuraciones modernas y unificadas de shell para Fish, Bash y Zsh, disenadas para desarrollo profesional.",
+            "Configuraciones modernas y unificadas de shell para Fish, Bash y Zsh, diseñadas para flujos de desarrollo profesional.",
         href: "https://github.com/AndreaKinder/Kinder.Shell",
         tag: "linux bash git",
     },
     {
         title: "RomsManager",
         description:
-            "Gestor de ROMs para organizar y administrar colecciones de juegos retro.",
+            "Gestor de ROMs en Linux/Bash para organizar y administrar colecciones de juegos retro de forma automatizada.",
         href: "https://github.com/AndreaKinder/RomsManager",
         tag: "linux bash git",
     },
@@ -76,16 +77,17 @@ const projects = [
 ---
 
 <section>
-    <div class="text-center mb-5">
-        <p class="section-label"><span class="label-index">02</span> / Proyectos</p>
-        <h2 class="mb-3">Lo que construi</h2>
+    <div class="mb-4">
+        <p class="section-label">Proyectos</p>
+        <h2 class="mb-2">Aplicaciones y código abierto</h2>
         <p class="section-desc">
-            Una seleccion de proyectos personales y colaborativos. Filtra por tecnologia para explorar.
+            Selección de aplicaciones web, móviles, proyectos de hackathons y herramientas para entornos Linux y Neovim.
         </p>
     </div>
 
-    <div class="filter-chips mb-5">
-        <button class="filter-chip active-chip" data-filter="linux">Linux</button>
+    <div class="filter-chips mb-4" role="group" aria-label="Filtrar proyectos por tecnología">
+        <button class="filter-chip active-chip" data-filter="all">Todos</button>
+        <button class="filter-chip" data-filter="linux">Linux</button>
         <button class="filter-chip" data-filter="bash">Bash</button>
         <button class="filter-chip" data-filter="react">React</button>
         <button class="filter-chip" data-filter="react-native">React Native</button>
@@ -111,7 +113,6 @@ const projects = [
             ))
         }
     </div>
-
 </section>
 
 <script is:inline>
@@ -130,7 +131,7 @@ const projects = [
                 cards.forEach(function(card) {
                     var tags = card.dataset.tags || '';
                     card.classList.remove('visible');
-                    if (tags.split(' ').indexOf(filter) !== -1) {
+                    if (filter === 'all' || tags.split(' ').indexOf(filter) !== -1) {
                         card.classList.add('visible');
                     }
                 });
@@ -138,4 +139,3 @@ const projects = [
         });
     })();
 </script>
-

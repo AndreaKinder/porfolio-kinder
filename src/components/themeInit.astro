@@ -1,16 +1,33 @@
 ---
-// Se renderiza en el <head>: aplica el tema antes del primer pintado
-// para evitar el flash (FOUC). Dark es el valor por defecto.
+// Se renderiza en el <head>: aplica el tema (claro/oscuro) y el modo de vista (3d/2d)
+// antes del primer pintado para evitar el flash (FOUC).
+// Valores por defecto: theme = 'dark', view = '3d'.
 ---
 
 <script is:inline>
     (function () {
-        // ?theme=light|dark permite previsualizar un tema sin guardarlo.
-        var param = new URLSearchParams(location.search).get('theme');
-        var stored = localStorage.getItem('theme');
-        var theme = param === 'light' || param === 'dark'
-            ? param
-            : (stored === 'light' || stored === 'dark' ? stored : 'dark');
+        var params = new URLSearchParams(location.search);
+
+        // Tema: ?theme=light|dark o localStorage('theme')
+        var paramTheme = params.get('theme');
+        var storedTheme = localStorage.getItem('theme');
+        var theme =
+            paramTheme === 'light' || paramTheme === 'dark'
+                ? paramTheme
+                : storedTheme === 'light' || storedTheme === 'dark'
+                  ? storedTheme
+                  : 'dark';
         document.documentElement.dataset.theme = theme;
+
+        // Vista: ?view=3d|2d o localStorage('viewMode')
+        var paramView = params.get('view');
+        var storedView = localStorage.getItem('viewMode');
+        var view =
+            paramView === '3d' || paramView === '2d'
+                ? paramView
+                : storedView === '3d' || storedView === '2d'
+                  ? storedView
+                  : '3d';
+        document.documentElement.dataset.view = view;
     })();
 </script>

@@ -1,17 +1,144 @@
 ---
 import '../styles/styles.css';
 ---
-<button class="theme-toggle" aria-label="Cambiar tema claro/oscuro">
-    <span class="theme-toggle-knob"></span>
-</button>
+
+<div class="view-theme-controls" role="group" aria-label="Controles de vista y tema">
+    <!-- M3 Segmented Button: Vista 3D / 2D -->
+    <div class="m3-segmented-group view-mode-switch" role="group" aria-label="Modo de vista 3D o 2D">
+        <button
+            type="button"
+            class="m3-seg-btn"
+            data-set-view="3d"
+            title="Vista 3D planetaria con el Huevo-K central"
+        >
+            <span>3D</span>
+        </button>
+        <button
+            type="button"
+            class="m3-seg-btn"
+            data-set-view="2d"
+            title="Vista 2D web con scroll"
+        >
+            <span>2D</span>
+        </button>
+    </div>
+
+    <!-- M3 Segmented Button: Tema Claro / Oscuro -->
+    <div class="m3-segmented-group theme-mode-switch" role="group" aria-label="Tema Claro u Oscuro">
+        <button
+            type="button"
+            class="m3-seg-btn"
+            data-set-theme="light"
+            title="Tema Claro"
+            aria-label="Tema Claro"
+        >
+            <span aria-hidden="true">☀</span>
+            <span class="seg-label-text">Claro</span>
+        </button>
+        <button
+            type="button"
+            class="m3-seg-btn"
+            data-set-theme="dark"
+            title="Tema Oscuro"
+            aria-label="Tema Oscuro"
+        >
+            <span aria-hidden="true">☾</span>
+            <span class="seg-label-text">Oscuro</span>
+        </button>
+    </div>
+</div>
+
+<style>
+    .view-theme-controls {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    /* Material 3 Outlined Segmented Button Container */
+    .m3-segmented-group {
+        display: inline-flex;
+        align-items: stretch;
+        border: 1px solid var(--md-sys-color-outline);
+        border-radius: var(--md-sys-shape-corner-full);
+        overflow: hidden;
+        background-color: var(--md-sys-color-surface);
+        height: 36px;
+    }
+
+    .m3-seg-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.3rem;
+        font-family: var(--font-pixel);
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--md-sys-color-on-surface);
+        background-color: transparent;
+        border: none;
+        padding: 0 0.75rem;
+        cursor: pointer;
+        line-height: 1;
+        transition:
+            background-color var(--duration-fast) var(--ease-out),
+            color var(--duration-fast) var(--ease-out);
+    }
+
+    .m3-seg-btn + .m3-seg-btn {
+        border-left: 1px solid var(--md-sys-color-outline);
+    }
+
+    .m3-seg-btn:hover {
+        background-color: color-mix(in srgb, var(--md-sys-color-on-surface) 8%, transparent);
+    }
+
+    :global(html[data-view="3d"]) .m3-seg-btn[data-set-view="3d"],
+    :global(html[data-view="2d"]) .m3-seg-btn[data-set-view="2d"],
+    :global(html[data-theme="light"]) .m3-seg-btn[data-set-theme="light"],
+    :global(html[data-theme="dark"]) .m3-seg-btn[data-set-theme="dark"] {
+        background-color: var(--color-accent);
+        color: #ffffff;
+    }
+
+    @media (max-width: 640px) {
+        .seg-label-text {
+            display: none;
+        }
+        .m3-seg-btn {
+            padding: 0 0.6rem;
+        }
+    }
+</style>
 
 <script>
-    document.querySelectorAll('.theme-toggle').forEach((toggle) => {
-        toggle.addEventListener('click', () => {
-            const isDark = document.documentElement.dataset.theme === 'dark';
-            const newTheme = isDark ? 'light' : 'dark';
-            document.documentElement.dataset.theme = newTheme;
-            localStorage.setItem('theme', newTheme);
+    function applyTheme(newTheme: 'light' | 'dark') {
+        document.documentElement.dataset.theme = newTheme;
+        localStorage.setItem('theme', newTheme);
+        window.dispatchEvent(new CustomEvent('themechange', { detail: { theme: newTheme } }));
+    }
+
+    function applyViewMode(newView: '3d' | '2d') {
+        document.documentElement.dataset.view = newView;
+        localStorage.setItem('viewMode', newView);
+        window.dispatchEvent(new CustomEvent('viewmodechange', { detail: { view: newView } }));
+
+        if (window.location.pathname !== '/' && window.location.pathname !== '/index.html') {
+            window.location.href = '/';
+        }
+    }
+
+    document.querySelectorAll<HTMLButtonElement>('[data-set-theme]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const targetTheme = btn.dataset.setTheme === 'light' ? 'light' : 'dark';
+            applyTheme(targetTheme);
+        });
+    });
+
+    document.querySelectorAll<HTMLButtonElement>('[data-set-view]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const targetView = btn.dataset.setView === '2d' ? '2d' : '3d';
+            applyViewMode(targetView);
         });
     });
 </script>

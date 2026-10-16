@@ -1,52 +1,83 @@
 ---
 import "../styles/styles.css";
+import { cvPersonalInfo } from "../data/cvData";
 ---
 
 <script
+    is:inline
     type="text/javascript"
     src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
 ></script>
-<script type="text/javascript">
+<script is:inline type="text/javascript">
     (function () {
-        emailjs.init({
-            publicKey: "hSD1VQPNhVyqiQAxx",
-        });
+        if (typeof emailjs !== "undefined") {
+            emailjs.init({
+                publicKey: "hSD1VQPNhVyqiQAxx",
+            });
+        }
     })();
 </script>
-<script type="text/javascript">
-    window.onload = function () {
-        document
-            .getElementById("contact-form")
-            .addEventListener("submit", function (event) {
-                event.preventDefault();
-                emailjs
-                    .sendForm("service_84t9w75", "template_nfgerqa", this)
-                    .then(
-                        () => {
-                            console.log("SUCCESS!");
-                            document.getElementById("contact-form").reset();
-                        },
-                        (error) => {
-                            console.log("FAILED...", error);
-                        },
-                    );
-            });
-    };
+<script is:inline type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        var form = document.getElementById("contact-form");
+        if (!form) return;
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+            if (typeof emailjs === "undefined") return;
+            emailjs
+                .sendForm("service_84t9w75", "template_nfgerqa", this)
+                .then(
+                    function () {
+                        console.log("SUCCESS!");
+                        form.reset();
+                    },
+                    function (error) {
+                        console.log("FAILED...", error);
+                    },
+                );
+        });
+    });
 </script>
 
-<div class="text-center mb-5">
-    <p class="section-label"><span class="label-index">03</span> / Contacto</p>
-    <h2 class="mb-3">Hablemos</h2>
+<div class="mb-4">
+    <p class="section-label">Contacto</p>
+    <h2 class="mb-2">Hablemos</h2>
+    <p class="section-desc">
+        Puedes escribirme directamente por correo electrónico, teléfono o mediante el formulario.
+    </p>
 </div>
 
-<form
-    id="contact-form"
-    style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-lg); box-shadow: var(--shadow-sm);"
->
+<div class="row g-3 mb-4">
+    <div class="col-12 col-md-4">
+        <a href={cvPersonalInfo.emailHref} class="contact-quick-card">
+            <span class="contact-quick-label">Correo electrónico</span>
+            <strong class="contact-quick-value">{cvPersonalInfo.email}</strong>
+        </a>
+    </div>
+    <div class="col-12 col-md-4">
+        <a href={cvPersonalInfo.phoneHref} class="contact-quick-card">
+            <span class="contact-quick-label">Teléfono</span>
+            <strong class="contact-quick-value">{cvPersonalInfo.phone}</strong>
+        </a>
+    </div>
+    <div class="col-12 col-md-4">
+        <a
+            href={cvPersonalInfo.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact-quick-card"
+        >
+            <span class="contact-quick-label">GitHub</span>
+            <strong class="contact-quick-value">github.com/AndreaKinder</strong>
+        </a>
+    </div>
+</div>
+
+<form id="contact-form" class="m3-contact-form">
     <input type="hidden" name="contact_number" />
-    <div class="row g-4">
+    <div class="row g-3">
         <div class="col-12 col-md-6">
-            <div class="form-group">
+            <div class="form-group mb-0">
                 <label class="form-label" for="user_name">Nombre</label>
                 <input
                     type="text"
@@ -59,8 +90,8 @@ import "../styles/styles.css";
             </div>
         </div>
         <div class="col-12 col-md-6">
-            <div class="form-group">
-                <label class="form-label" for="user_email">Correo Electronico</label>
+            <div class="form-group mb-0">
+                <label class="form-label" for="user_email">Correo electrónico</label>
                 <input
                     type="email"
                     class="form-control"
@@ -72,35 +103,63 @@ import "../styles/styles.css";
             </div>
         </div>
         <div class="col-12">
-            <div class="form-group">
+            <div class="form-group mb-0">
                 <label class="form-label" for="message">Mensaje</label>
                 <textarea
                     class="form-control"
                     id="message"
                     name="message"
                     rows="5"
-                    placeholder="Contame sobre tu proyecto..."
+                    placeholder="Escribe tu mensaje..."
                     required
                 ></textarea>
             </div>
         </div>
-        <div class="col-12">
-            <button type="submit" class="btn-primary w-100" id="submit-btn">
+        <div class="col-12 pt-1">
+            <button type="submit" class="btn-primary" id="submit-btn">
                 Enviar mensaje
             </button>
         </div>
     </div>
 </form>
 
-<script>
-    const btn = document.getElementById('submit-btn');
-    btn.addEventListener('mousedown', () => {
-        btn.style.transform = 'scale(0.97)';
-    });
-    btn.addEventListener('mouseup', () => {
-        btn.style.transform = 'scale(1)';
-    });
-    btn.addEventListener('mouseleave', () => {
-        btn.style.transform = 'scale(1)';
-    });
-</script>
+<style>
+    .contact-quick-card {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        padding: 1rem 1.25rem;
+        background-color: var(--md-sys-color-surface-container-low);
+        border: 1px solid var(--md-sys-color-outline-variant);
+        border-radius: var(--md-sys-shape-corner-medium);
+        text-decoration: none;
+        height: 100%;
+        transition: background-color var(--duration-fast) var(--ease-out);
+    }
+
+    a.contact-quick-card:hover {
+        text-decoration: none;
+        background-color: var(--md-sys-color-surface-container);
+    }
+
+    .contact-quick-label {
+        font-family: var(--font-body);
+        font-size: 0.8125rem;
+        font-weight: 500;
+        color: var(--md-sys-color-on-surface-variant);
+    }
+
+    .contact-quick-value {
+        font-size: 0.9375rem;
+        font-weight: 600;
+        color: var(--md-sys-color-on-surface);
+        word-break: break-word;
+    }
+
+    .m3-contact-form {
+        background-color: var(--md-sys-color-surface-container-low);
+        border: 1px solid var(--md-sys-color-outline-variant);
+        border-radius: var(--md-sys-shape-corner-large);
+        padding: 1.5rem;
+    }
+</style>

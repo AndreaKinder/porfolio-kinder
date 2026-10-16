@@ -2,173 +2,177 @@
 import HerderLink from "./herderLink.astro";
 import SliderTheme from "./sliderTheme.astro";
 import "../styles/styles.css";
+
+const navPlanets = [
+    { id: "inicio", label: "Inicio", href: "/#inicio" },
+    { id: "sobre-mi", label: "Sobre mí", href: "/#sobre-mi" },
+    { id: "experiencia", label: "Experiencia", href: "/#experiencia" },
+    { id: "proyectos-apps", label: "Apps", href: "/#projects" },
+    { id: "proyectos-linux", label: "Linux", href: "/#projects" },
+    { id: "habilidades", label: "Habilidades", href: "/#habilidades" },
+    { id: "educacion", label: "Educación", href: "/#educacion" },
+    { id: "blog", label: "Blog", href: "/#blog" },
+    { id: "contacto", label: "Contacto", href: "/#contact" },
+];
 ---
 
 <style>
-    .navbar-custom {
-        padding: 0.75rem 0;
-    }
-
     .navbar-custom .container-fluid {
-        max-width: var(--content-wide);
-        padding-left: var(--space-sm);
-        padding-right: var(--space-sm);
+        max-width: 1380px;
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
     }
 
-    .nav-links-desktop {
+    /* M3 Navigation Bar / Rail Pill Group */
+    .nav-planets-desktop {
         display: flex;
         align-items: center;
         gap: 0.25rem;
+        background-color: var(--md-sys-color-surface-container-low);
+        border: 1px solid var(--md-sys-color-outline-variant);
+        border-radius: var(--md-sys-shape-corner-full);
+        padding: 0.25rem;
     }
 
-    .nav-link-custom {
+    .nav-planet-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 32px;
+        padding: 0 0.85rem;
         font-family: var(--font-pixel);
-        font-size: 12px;
+        font-size: 0.8125rem;
         font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        color: var(--color-text-muted);
+        color: var(--md-sys-color-on-surface-variant);
         text-decoration: none;
-        padding: 0.5rem 1rem;
-        border-radius: var(--radius-full);
+        border-radius: var(--md-sys-shape-corner-full);
+        white-space: nowrap;
         transition:
-            color var(--duration-fast) var(--ease-out),
-            background var(--duration-fast) var(--ease-out);
+            background-color var(--duration-fast) var(--ease-out),
+            color var(--duration-fast) var(--ease-out);
     }
 
-    .nav-link-custom:hover {
-        color: var(--color-text);
-        background: var(--color-overlay);
+    .nav-planet-link:hover {
+        text-decoration: none;
+        color: var(--md-sys-color-on-surface);
+        background-color: color-mix(in srgb, var(--md-sys-color-on-surface) 8%, transparent);
     }
 
-    .nav-link-custom.active {
-        color: var(--color-accent);
-    }
-
-    .nav-blog-btn {
-        font-family: var(--font-pixel);
-        font-size: 12px;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
+    /* M3 Active Indicator Pill */
+    .nav-planet-link.active-planet {
+        background-color: var(--color-accent);
         color: #ffffff;
-        background: var(--color-accent);
-        border: 1px solid var(--color-accent);
-        border-radius: var(--radius-control);
-        padding: 0.45rem 1.125rem;
-        cursor: pointer;
-        transition:
-            background var(--duration-normal) var(--ease-out),
-            border-color var(--duration-normal) var(--ease-out),
-            color var(--duration-normal) var(--ease-out),
-            transform var(--duration-normal) var(--ease-out),
-            box-shadow var(--duration-normal) var(--ease-out);
+        font-weight: 600;
     }
 
-    .nav-blog-btn:hover {
-        background: var(--color-surface);
-        border-color: var(--color-accent);
-        color: var(--color-accent);
-        transform: translateY(-1px);
-        box-shadow: var(--shadow-sm);
-    }
-
+    /* M3 Navigation Drawer Items */
     .offcanvas .nav-link {
-        color: var(--color-text);
+        color: var(--md-sys-color-on-surface-variant);
         font-family: var(--font-pixel);
         font-size: 0.9375rem;
         font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        padding: 0.75rem 0;
-        border-bottom: 1px solid var(--color-border);
+        height: 48px;
+        padding: 0 1rem;
+        border-radius: var(--md-sys-shape-corner-full);
         text-decoration: none;
-        transition: color var(--duration-fast) var(--ease-out);
+        display: flex;
+        align-items: center;
+        transition:
+            background-color var(--duration-fast) var(--ease-out),
+            color var(--duration-fast) var(--ease-out);
     }
 
     .offcanvas .nav-link:hover {
-        color: var(--color-accent);
+        text-decoration: none;
+        background-color: color-mix(in srgb, var(--md-sys-color-on-surface) 8%, transparent);
+        color: var(--md-sys-color-on-surface);
     }
 
-    .offcanvas .nav-link.active {
-        color: var(--color-accent);
+    .offcanvas .nav-link.active-planet {
+        background-color: var(--color-accent);
+        color: #ffffff;
+        font-weight: 600;
     }
 
-    @media (max-width: 992px) {
-        .nav-links-desktop {
+    @media (max-width: 1220px) {
+        .nav-planets-desktop {
             display: none;
         }
         .navbar-brand {
-            font-size: 1.125rem;
+            font-size: 1.05rem;
         }
     }
 
-    @media (min-width: 992px) {
+    @media (min-width: 1221px) {
         .navbar-toggler {
-            display: none;
+            display: none !important;
         }
     }
 </style>
 
-<nav class="navbar-custom" id="navbar">
-    <div class="container-fluid d-flex align-items-center justify-content-between">
-        <button
-            class="navbar-toggler d-lg-none"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#navbarOffcanvas"
-            aria-controls="navbarOffcanvas"
-            aria-label="Abrir menu"
-        >
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<nav class="navbar-custom" id="navbar" aria-label="Navegación principal">
+    <div class="container-fluid d-flex align-items-center justify-content-between gap-2">
+        <div class="d-flex align-items-center gap-2">
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#navbarOffcanvas"
+                aria-controls="navbarOffcanvas"
+                aria-label="Abrir menú"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <HerderLink class="navbar-brand" href="/">
-            <span class="wordmark-icon">k</span>
-            ANDREA KINDER
-        </HerderLink>
-
-        <div class="nav-links-desktop">
-            <HerderLink class="nav-link-custom" href="/">Inicio</HerderLink>
-            <HerderLink class="nav-link-custom" href="/#projects">Proyectos</HerderLink>
-            <HerderLink class="nav-link-custom" href="/#contact">Contacto</HerderLink>
-            <HerderLink class="nav-link-custom" href="/galery-blog">
-                <span class="nav-blog-btn">Blog</span>
+            <HerderLink class="navbar-brand" href="/">
+                <span class="wordmark-icon">k</span>
+                Andrea Kinder
             </HerderLink>
-            <div style="padding: 0.5rem 0.5rem;">
-                <SliderTheme />
-            </div>
         </div>
 
-        <div class="d-lg-none">
+        <div class="nav-planets-desktop" role="navigation" aria-label="Secciones del portfolio">
+            {
+                navPlanets.map((item, idx) => (
+                    <a
+                        class={`nav-planet-link ${idx === 0 ? "active-planet" : ""}`}
+                        href={item.href}
+                        data-cv-station-id={item.id}
+                    >
+                        <span>{item.label}</span>
+                    </a>
+                ))
+            }
+        </div>
+
+        <div class="d-flex align-items-center">
             <SliderTheme />
         </div>
 
         <div class="offcanvas offcanvas-start" tabindex="-1" id="navbarOffcanvas">
             <div class="offcanvas-header">
-                <h5 class="navbar-brand"><span class="wordmark-icon">k</span> ANDREA KINDER</h5>
+                <h5 class="navbar-brand mb-0"><span class="wordmark-icon">k</span> Andrea Kinder</h5>
                 <button
                     type="button"
                     class="btn-close"
                     data-bs-dismiss="offcanvas"
                     aria-label="Cerrar"
-                    style="filter: var(--color-text);"
                 ></button>
             </div>
             <div class="offcanvas-body">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <HerderLink class="nav-link" href="/">Inicio</HerderLink>
-                    </li>
-                    <li class="nav-item">
-                        <HerderLink class="nav-link" href="/#projects">Proyectos</HerderLink>
-                    </li>
-                    <li class="nav-item">
-                        <HerderLink class="nav-link" href="/#contact">Contacto</HerderLink>
-                    </li>
-                    <li class="nav-item">
-                        <HerderLink class="nav-link" href="/galery-blog">Blog</HerderLink>
-                    </li>
+                <ul class="navbar-nav gap-1">
+                    {
+                        navPlanets.map((item, idx) => (
+                            <li class="nav-item">
+                                <a
+                                    class={`nav-link ${idx === 0 ? "active-planet" : ""}`}
+                                    href={item.href}
+                                    data-cv-station-id={item.id}
+                                >
+                                    <span>{item.label}</span>
+                                </a>
+                            </li>
+                        ))
+                    }
                 </ul>
             </div>
         </div>
@@ -179,10 +183,49 @@ import "../styles/styles.css";
     const navbar = document.getElementById('navbar');
 
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 60) {
-            navbar.classList.add('scrolled');
+        if (window.scrollY > 24) {
+            navbar?.classList.add('scrolled');
         } else {
-            navbar.classList.remove('scrolled');
+            navbar?.classList.remove('scrolled');
         }
+    });
+
+    const planetLinks = document.querySelectorAll<HTMLAnchorElement>('[data-cv-station-id]');
+
+    function highlightActivePlanet(stationId: string) {
+        planetLinks.forEach((link) => {
+            link.classList.toggle('active-planet', link.dataset.cvStationId === stationId);
+        });
+    }
+
+    window.addEventListener('cvstationchanged', (e: Event) => {
+        const custom = e as CustomEvent<{ stationId: string }>;
+        if (custom.detail?.stationId) {
+            highlightActivePlanet(custom.detail.stationId);
+        }
+    });
+
+    planetLinks.forEach((link) => {
+        link.addEventListener('click', (e) => {
+            const isHome =
+                window.location.pathname === '/' || window.location.pathname === '/index.html';
+            const is3d = document.documentElement.dataset.view !== '2d';
+            const stationId = link.dataset.cvStationId;
+
+            if (isHome && is3d && stationId) {
+                e.preventDefault();
+                highlightActivePlanet(stationId);
+                window.dispatchEvent(
+                    new CustomEvent('cvstationselect', { detail: { stationId } }),
+                );
+                history.replaceState(null, '', `#${stationId}`);
+            }
+
+            const offcanvasEl = document.getElementById('navbarOffcanvas');
+            if (offcanvasEl && offcanvasEl.classList.contains('show')) {
+                const closeBtn = offcanvasEl.querySelector<HTMLButtonElement>('.btn-close');
+                closeBtn?.click();
+            }
+        });
     });
 </script>

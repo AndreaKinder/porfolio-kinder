@@ -13,7 +13,7 @@ const posts = await Astro.glob("./blog/*.md");
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
-        <meta name="theme-color" content="#201626" />
+        <meta name="theme-color" content="#191115" />
         <title>Blog — Andrea Villar</title>
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -35,11 +35,11 @@ const posts = await Astro.glob("./blog/*.md");
         <HeaderMenu />
         <div class="section">
             <div class="container-narrow">
-                <div class="text-center mb-5">
-                    <p class="section-label"><span class="label-index">01</span> / Blog</p>
-                    <h2 class="mb-3">Articulos y reflexiones</h2>
+                <div class="mb-4">
+                    <p class="section-label">Blog</p>
+                    <h2 class="mb-2">Artículos y reflexiones</h2>
                     <p class="section-desc">
-                        Pensamientos sobre desarrollo, tecnologia y software libre.
+                        Artículos sobre desarrollo, inteligencia artificial y software libre.
                     </p>
                 </div>
 
@@ -59,9 +59,9 @@ const posts = await Astro.glob("./blog/*.md");
                                     <div class="col-12 col-md-4 text-md-end">
                                         <a
                                             href={post.url}
-                                            class="blog-link-btn"
+                                            class="btn-tonal"
                                         >
-                                            Leer articulo
+                                            Leer artículo
                                         </a>
                                     </div>
                                 </div>
@@ -70,13 +70,14 @@ const posts = await Astro.glob("./blog/*.md");
                     }
                 </div>
 
-                <div class="text-center mt-5">
-                    <a href="/" class="blog-link-btn">Volver al inicio</a>
+                <div class="mt-4">
+                    <a href="/" class="btn-secondary">Volver al inicio</a>
                 </div>
             </div>
         </div>
         <Footer />
         <script
+            is:inline
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>

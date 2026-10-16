@@ -6,21 +6,41 @@ import Footer from "../components/footer.astro";
 import Contact from "../components/contact.astro";
 import EggScene from "../components/egg-scene.astro";
 import ThemeInit from "../components/themeInit.astro";
+import { cvPersonalInfo, cvStations } from "../data/cvData";
+
+const inicioStation = cvStations.find((s) => s.id === "inicio");
+const sobreMiStation = cvStations.find((s) => s.id === "sobre-mi");
+const experienceStation = cvStations.find((s) => s.id === "experiencia");
+const skillsStation = cvStations.find((s) => s.id === "habilidades");
+const educationStation = cvStations.find((s) => s.id === "educacion");
+
+interface BlogPostModule {
+    url?: string;
+    frontmatter?: {
+        title?: string;
+        author?: string;
+        description?: string;
+    };
+}
+const blogPosts = Object.values(
+    import.meta.glob<BlogPostModule>("./blog/*.md", { eager: true }),
+);
 ---
 
+<!doctype html>
 <html lang="es">
     <head>
         <ThemeInit />
         <meta charset="utf-8" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <meta name="viewport" content="width=device-width" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content={Astro.generator} />
-        <meta name="theme-color" content="#201626" />
+        <meta name="theme-color" content="#191115" />
         <meta
             name="description"
-            content="Portfolio de Andrea Villar — Desarrolladora de Software."
+            content="Portfolio y Currículum Vitae 3D/2D de Andrea Villar Torres — Desarrolladora Full Stack (Web & Mobile)."
         />
-        <title>Andrea Villar — Desarrolladora de Software</title>
+        <title>Andrea Villar Torres — Desarrolladora Full Stack</title>
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -38,43 +58,948 @@ import ThemeInit from "../components/themeInit.astro";
     </head>
     <body>
         <HeaderMenu />
-        <main>
-            <section class="section">
-                <div class="container-wide">
-                    <div class="hero-stage">
-                        <div class="hero-copy">
-                            <p class="hero-eyebrow">
-                                <span>01</span> / Desarrolladora de Software
-                            </p>
-                            <h1 class="hero-name">
-                                Andrea<br /><em>Villar</em>
-                            </h1>
-                            <p class="hero-description">
-                                                       </p>
+
+        <!-- =========================================================
+             MODO VISTA 3D: Sistema Planetario de Huevos con el Huevo-K Central
+             ========================================================= -->
+        <EggScene />
+
+        <!-- =========================================================
+             MODO VISTA 2D: Web Portfolio + CV con Sistema Material Design 3
+             ========================================================= -->
+        <div id="cv-2d-view" class="cv-2d-wrapper">
+            <main>
+                <!-- INICIO -->
+                <section id="inicio" class="section cv-2d-hero-section">
+                    <div class="container-wide">
+                        <div class="hero-stage cv-2d-hero-grid">
+                            <div class="hero-copy">
+                                <span class="hero-eyebrow">Inicio</span>
+                                <h1 class="hero-name">Andrea Villar Torres</h1>
+                                <p class="hero-role">{cvPersonalInfo.role}</p>
+                                <p class="hero-description">
+                                    {inicioStation?.summary}
+                                </p>
+
+                                <div class="cv-2d-hero-actions mt-4">
+                                    <a href="#projects" class="btn-primary">
+                                        Ver proyectos
+                                    </a>
+                                    <a href="#sobre-mi" class="btn-tonal">
+                                        Sobre mí
+                                    </a>
+                                    <a href="#contact" class="btn-secondary">
+                                        Contacto
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Ilustración 2D del Sistema Planetario de Huevos con el Huevo-K Central -->
+                            <div class="egg-2d-showcase">
+                                <div class="egg-2d-card">
+                                    <svg
+                                        viewBox="0 0 280 320"
+                                        class="egg-2d-svg"
+                                        role="img"
+                                        aria-label="Ilustración 2D del Huevo Central con la K y huevos-planeta en órbita"
+                                    >
+                                        <defs>
+                                            <radialGradient id="eggGlow2D" cx="50%" cy="50%" r="52%">
+                                                <stop offset="0%" stop-color="#ed43a2" stop-opacity="0.22" />
+                                                <stop offset="100%" stop-color="#bd75b4" stop-opacity="0" />
+                                            </radialGradient>
+                                        </defs>
+                                        <circle cx="140" cy="160" r="126" fill="url(#eggGlow2D)" />
+                                        <ellipse
+                                            cx="140"
+                                            cy="168"
+                                            rx="124"
+                                            ry="42"
+                                            fill="none"
+                                            stroke="#ed43a2"
+                                            stroke-width="1.4"
+                                            stroke-dasharray="4 5"
+                                            opacity="0.65"
+                                            transform="rotate(-14 140 168)"
+                                        />
+                                        <ellipse
+                                            cx="140"
+                                            cy="168"
+                                            rx="114"
+                                            ry="35"
+                                            fill="none"
+                                            stroke="#bd75b4"
+                                            stroke-width="1.1"
+                                            opacity="0.5"
+                                            transform="rotate(16 140 168)"
+                                        />
+                                        <g transform="translate(32, 134) rotate(-12)">
+                                            <ellipse cx="0" cy="0" rx="18" ry="8" fill="none" stroke="#ed43a2" stroke-width="1.2" />
+                                            <path d="M0 -15 C -8 -15, -11 -4, -11 4 C -11 11, -6 15, 0 15 C 6 15, 11 11, 11 4 C 11 -4, 8 -15, 0 -15 Z" fill="#ffd6eb" stroke="#ed43a2" stroke-width="1.5" />
+                                        </g>
+                                        <g transform="translate(246, 192) rotate(14)">
+                                            <ellipse cx="0" cy="0" rx="20" ry="7" fill="none" stroke="#bd75b4" stroke-width="1.2" />
+                                            <path d="M0 -16 C -9 -16, -12 -5, -12 4 C -12 12, -7 16, 0 16 C 7 16, 12 12, 12 4 C 12 -5, 9 -16, 0 -16 Z" fill="#f3c1e6" stroke="#d92b8a" stroke-width="1.5" />
+                                        </g>
+                                        <g transform="translate(224, 96) rotate(-18)">
+                                            <path d="M0 -12 C -6 -12, -9 -3, -9 3 C -9 9, -5 12, 0 12 C 5 12, 9 9, 9 3 C 9 -3, 6 -12, 0 -12 Z" fill="#e6c7f7" stroke="#b347ea" stroke-width="1.4" />
+                                        </g>
+                                        <g transform="translate(56, 226) rotate(10)">
+                                            <path d="M0 -13 C -7 -13, -9 -3, -9 3 C -9 9, -5 13, 0 13 C 5 13, 9 9, 9 3 C 9 -3, 7 -13, 0 -13 Z" fill="#ffe0f4" stroke="#ed43a2" stroke-width="1.4" />
+                                        </g>
+
+                                        <path
+                                            d="M140 44 C 96 44, 64 104, 64 172 C 64 234, 98 276, 140 276 C 182 276, 216 234, 216 172 C 216 104, 184 44, 140 44 Z"
+                                            fill="rgba(237, 67, 162, 0.09)"
+                                            stroke="#ed43a2"
+                                            stroke-width="2.4"
+                                        />
+                                        <path
+                                            d="M140 44 C 112 76, 98 122, 98 172 C 98 222, 114 260, 140 276"
+                                            fill="none"
+                                            stroke="#bd75b4"
+                                            stroke-width="1.2"
+                                            opacity="0.65"
+                                        />
+                                        <path
+                                            d="M140 44 C 168 76, 182 122, 182 172 C 182 222, 166 260, 140 276"
+                                            fill="none"
+                                            stroke="#bd75b4"
+                                            stroke-width="1.2"
+                                            opacity="0.65"
+                                        />
+                                        <ellipse cx="140" cy="120" rx="63" ry="13" fill="none" stroke="#ea54a8" stroke-width="1.1" opacity="0.55" />
+                                        <ellipse cx="140" cy="170" rx="75" ry="17" fill="none" stroke="#ea54a8" stroke-width="1.3" opacity="0.65" />
+                                        <ellipse cx="140" cy="218" rx="66" ry="14" fill="none" stroke="#bd75b4" stroke-width="1.1" opacity="0.55" />
+                                        <g transform="translate(140, 166)">
+                                            <polygon
+                                                points="-32,-44 -9,-44 -9,-13 19,-44 45,-44 9,0 45,44 17,44 -9,13 -9,44 -32,44"
+                                                fill="#e63d9b"
+                                                transform="translate(5, 5)"
+                                            />
+                                            <polygon
+                                                points="-32,-44 -9,-44 -9,-13 19,-44 45,-44 9,0 45,44 17,44 -9,13 -9,44 -32,44"
+                                                fill="#ffffff"
+                                                stroke="#ed43a2"
+                                                stroke-width="2"
+                                            />
+                                        </g>
+                                    </svg>
+                                </div>
+                            </div>
                         </div>
-                        <EggScene />
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section id="projects" class="section">
-                <div class="container-wide">
-                    <Skills />
-                </div>
-            </section>
+                <!-- SOBRE MÍ (Sección independiente) -->
+                <section id="sobre-mi" class="section-sm cv-2d-section">
+                    <div class="container-wide">
+                        <div class="mb-4">
+                            <p class="section-label">Sobre mí</p>
+                            <h2 class="mb-2">Trayectoria y enfoque técnico</h2>
+                        </div>
 
-            <section id="contact" class="section">
-                <div class="container-narrow">
-                    <Contact />
-                </div>
-            </section>
-        </main>
+                        <div class="m3-about-lead-card mb-4">
+                            <p class="m3-about-summary mb-3">
+                                {cvPersonalInfo.summary}
+                            </p>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="m3-chip">{cvPersonalInfo.yearsExperience} de experiencia</span>
+                                <span class="m3-chip">Sector: {cvPersonalInfo.industry}</span>
+                                <span class="m3-chip">Disponibilidad para viajar: {cvPersonalInfo.willingToTravel}</span>
+                            </div>
+                        </div>
 
-        <Footer />
+                        <div class="row g-4">
+                            {
+                                sobreMiStation?.items.map((item) => (
+                                    <div class="col-12 col-md-4">
+                                        <article class="cv-2d-card h-100">
+                                            <h3 class="cv-2d-card-title mb-1">{item.title}</h3>
+                                            {item.subtitle && <p class="cv-detail-subtitle">{item.subtitle}</p>}
+                                            <p class="cv-2d-card-desc">{item.description}</p>
+                                            <div class="cv-detail-tags mt-auto">
+                                                {item.tags.map((tag) => (
+                                                    <span class="m3-chip">{tag}</span>
+                                                ))}
+                                            </div>
+                                        </article>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    </div>
+                </section>
+
+                <!-- EXPERIENCIA LABORAL -->
+                <section id="experiencia" class="section-sm cv-2d-section">
+                    <div class="container-wide">
+                        <div class="mb-4">
+                            <p class="section-label">Experiencia laboral</p>
+                            <h2 class="mb-2">Trayectoria profesional</h2>
+                            <p class="section-desc">
+                                Desarrollo Full Stack en producción combinando interfaces web y mobile con servicios backend e infraestructura contenerizada.
+                            </p>
+                        </div>
+
+                        {
+                            experienceStation && (
+                                <div class="cv-exp-banner mb-4">
+                                    <div class="d-flex flex-wrap align-items-baseline justify-content-between gap-2">
+                                        <div>
+                                            <h3 class="cv-exp-role">{experienceStation.organization}</h3>
+                                            <p class="cv-exp-company mb-0">
+                                                <strong>GoalmedGroup</strong> · {experienceStation.location}
+                                            </p>
+                                        </div>
+                                        <span class="cv-period-badge">{experienceStation.period}</span>
+                                    </div>
+                                    <p class="mt-3 mb-0">{experienceStation.summary}</p>
+                                </div>
+                            )
+                        }
+
+                        <div class="row g-4">
+                            {
+                                experienceStation?.items.map((item) => (
+                                    <div class="col-12 col-md-6">
+                                        <article class="cv-2d-card h-100">
+                                            <div class="d-flex justify-content-between align-items-start gap-2 mb-1">
+                                                <h4 class="cv-2d-card-title">{item.title}</h4>
+                                                {item.period && <span class="cv-detail-period">{item.period}</span>}
+                                            </div>
+                                            {item.subtitle && <p class="cv-detail-subtitle">{item.subtitle}</p>}
+                                            <p class="cv-2d-card-desc">{item.description}</p>
+                                            <div class="cv-detail-tags mt-auto">
+                                                {item.tags.map((tag) => (
+                                                    <span class="m3-chip">{tag}</span>
+                                                ))}
+                                            </div>
+                                        </article>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PROYECTOS DESTACADOS (FILTRABLES) -->
+                <section id="projects" class="section-sm cv-2d-section">
+                    <div class="container-wide">
+                        <Skills />
+                    </div>
+                </section>
+
+                <!-- HABILIDADES Y TECNOLOGÍAS -->
+                <section id="habilidades" class="section-sm cv-2d-section">
+                    <div class="container-wide">
+                        <div class="mb-4">
+                            <p class="section-label">Habilidades y tecnologías</p>
+                            <h2 class="mb-2">Stack y competencias</h2>
+                            <p class="section-desc">
+                                Tecnologías y competencias organizativas aplicadas en el ciclo completo de desarrollo de software.
+                            </p>
+                        </div>
+
+                        <div class="row g-4 mb-4">
+                            {
+                                skillsStation?.items.map((item) => (
+                                    <div class="col-12 col-md-6">
+                                        <article class="cv-2d-card h-100">
+                                            <h3 class="cv-2d-card-title mb-1">{item.title}</h3>
+                                            {item.subtitle && <p class="cv-detail-subtitle">{item.subtitle}</p>}
+                                            <p class="cv-2d-card-desc">{item.description}</p>
+                                            <div class="cv-detail-tags mt-auto">
+                                                {item.tags.map((tag) => (
+                                                    <span class="m3-chip">{tag}</span>
+                                                ))}
+                                            </div>
+                                        </article>
+                                    </div>
+                                ))
+                            }
+                        </div>
+
+                        <div class="cv-all-skills-box">
+                            <p class="cv-subnodes-label mb-3">Competencias del CV</p>
+                            <div class="d-flex flex-wrap gap-2">
+                                {
+                                    cvPersonalInfo.allSkills.map((skill) => (
+                                        <span class="m3-chip">{skill}</span>
+                                    ))
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- EDUCACIÓN Y FORMACIÓN -->
+                <section id="educacion" class="section-sm cv-2d-section">
+                    <div class="container-wide">
+                        <div class="mb-4">
+                            <p class="section-label">Educación y formación</p>
+                            <h2 class="mb-2">Formación académica</h2>
+                            <p class="section-desc">
+                                Base científica y técnica en Química aplicada al rigor analítico, automatización y arquitectura de software.
+                            </p>
+                        </div>
+
+                        <div class="row g-4">
+                            {
+                                educationStation?.items.map((item) => (
+                                    <div class="col-12 col-md-4">
+                                        <article class="cv-2d-card h-100">
+                                            <div class="d-flex justify-content-between align-items-start gap-2 mb-1">
+                                                <h3 class="cv-2d-card-title">{item.title}</h3>
+                                            </div>
+                                            {item.period && (
+                                                <p class="cv-period-badge d-inline-block mb-2">{item.period}</p>
+                                            )}
+                                            {item.subtitle && <p class="cv-detail-subtitle">{item.subtitle}</p>}
+                                            <p class="cv-2d-card-desc">{item.description}</p>
+                                            <div class="cv-detail-tags mt-auto">
+                                                {item.tags.map((tag) => (
+                                                    <span class="m3-chip">{tag}</span>
+                                                ))}
+                                            </div>
+                                        </article>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    </div>
+                </section>
+
+                <!-- BLOG & PUBLICACIONES -->
+                <section id="blog" class="section-sm cv-2d-section">
+                    <div class="container-wide">
+                        <div class="mb-4">
+                            <p class="section-label">Blog y publicaciones</p>
+                            <h2 class="mb-2">Artículos y reflexiones</h2>
+                            <p class="section-desc">
+                                Artículos técnicos sobre inteligencia artificial, protocolos web emergentes y crónicas de hackathons.
+                            </p>
+                        </div>
+
+                        <div class="row g-4 mb-4">
+                            {
+                                blogPosts.map((post) => (
+                                    <div class="col-12 col-md-6">
+                                        <a href={post.url} class="text-decoration-none d-block h-100">
+                                            <article class="blog-card h-100 d-flex flex-column">
+                                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                                    <span class="cv-period-badge">Artículo</span>
+                                                    <span class="cv-detail-period">Por {post.frontmatter?.author ?? "Andrea Villar"}</span>
+                                                </div>
+                                                <h3 class="blog-card-title">{post.frontmatter?.title}</h3>
+                                                <p class="blog-card-desc mb-3">{post.frontmatter?.description}</p>
+                                                <span class="project-card-link mt-auto">
+                                                    Leer artículo →
+                                                </span>
+                                            </article>
+                                        </a>
+                                    </div>
+                                ))
+                            }
+                        </div>
+
+                        <div>
+                            <a href="/galery-blog" class="btn-secondary">
+                                Ver todos los artículos del blog
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CONTACTO -->
+                <section id="contact" class="section-sm cv-2d-section">
+                    <div class="container-narrow">
+                        <Contact />
+                    </div>
+                </section>
+            </main>
+
+            <Footer />
+        </div>
 
         <script
+            is:inline
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
+
+        <style is:global>
+            /* =====================================================
+               CONMUTACIÓN ENTRE VISTA 3D Y VISTA 2D
+               ===================================================== */
+            #cv-print-sheet {
+                display: none;
+            }
+
+            html[data-view="3d"],
+            html[data-view="3d"] body {
+                overflow: hidden;
+                height: 100svh;
+            }
+
+            html[data-view="3d"] #cv-2d-view {
+                display: none !important;
+            }
+
+            html[data-view="3d"] #cv-3d-view {
+                display: block !important;
+            }
+
+            html[data-view="2d"],
+            html[data-view="2d"] body {
+                overflow-x: hidden;
+                overflow-y: auto;
+                height: auto;
+            }
+
+            html[data-view="2d"] #cv-3d-view {
+                display: none !important;
+            }
+
+            html[data-view="2d"] #cv-2d-view {
+                display: block !important;
+            }
+
+            /* =====================================================
+               ESTILOS DEL ESCENARIO 3D (MATERIAL DESIGN 3 SURFACES)
+               ===================================================== */
+            .cv-3d-stage {
+                position: relative;
+                width: 100vw;
+                height: 100svh;
+                overflow: hidden;
+                user-select: none;
+            }
+
+            .cv-canvas-mount {
+                position: fixed;
+                inset: 0;
+                z-index: 1;
+                cursor: grab;
+            }
+
+            .cv-canvas-mount:active {
+                cursor: grabbing;
+            }
+
+            .cv-canvas-mount canvas {
+                display: block;
+                width: 100%;
+                height: 100%;
+                outline: none;
+            }
+
+            /* M3 Surface Container High HUD Panel */
+            .cv-hud-panel {
+                position: absolute;
+                top: 68px;
+                left: 2.5%;
+                z-index: 10;
+                width: min(440px, 92vw);
+                max-height: calc(100svh - 132px);
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+                padding: 1.25rem;
+                background-color: color-mix(
+                    in srgb,
+                    var(--md-sys-color-surface-container) 92%,
+                    transparent
+                );
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+                border: 1px solid var(--md-sys-color-outline-variant);
+                border-radius: var(--md-sys-shape-corner-large);
+                box-shadow: var(--md-sys-elevation-2);
+                overflow-y: auto;
+                user-select: text;
+                transition:
+                    transform var(--duration-normal) var(--ease-out),
+                    opacity var(--duration-normal) var(--ease-out);
+            }
+
+            .cv-hud-panel.cv-panel-minimized {
+                transform: translateX(-112%);
+                opacity: 0;
+                pointer-events: none;
+            }
+
+            .cv-panel-top-row {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 0.5rem;
+                flex-wrap: wrap;
+            }
+
+            .cv-station-title {
+                font-family: var(--font-display);
+                font-size: clamp(1.5rem, 2.4vw, 2rem);
+                font-weight: 700;
+                line-height: 1.15;
+                margin: 0.15rem 0 0;
+                color: var(--md-sys-color-on-surface);
+            }
+
+            .cv-period-badge {
+                display: inline-flex;
+                align-items: center;
+                height: 26px;
+                padding: 0 0.65rem;
+                font-family: var(--font-body);
+                font-size: 0.75rem;
+                font-weight: 600;
+                color: var(--md-sys-color-on-secondary-container);
+                background-color: var(--md-sys-color-secondary-container);
+                border-radius: var(--md-sys-shape-corner-small);
+                white-space: nowrap;
+            }
+
+            .cv-org-line {
+                font-size: 0.875rem;
+                font-weight: 600;
+                color: var(--md-sys-color-primary);
+                margin: 0.25rem 0 0.4rem;
+            }
+
+            .cv-org-line span {
+                font-weight: 400;
+                color: var(--md-sys-color-on-surface-variant);
+            }
+
+            .cv-station-summary {
+                font-size: 0.875rem;
+                line-height: 1.6;
+                color: var(--md-sys-color-on-surface-variant);
+                margin: 0;
+            }
+
+            .cv-subnodes-bar {
+                border-top: 1px solid var(--md-sys-color-outline-variant);
+                padding-top: 0.75rem;
+            }
+
+            .cv-subnodes-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 0.5rem;
+            }
+
+            .cv-subnodes-label {
+                font-family: var(--font-body);
+                font-size: 0.8125rem;
+                font-weight: 600;
+                color: var(--md-sys-color-on-surface-variant);
+            }
+
+            .cv-subnodes-arrows {
+                display: flex;
+                align-items: center;
+                gap: 0.35rem;
+            }
+
+            .cv-item-counter {
+                font-family: var(--font-body);
+                font-size: 0.8125rem;
+                font-weight: 600;
+                color: var(--md-sys-color-on-surface-variant);
+            }
+
+            .cv-mini-btn {
+                width: 28px;
+                height: 28px;
+                display: inline-grid;
+                place-items: center;
+                font-size: 11px;
+                background-color: var(--md-sys-color-surface-container-high);
+                color: var(--md-sys-color-on-surface);
+                border: 1px solid var(--md-sys-color-outline-variant);
+                border-radius: var(--md-sys-shape-corner-small);
+                cursor: pointer;
+                transition: background-color var(--duration-fast) var(--ease-out);
+            }
+
+            .cv-mini-btn:hover {
+                background-color: var(--md-sys-color-surface-container-highest);
+            }
+
+            .cv-subnode-chips {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.375rem;
+            }
+
+            .cv-subnode-chip {
+                font-family: var(--font-body);
+                font-size: 0.8125rem;
+                font-weight: 500;
+                height: 30px;
+                padding: 0 0.75rem;
+                background-color: transparent;
+                color: var(--md-sys-color-on-surface-variant);
+                border: 1px solid var(--md-sys-color-outline-variant);
+                border-radius: var(--md-sys-shape-corner-small);
+                cursor: pointer;
+                transition:
+                    background-color var(--duration-fast) var(--ease-out),
+                    color var(--duration-fast) var(--ease-out);
+            }
+
+            .cv-subnode-chip:hover {
+                background-color: color-mix(in srgb, var(--md-sys-color-on-surface) 8%, transparent);
+                color: var(--md-sys-color-on-surface);
+            }
+
+            .cv-subnode-chip.active {
+                background-color: var(--md-sys-color-secondary-container);
+                color: var(--md-sys-color-on-secondary-container);
+                border-color: transparent;
+                font-weight: 600;
+            }
+
+            .cv-detail-card {
+                background-color: var(--md-sys-color-surface-container-low);
+                border: 1px solid var(--md-sys-color-outline-variant);
+                border-radius: var(--md-sys-shape-corner-medium);
+                padding: 1rem;
+            }
+
+            .cv-detail-title {
+                font-family: var(--font-display);
+                font-size: 1.05rem;
+                font-weight: 600;
+                margin: 0;
+                color: var(--md-sys-color-on-surface);
+            }
+
+            .cv-detail-subtitle {
+                font-size: 0.8125rem;
+                font-weight: 500;
+                color: var(--md-sys-color-primary);
+                margin: 0.15rem 0 0.5rem;
+            }
+
+            .cv-detail-period {
+                font-family: var(--font-body);
+                font-size: 0.75rem;
+                font-weight: 500;
+                color: var(--md-sys-color-on-surface-variant);
+                white-space: nowrap;
+            }
+
+            .cv-detail-desc {
+                font-size: 0.875rem;
+                line-height: 1.6;
+                color: var(--md-sys-color-on-surface-variant);
+                margin-bottom: 0.75rem;
+            }
+
+            .cv-detail-footer {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .cv-detail-tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.375rem;
+            }
+
+            .cv-tag-badge {
+                display: inline-flex;
+                align-items: center;
+                height: 26px;
+                padding: 0 0.6rem;
+                font-family: var(--font-body);
+                font-size: 0.75rem;
+                font-weight: 500;
+                color: var(--md-sys-color-on-surface-variant);
+                background-color: var(--md-sys-color-surface-container-high);
+                border-radius: var(--md-sys-shape-corner-small);
+            }
+
+            .cv-detail-link {
+                font-family: var(--font-body);
+                font-size: 0.8125rem;
+                font-weight: 600;
+                color: var(--md-sys-color-on-primary);
+                background-color: var(--md-sys-color-primary);
+                height: 32px;
+                padding: 0 0.9rem;
+                border-radius: var(--md-sys-shape-corner-full);
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.35rem;
+            }
+
+            .cv-detail-link:hover {
+                text-decoration: none;
+                background-color: color-mix(
+                    in srgb,
+                    var(--md-sys-color-primary) 90%,
+                    var(--md-sys-color-on-primary) 10%
+                );
+                color: var(--md-sys-color-on-primary);
+            }
+
+            .cv-hover-tooltip {
+                position: fixed;
+                z-index: 30;
+                pointer-events: none;
+                font-family: var(--font-body);
+                font-size: 0.8125rem;
+                font-weight: 500;
+                color: var(--md-sys-color-on-surface);
+                background-color: var(--md-sys-color-surface-container-high);
+                border: 1px solid var(--md-sys-color-outline-variant);
+                padding: 0.35rem 0.75rem;
+                border-radius: var(--md-sys-shape-corner-small);
+                opacity: 0;
+                transition: opacity 120ms ease;
+            }
+
+            .cv-hover-tooltip.visible {
+                opacity: 1;
+            }
+
+            .cv-hud-bottom {
+                position: absolute;
+                bottom: 16px;
+                left: 2.5%;
+                right: 2.5%;
+                z-index: 10;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                gap: 1rem;
+                pointer-events: none;
+            }
+
+            .cv-bottom-controls {
+                pointer-events: auto;
+                display: flex;
+                align-items: center;
+                gap: 0.4rem;
+            }
+
+            .cv-hud-btn {
+                height: 36px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.38rem;
+                padding: 0 0.9rem;
+                font-family: var(--font-body);
+                font-size: 0.8125rem;
+                font-weight: 600;
+                color: var(--md-sys-color-on-surface);
+                background-color: var(--md-sys-color-surface-container);
+                border: 1px solid var(--md-sys-color-outline-variant);
+                border-radius: var(--md-sys-shape-corner-full);
+                cursor: pointer;
+                transition: background-color var(--duration-fast) var(--ease-out);
+            }
+
+            .cv-hud-btn:hover,
+            .cv-hud-btn.active {
+                background-color: var(--md-sys-color-secondary-container);
+                color: var(--md-sys-color-on-secondary-container);
+                border-color: transparent;
+            }
+
+            .cv-hud-btn-primary,
+            .cv-hud-btn-accent {
+                background-color: var(--md-sys-color-primary) !important;
+                color: var(--md-sys-color-on-primary) !important;
+                border-color: transparent !important;
+            }
+
+            .cv-icon-only {
+                width: 36px;
+                padding: 0;
+                font-size: 14px;
+            }
+
+            .cv-progress-display {
+                width: 64px;
+                display: flex;
+                align-items: center;
+            }
+
+            .cv-progress-track {
+                width: 100%;
+                height: 4px;
+                background-color: var(--md-sys-color-surface-container-highest);
+                border-radius: 99px;
+                overflow: hidden;
+            }
+
+            .cv-progress-fill {
+                height: 100%;
+                width: 0%;
+                background-color: var(--md-sys-color-primary);
+                transition: width 250ms ease;
+            }
+
+            /* =====================================================
+               ESTILOS DE LA VISTA 2D (MATERIAL DESIGN 3 CONTAINERS)
+               Sin efectos de hover "AI slop" (sin translateY en tarjetas)
+               ===================================================== */
+            .cv-2d-hero-grid {
+                grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+            }
+
+            .cv-2d-hero-actions {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.75rem;
+            }
+
+            .egg-2d-showcase {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .egg-2d-card {
+                width: 100%;
+                max-width: 370px;
+                background-color: var(--md-sys-color-surface-container-low);
+                border: 1px solid var(--md-sys-color-outline-variant);
+                border-radius: var(--md-sys-shape-corner-extra-large);
+                padding: 1.5rem 1.25rem 1.25rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .egg-2d-svg {
+                width: 100%;
+                max-width: 250px;
+                height: auto;
+            }
+
+            .egg-2d-caption {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                margin-top: 0.75rem;
+                font-family: var(--font-body);
+                font-size: 0.8125rem;
+                font-weight: 500;
+                color: var(--md-sys-color-on-surface-variant);
+            }
+
+            .cv-2d-section {
+                border-top: 1px solid var(--md-sys-color-outline-variant);
+                padding-top: var(--space-xl);
+                padding-bottom: var(--space-xl);
+            }
+
+            /* M3 Surface Container Card for "Sobre mí" Lead */
+            .m3-about-lead-card {
+                background-color: var(--md-sys-color-surface-container);
+                border: 1px solid var(--md-sys-color-outline-variant);
+                border-radius: var(--md-sys-shape-corner-large);
+                padding: 1.75rem;
+            }
+
+            .m3-about-summary {
+                font-size: 1.05rem;
+                line-height: 1.7;
+                color: var(--md-sys-color-on-surface);
+                max-width: 72ch;
+            }
+
+            /* M3 Surface Container Card for Experience Banner */
+            .cv-exp-banner {
+                background-color: var(--md-sys-color-surface-container);
+                border: 1px solid var(--md-sys-color-outline-variant);
+                border-radius: var(--md-sys-shape-corner-large);
+                padding: 1.5rem 1.75rem;
+            }
+
+            .cv-exp-role {
+                font-family: var(--font-display);
+                font-size: 1.35rem;
+                font-weight: 700;
+                color: var(--md-sys-color-on-surface);
+                margin-bottom: 0.2rem;
+            }
+
+            .cv-exp-company {
+                font-size: 0.9375rem;
+                color: var(--md-sys-color-on-surface-variant);
+            }
+
+            /* M3 Static Content Card (Zero hover lift) */
+            .cv-2d-card {
+                background-color: var(--md-sys-color-surface-container-low);
+                border: 1px solid var(--md-sys-color-outline-variant);
+                border-radius: var(--md-sys-shape-corner-large);
+                padding: 1.5rem;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .cv-2d-card-title {
+                font-family: var(--font-display);
+                font-size: 1.2rem;
+                font-weight: 600;
+                color: var(--md-sys-color-on-surface);
+                margin: 0;
+            }
+
+            .cv-2d-card-desc {
+                font-size: 0.9375rem;
+                line-height: 1.65;
+                color: var(--md-sys-color-on-surface-variant);
+                margin-bottom: 1rem;
+            }
+
+            .cv-all-skills-box {
+                background-color: var(--md-sys-color-surface-container-low);
+                border: 1px solid var(--md-sys-color-outline-variant);
+                border-radius: var(--md-sys-shape-corner-large);
+                padding: 1.5rem;
+            }
+
+            @media (max-width: 920px) {
+                .cv-interaction-hint {
+                    display: none;
+                }
+
+                .cv-hud-panel {
+                    top: auto;
+                    bottom: 62px;
+                    left: 3%;
+                    right: 3%;
+                    width: auto;
+                    max-height: 45svh;
+                    padding: 1rem;
+                }
+
+                .cv-hud-bottom {
+                    left: 3%;
+                    right: 3%;
+                    bottom: 10px;
+                    justify-content: center;
+                }
+
+                .cv-2d-hero-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
     </body>
 </html>
