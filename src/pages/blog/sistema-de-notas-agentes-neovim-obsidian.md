@@ -35,7 +35,7 @@ El ecosistema se divide en cuatro piezas independientes:
 
 ---
 
-## 2. El contrato del Vault: <templates-path-notes>
+## 2. El contrato del Vault: [`templates-path-notes`](https://github.com/AndreaKinder/templates-path-notes)
 
 El núcleo del sistema es la plantilla base de la bóveda, materializada en `<templates-path-notes>`. Su función principal es definir la taxonomía y las reglas invariantes antes de que se cree la primera nota.
 
@@ -70,7 +70,7 @@ En la raíz del repositorio reside `AGENTS.md`, un documento normativo diseñado
 
 ---
 
-## 3. Resolución semántica de entidades: <skills-notes>
+## 3. Resolución semántica de entidades: [`skills-notes`](https://github.com/AndreaKinder/skills-notes)
 
 Cuando interactúas con un agente conversacional, las peticiones rara vez contienen rutas completas del sistema de archivos. Expresiones como *"añade esta tarea a la nota de hoy"* o *"revisa las cuentas del mes pasado"* requieren una capa de traducción determinista.
 
@@ -85,7 +85,7 @@ El proyecto `<skills-notes>` implementa este puente como una skill estructurada 
 
 ---
 
-## 4. Búsqueda híbrida local sin dependencias pesadas: <mcp-rag-notes>
+## 4. Búsqueda híbrida local sin dependencias pesadas: [`mcp-rag-notes`](https://github.com/AndreaKinder/mcp-rag-notes)
 
 Para que un modelo de lenguaje consulte o sintetice información de la bóveda de forma eficiente, no basta con leer archivos individuales ni resulta viable cargar el repositorio completo en la ventana de contexto.
 
@@ -98,7 +98,7 @@ Para que un modelo de lenguaje consulte o sintetice información de la bóveda d
 
 ---
 
-## 5. El entorno de edición humana: <nvim-plugin-notes>
+## 5. El entorno de edición humana: [`nvim-plugin-notes`](https://github.com/AndreaKinder/nvim-plugin-notes)
 
 La interacción personal con la bóveda ocurre principalmente desde la terminal mediante Neovim, con soporte secundario en Obsidian para revisión visual o lectura prolongada.
 
@@ -114,7 +114,7 @@ La interacción personal con la bóveda ocurre principalmente desde la terminal 
 
 La utilidad a largo plazo de una base de conocimiento no depende de la sofisticación del modelo de IA que la asista, sino de la coherencia interna de los datos.
 
-Al formalizar un contrato claro en `<templates-path-notes>`, dotar a los modelos de herramientas de resolución deterministas con `<skills-notes>`, proveer recuperación híbrida privada con `<mcp-rag-notes>` y alinear el editor con `<nvim-plugin-notes>`, el sistema permite:
+Al formalizar un contrato claro en [`templates-path-notes`](https://github.com/AndreaKinder/templates-path-notes), dotar a los modelos de herramientas de resolución deterministas con [`skills-notes`](https://github.com/AndreaKinder/skills-notes), proveer recuperación híbrida privada con [`mcp-rag-notes`](https://github.com/AndreaKinder/mcp-rag-notes) y alinear el editor con [`nvim-plugin-notes`](https://github.com/AndreaKinder/nvim-plugin-notes), el sistema permite:
 
 - Editar con agilidad manual sin preocuparse por desestructurar metadatos.
 - Delegar a agentes la recopilación o consulta de notas sin riesgo de dispersión caótica de archivos.
