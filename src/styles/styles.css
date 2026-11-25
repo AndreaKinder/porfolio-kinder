@@ -598,7 +598,7 @@ textarea.form-control {
   min-height: 68px;
   display: flex;
   align-items: center;
-  z-index: 1040;
+  z-index: 1030;
   background-color: color-mix(in srgb, var(--md-sys-color-surface) 88%, transparent);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -644,10 +644,17 @@ textarea.form-control {
 
 /* Offcanvas Navigation Drawer (M3 Modal Navigation Drawer) */
 .offcanvas {
+  --bs-offcanvas-bg: var(--md-sys-color-surface-container-low);
+  --bs-offcanvas-color: var(--md-sys-color-on-surface);
   background-color: var(--md-sys-color-surface-container-low);
+  color: var(--md-sys-color-on-surface);
   border-right: 1px solid var(--md-sys-color-outline-variant);
   border-top-right-radius: var(--md-sys-shape-corner-large);
   border-bottom-right-radius: var(--md-sys-shape-corner-large);
+}
+
+[data-theme="dark"] .offcanvas .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%);
 }
 
 .navbar-toggler {
@@ -659,6 +666,7 @@ textarea.form-control {
   place-items: center;
   background-color: transparent;
   color: var(--md-sys-color-on-surface);
+  flex-shrink: 0;
 }
 
 .navbar-toggler:hover {
@@ -670,30 +678,30 @@ textarea.form-control {
   outline: 2px solid var(--md-sys-color-primary);
 }
 
-.navbar-toggler-icon {
+.navbar-custom .navbar-toggler-icon {
   background-image: none;
   position: relative;
   width: 20px;
   height: 2px;
-  background: var(--md-sys-color-on-surface);
+  background-color: var(--md-sys-color-on-surface);
   display: block;
 }
 
-.navbar-toggler-icon::before,
-.navbar-toggler-icon::after {
+.navbar-custom .navbar-toggler-icon::before,
+.navbar-custom .navbar-toggler-icon::after {
   content: "";
   position: absolute;
   left: 0;
   width: 20px;
   height: 2px;
-  background: var(--md-sys-color-on-surface);
+  background-color: var(--md-sys-color-on-surface);
 }
 
-.navbar-toggler-icon::before {
+.navbar-custom .navbar-toggler-icon::before {
   top: -6px;
 }
 
-.navbar-toggler-icon::after {
+.navbar-custom .navbar-toggler-icon::after {
   top: 6px;
 }
 
@@ -846,7 +854,7 @@ textarea.form-control {
   }
 
   .corp-hero-logo {
-    justify-content: flex-start;
+    display: none;
   }
 
   .corp-metrics-bar {

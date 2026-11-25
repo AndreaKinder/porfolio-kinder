@@ -118,6 +118,19 @@ const navPlanets = isEn
         }
     }
 
+    @media (max-width: 480px) {
+        .navbar-custom .container-fluid {
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+        }
+        .navbar-custom :global(.brand-wordmark-sub) {
+            display: none;
+        }
+        .navbar-custom :global(.brand-wordmark-title) {
+            font-size: 0.98rem;
+        }
+    }
+
     @media (min-width: 1221px) {
         .navbar-toggler {
             display: none !important;
@@ -134,7 +147,7 @@ const navPlanets = isEn
                 data-bs-toggle="offcanvas"
                 data-bs-target="#navbarOffcanvas"
                 aria-controls="navbarOffcanvas"
-                aria-label="Abrir menú"
+                aria-label={isEn ? "Open menu" : "Abrir menú"}
             >
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -144,7 +157,7 @@ const navPlanets = isEn
             </HerderLink>
         </div>
 
-        <div class="nav-planets-desktop" role="navigation" aria-label="Secciones del portfolio">
+        <div class="nav-planets-desktop" role="navigation" aria-label={isEn ? "Portfolio sections" : "Secciones del portfolio"}>
             {
                 navPlanets.map((item, idx) => (
                     <a
@@ -162,40 +175,45 @@ const navPlanets = isEn
         <div class="d-flex align-items-center">
             <SliderTheme lang={lang} />
         </div>
-
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="navbarOffcanvas">
-            <div class="offcanvas-header">
-                <h5 class="navbar-brand mb-0">
-                    <LogoMark size={26} showWordmark showSubtitle />
-                </h5>
-                <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="offcanvas"
-                    aria-label="Cerrar"
-                ></button>
-            </div>
-            <div class="offcanvas-body">
-                <ul class="navbar-nav gap-1">
-                    {
-                        navPlanets.map((item, idx) => (
-                            <li class="nav-item">
-                                <a
-                                    class={`nav-link ${idx === 0 ? "active-planet" : ""}`}
-                                    href={item.href}
-                                    data-cv-station-id={item.id}
-                                    data-section-id={item.sectionId}
-                                >
-                                    <span>{item.label}</span>
-                                </a>
-                            </li>
-                        ))
-                    }
-                </ul>
-            </div>
-        </div>
     </div>
 </nav>
+
+<div
+    class="offcanvas offcanvas-start"
+    tabindex="-1"
+    id="navbarOffcanvas"
+    aria-labelledby="navbarOffcanvasLabel"
+>
+    <div class="offcanvas-header">
+        <h5 class="navbar-brand mb-0" id="navbarOffcanvasLabel">
+            <LogoMark size={26} showWordmark showSubtitle />
+        </h5>
+        <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label={isEn ? "Close" : "Cerrar"}
+        ></button>
+    </div>
+    <div class="offcanvas-body">
+        <ul class="navbar-nav gap-1">
+            {
+                navPlanets.map((item, idx) => (
+                    <li class="nav-item">
+                        <a
+                            class={`nav-link ${idx === 0 ? "active-planet" : ""}`}
+                            href={item.href}
+                            data-cv-station-id={item.id}
+                            data-section-id={item.sectionId}
+                        >
+                            <span>{item.label}</span>
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
+</div>
 
 <script>
     const navbar = document.getElementById('navbar');
