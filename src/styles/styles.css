@@ -777,29 +777,6 @@ textarea.form-control {
   height: auto;
 }
 
-.corp-status-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.35rem 0.8rem;
-  margin-bottom: 1.35rem;
-  font-family: var(--font-body);
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--md-sys-color-on-surface);
-  background-color: var(--md-sys-color-surface-container-low);
-  border: 1px solid var(--md-sys-color-outline-variant);
-  border-radius: 9999px;
-}
-
-.corp-status-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background-color: #16a34a;
-  flex-shrink: 0;
-}
-
 .corp-hero-actions {
   display: flex;
   flex-wrap: wrap;
