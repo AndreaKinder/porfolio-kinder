@@ -41,8 +41,8 @@ export const cvPersonalInfo = {
     city: "L'Arboç, Tarragona",
     phone: '+34 621 21 41 27',
     phoneHref: 'tel:+34621214127',
-    email: 'andreavillartr@gmail.com',
-    emailHref: 'mailto:andreavillartr@gmail.com',
+    email: 'info@avkinder.es',
+    emailHref: 'mailto:info@avkinder.es',
     github: 'https://github.com/AndreaKinder',
     linkedin: 'https://www.linkedin.com/in/andrea-villar-torres-395909270/',
     currentlyWorking: 'No (Disponible)',
@@ -510,7 +510,7 @@ export const cvStations: CvStation[] = [
         location: 'Dispuesta a viajar: Sí',
         period: 'Canales abiertos',
         summary:
-            '¿Buscas una desarrolladora Full Stack (Web & Mobile) con experiencia real en Vue.js, React Native, Symfony, Docker y Linux? Puedes escribirme directamente o cambiar a la vista 2D para usar el formulario.',
+            '¿Buscas una desarrolladora Full Stack (Web & Mobile) con experiencia real en Vue.js, React Native, Symfony, Docker y Linux? Puedes contactar conmigo directamente por correo electrónico, teléfono, GitHub o LinkedIn.',
         position: [0, 0.2, -108],
         cameraOffset: [-1.6, 0.8, -101.0],
         sculptureType: 'contact',
@@ -518,11 +518,11 @@ export const cvStations: CvStation[] = [
             {
                 id: 'contacto-email',
                 title: 'Correo Electrónico',
-                subtitle: 'andreavillartr@gmail.com',
+                subtitle: 'info@avkinder.es',
                 description:
                     'Canal directo para oportunidades laborales, entrevistas técnicas o colaboraciones en proyectos web, mobile y cloud.',
-                tags: ['Email', 'andreavillartr@gmail.com'],
-                href: 'mailto:andreavillartr@gmail.com',
+                tags: ['Email', 'info@avkinder.es'],
+                href: 'mailto:info@avkinder.es',
                 linkLabel: 'Escribir correo',
             },
             {

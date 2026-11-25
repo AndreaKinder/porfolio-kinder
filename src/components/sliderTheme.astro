@@ -1,49 +1,56 @@
 ---
 import '../styles/styles.css';
+
+interface Props {
+    lang?: "es" | "en";
+}
+
+const { lang = "es" } = Astro.props;
+const isEn = lang === "en";
 ---
 
-<div class="view-theme-controls" role="group" aria-label="Controles de vista y tema">
-    <!-- M3 Segmented Button: Vista 3D / 2D -->
-    <div class="m3-segmented-group view-mode-switch" role="group" aria-label="Modo de vista 3D o 2D">
-        <button
-            type="button"
-            class="m3-seg-btn"
-            data-set-view="3d"
-            title="Vista 3D planetaria con el Huevo-K central"
+<div class="view-theme-controls" role="group" aria-label={isEn ? "Language and theme controls" : "Selector de idioma y tema"}>
+    <!-- Language Switcher: ES | EN -->
+    <div class="m3-segmented-group lang-mode-switch" role="group" aria-label={isEn ? "Language" : "Idioma"}>
+        <a
+            href="/"
+            class={`m3-seg-btn ${!isEn ? "is-active-lang" : ""}`}
+            title="Ver en Español"
+            aria-current={!isEn ? "page" : undefined}
         >
-            <span>3D</span>
-        </button>
-        <button
-            type="button"
-            class="m3-seg-btn"
-            data-set-view="2d"
-            title="Vista 2D web con scroll"
+            <span>ES</span>
+        </a>
+        <a
+            href="/en"
+            class={`m3-seg-btn ${isEn ? "is-active-lang" : ""}`}
+            title="View in English"
+            aria-current={isEn ? "page" : undefined}
         >
-            <span>2D</span>
-        </button>
+            <span>EN</span>
+        </a>
     </div>
 
-    <!-- M3 Segmented Button: Tema Claro / Oscuro -->
-    <div class="m3-segmented-group theme-mode-switch" role="group" aria-label="Tema Claro u Oscuro">
+    <!-- Segmented Button: Tema Claro / Oscuro -->
+    <div class="m3-segmented-group theme-mode-switch" role="group" aria-label={isEn ? "Light or dark theme" : "Tema Claro u Oscuro"}>
         <button
             type="button"
             class="m3-seg-btn"
             data-set-theme="light"
-            title="Tema Claro"
-            aria-label="Tema Claro"
+            title={isEn ? "Light theme" : "Tema Claro"}
+            aria-label={isEn ? "Light theme" : "Tema Claro"}
         >
             <span aria-hidden="true">☀</span>
-            <span class="seg-label-text">Claro</span>
+            <span class="seg-label-text">{isEn ? "Light" : "Claro"}</span>
         </button>
         <button
             type="button"
             class="m3-seg-btn"
             data-set-theme="dark"
-            title="Tema Oscuro"
-            aria-label="Tema Oscuro"
+            title={isEn ? "Dark theme" : "Tema Oscuro"}
+            aria-label={isEn ? "Dark theme" : "Tema Oscuro"}
         >
             <span aria-hidden="true">☾</span>
-            <span class="seg-label-text">Oscuro</span>
+            <span class="seg-label-text">{isEn ? "Dark" : "Oscuro"}</span>
         </button>
     </div>
 </div>
@@ -55,15 +62,14 @@ import '../styles/styles.css';
         gap: 0.5rem;
     }
 
-    /* Material 3 Outlined Segmented Button Container */
     .m3-segmented-group {
         display: inline-flex;
         align-items: stretch;
-        border: 1px solid var(--md-sys-color-outline);
-        border-radius: var(--md-sys-shape-corner-full);
+        border: 1px solid var(--md-sys-color-outline-variant);
+        border-radius: var(--md-sys-shape-corner-small);
         overflow: hidden;
-        background-color: var(--md-sys-color-surface);
-        height: 36px;
+        background-color: var(--md-sys-color-surface-container-low);
+        height: 34px;
     }
 
     .m3-seg-btn {
@@ -71,22 +77,32 @@ import '../styles/styles.css';
         align-items: center;
         justify-content: center;
         gap: 0.3rem;
-        font-family: var(--font-pixel);
-        font-size: 0.8125rem;
-        font-weight: 600;
-        color: var(--md-sys-color-on-surface);
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: var(--md-sys-color-on-surface-variant);
         background-color: transparent;
         border: none;
-        padding: 0 0.75rem;
+        padding: 0 0.7rem;
         cursor: pointer;
         line-height: 1;
+        text-decoration: none;
         transition:
             background-color var(--duration-fast) var(--ease-out),
             color var(--duration-fast) var(--ease-out);
     }
 
+    .m3-seg-btn:hover {
+        text-decoration: none;
+    }
+
+    .m3-seg-btn.is-active-lang {
+        background-color: var(--md-sys-color-primary);
+        color: var(--md-sys-color-on-primary);
+    }
+
     .m3-seg-btn + .m3-seg-btn {
-        border-left: 1px solid var(--md-sys-color-outline);
+        border-left: 1px solid var(--md-sys-color-outline-variant);
     }
 
     .m3-seg-btn:hover {
@@ -97,8 +113,8 @@ import '../styles/styles.css';
     :global(html[data-view="2d"]) .m3-seg-btn[data-set-view="2d"],
     :global(html[data-theme="light"]) .m3-seg-btn[data-set-theme="light"],
     :global(html[data-theme="dark"]) .m3-seg-btn[data-set-theme="dark"] {
-        background-color: var(--color-accent);
-        color: #ffffff;
+        background-color: var(--md-sys-color-primary);
+        color: var(--md-sys-color-on-primary);
     }
 
     @media (max-width: 640px) {

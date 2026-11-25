@@ -2,6 +2,7 @@
 layout: ../../layouts/Layout.astro
 title: ConstruHack Viladecans 2024
 author: Andrea Villar
+date: "2025-03-03"
 description: Relato de mi primera Hackaton y el proyecto realizado en el.
 ---
 ## 1. Introducción

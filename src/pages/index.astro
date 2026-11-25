@@ -4,8 +4,9 @@ import HeaderMenu from "../components/headerMenu.astro";
 import Skills from "../components/skills.astro";
 import Footer from "../components/footer.astro";
 import Contact from "../components/contact.astro";
-import EggScene from "../components/egg-scene.astro";
+// import EggScene from "../components/egg-scene.astro"; // Deshabilitado temporalmente
 import ThemeInit from "../components/themeInit.astro";
+import LogoMark from "../components/LogoMark.astro";
 import { cvPersonalInfo, cvStations } from "../data/cvData";
 
 const inicioStation = cvStations.find((s) => s.id === "inicio");
@@ -19,12 +20,17 @@ interface BlogPostModule {
     frontmatter?: {
         title?: string;
         author?: string;
+        date?: string;
         description?: string;
     };
 }
 const blogPosts = Object.values(
     import.meta.glob<BlogPostModule>("./blog/*.md", { eager: true }),
-);
+).sort((a, b) => {
+    const da = a.frontmatter?.date ? Date.parse(a.frontmatter.date) : 0;
+    const db = b.frontmatter?.date ? Date.parse(b.frontmatter.date) : 0;
+    return db - da;
+});
 ---
 
 <!doctype html>
@@ -32,20 +38,20 @@ const blogPosts = Object.values(
     <head>
         <ThemeInit />
         <meta charset="utf-8" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content={Astro.generator} />
-        <meta name="theme-color" content="#191115" />
+        <meta name="theme-color" content="#f7f7f5" />
         <meta
             name="description"
-            content="Portfolio y Currículum Vitae 3D/2D de Andrea Villar Torres — Desarrolladora Full Stack (Web & Mobile)."
+            content="Portfolio profesional de Andrea Villar Torres — AndreaKinder Software Development (Full Stack Web & Mobile)."
         />
-        <title>Andrea Villar Torres — Desarrolladora Full Stack</title>
+        <title>AndreaKinder — Software Development · Andrea Villar Torres</title>
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
             rel="stylesheet"
         />
 
@@ -59,10 +65,9 @@ const blogPosts = Object.values(
     <body>
         <HeaderMenu />
 
-        <!-- =========================================================
-             MODO VISTA 3D: Sistema Planetario de Huevos con el Huevo-K Central
-             ========================================================= -->
+        {/* Vista 3D deshabilitada temporalmente
         <EggScene />
+        */}
 
         <!-- =========================================================
              MODO VISTA 2D: Web Portfolio + CV con Sistema Material Design 3
@@ -72,120 +77,68 @@ const blogPosts = Object.values(
                 <!-- INICIO -->
                 <section id="inicio" class="section cv-2d-hero-section">
                     <div class="container-wide">
-                        <div class="hero-stage cv-2d-hero-grid">
-                            <div class="hero-copy">
-                                <span class="hero-eyebrow">Inicio</span>
+                        <div class="corp-hero-grid">
+                            <div class="corp-hero-editorial">
+                                <span class="corp-status-pill">
+                                    <span class="corp-status-dot" aria-hidden="true"></span>
+                                    Disponible · Remoto / Híbrido
+                                </span>
                                 <h1 class="hero-name">Andrea Villar Torres</h1>
-                                <p class="hero-role">{cvPersonalInfo.role}</p>
+                                <p class="hero-role">Desarrolladora Full Stack · Web, Mobile &amp; Cloud</p>
                                 <p class="hero-description">
                                     {inicioStation?.summary}
                                 </p>
 
-                                <div class="cv-2d-hero-actions mt-4">
-                                    <a href="#projects" class="btn-primary">
+                                <div class="corp-hero-actions">
+                                    <a href={cvPersonalInfo.emailHref} class="btn-primary">
+                                        Enviar correo
+                                    </a>
+                                    <a
+                                        href="/CV_Andrea_Villar_Torres.pdf"
+                                        download="CV_Andrea_Villar_Torres.pdf"
+                                        class="btn-secondary"
+                                    >
+                                        Descargar CV ↓
+                                    </a>
+                                    <a href="#projects" class="btn-ghost">
                                         Ver proyectos
                                     </a>
-                                    <a href="#sobre-mi" class="btn-tonal">
-                                        Sobre mí
-                                    </a>
-                                    <a href="#contact" class="btn-secondary">
-                                        Contacto
-                                    </a>
+                                    <div class="corp-hero-social">
+                                        <a
+                                            href={cvPersonalInfo.github}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            GitHub ↗
+                                        </a>
+                                        <a
+                                            href={cvPersonalInfo.linkedin}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            LinkedIn ↗
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
 
-                            <!-- Ilustración 2D del Sistema Planetario de Huevos con el Huevo-K Central -->
-                            <div class="egg-2d-showcase">
-                                <div class="egg-2d-card">
-                                    <svg
-                                        viewBox="0 0 280 320"
-                                        class="egg-2d-svg"
-                                        role="img"
-                                        aria-label="Ilustración 2D del Huevo Central con la K y huevos-planeta en órbita"
-                                    >
-                                        <defs>
-                                            <radialGradient id="eggGlow2D" cx="50%" cy="50%" r="52%">
-                                                <stop offset="0%" stop-color="#ed43a2" stop-opacity="0.22" />
-                                                <stop offset="100%" stop-color="#bd75b4" stop-opacity="0" />
-                                            </radialGradient>
-                                        </defs>
-                                        <circle cx="140" cy="160" r="126" fill="url(#eggGlow2D)" />
-                                        <ellipse
-                                            cx="140"
-                                            cy="168"
-                                            rx="124"
-                                            ry="42"
-                                            fill="none"
-                                            stroke="#ed43a2"
-                                            stroke-width="1.4"
-                                            stroke-dasharray="4 5"
-                                            opacity="0.65"
-                                            transform="rotate(-14 140 168)"
-                                        />
-                                        <ellipse
-                                            cx="140"
-                                            cy="168"
-                                            rx="114"
-                                            ry="35"
-                                            fill="none"
-                                            stroke="#bd75b4"
-                                            stroke-width="1.1"
-                                            opacity="0.5"
-                                            transform="rotate(16 140 168)"
-                                        />
-                                        <g transform="translate(32, 134) rotate(-12)">
-                                            <ellipse cx="0" cy="0" rx="18" ry="8" fill="none" stroke="#ed43a2" stroke-width="1.2" />
-                                            <path d="M0 -15 C -8 -15, -11 -4, -11 4 C -11 11, -6 15, 0 15 C 6 15, 11 11, 11 4 C 11 -4, 8 -15, 0 -15 Z" fill="#ffd6eb" stroke="#ed43a2" stroke-width="1.5" />
-                                        </g>
-                                        <g transform="translate(246, 192) rotate(14)">
-                                            <ellipse cx="0" cy="0" rx="20" ry="7" fill="none" stroke="#bd75b4" stroke-width="1.2" />
-                                            <path d="M0 -16 C -9 -16, -12 -5, -12 4 C -12 12, -7 16, 0 16 C 7 16, 12 12, 12 4 C 12 -5, 9 -16, 0 -16 Z" fill="#f3c1e6" stroke="#d92b8a" stroke-width="1.5" />
-                                        </g>
-                                        <g transform="translate(224, 96) rotate(-18)">
-                                            <path d="M0 -12 C -6 -12, -9 -3, -9 3 C -9 9, -5 12, 0 12 C 5 12, 9 9, 9 3 C 9 -3, 6 -12, 0 -12 Z" fill="#e6c7f7" stroke="#b347ea" stroke-width="1.4" />
-                                        </g>
-                                        <g transform="translate(56, 226) rotate(10)">
-                                            <path d="M0 -13 C -7 -13, -9 -3, -9 3 C -9 9, -5 13, 0 13 C 5 13, 9 9, 9 3 C 9 -3, 7 -13, 0 -13 Z" fill="#ffe0f4" stroke="#ed43a2" stroke-width="1.4" />
-                                        </g>
+                            <div class="corp-hero-logo" aria-hidden="true">
+                                <LogoMark size={240} />
+                            </div>
+                        </div>
 
-                                        <path
-                                            d="M140 44 C 96 44, 64 104, 64 172 C 64 234, 98 276, 140 276 C 182 276, 216 234, 216 172 C 216 104, 184 44, 140 44 Z"
-                                            fill="rgba(237, 67, 162, 0.09)"
-                                            stroke="#ed43a2"
-                                            stroke-width="2.4"
-                                        />
-                                        <path
-                                            d="M140 44 C 112 76, 98 122, 98 172 C 98 222, 114 260, 140 276"
-                                            fill="none"
-                                            stroke="#bd75b4"
-                                            stroke-width="1.2"
-                                            opacity="0.65"
-                                        />
-                                        <path
-                                            d="M140 44 C 168 76, 182 122, 182 172 C 182 222, 166 260, 140 276"
-                                            fill="none"
-                                            stroke="#bd75b4"
-                                            stroke-width="1.2"
-                                            opacity="0.65"
-                                        />
-                                        <ellipse cx="140" cy="120" rx="63" ry="13" fill="none" stroke="#ea54a8" stroke-width="1.1" opacity="0.55" />
-                                        <ellipse cx="140" cy="170" rx="75" ry="17" fill="none" stroke="#ea54a8" stroke-width="1.3" opacity="0.65" />
-                                        <ellipse cx="140" cy="218" rx="66" ry="14" fill="none" stroke="#bd75b4" stroke-width="1.1" opacity="0.55" />
-                                        <g transform="translate(140, 166)">
-                                            <polygon
-                                                points="-32,-44 -9,-44 -9,-13 19,-44 45,-44 9,0 45,44 17,44 -9,13 -9,44 -32,44"
-                                                fill="#e63d9b"
-                                                transform="translate(5, 5)"
-                                            />
-                                            <polygon
-                                                points="-32,-44 -9,-44 -9,-13 19,-44 45,-44 9,0 45,44 17,44 -9,13 -9,44 -32,44"
-                                                fill="#ffffff"
-                                                stroke="#ed43a2"
-                                                stroke-width="2"
-                                            />
-                                        </g>
-                                    </svg>
-                                </div>
+                        <div class="corp-metrics-bar">
+                            <div class="corp-metric-item">
+                                <span class="corp-metric-value">{cvPersonalInfo.yearsExperience}+</span>
+                                <span class="corp-metric-label">Experiencia en producción desarrollando producto end-to-end</span>
+                            </div>
+                            <div class="corp-metric-item">
+                                <span class="corp-metric-value">Web &amp; Mobile</span>
+                                <span class="corp-metric-label">Aplicaciones multiplataforma e interfaces reactivas de alto rendimiento</span>
+                            </div>
+                            <div class="corp-metric-item">
+                                <span class="corp-metric-value">Cloud &amp; Linux</span>
+                                <span class="corp-metric-label">Despliegues reproducibles con Docker, Traefik y Cloudflare R2</span>
                             </div>
                         </div>
                     </div>
@@ -195,7 +148,7 @@ const blogPosts = Object.values(
                 <section id="sobre-mi" class="section-sm cv-2d-section">
                     <div class="container-wide">
                         <div class="mb-4">
-                            <p class="section-label">Sobre mí</p>
+                            <p class="section-label">01 — Sobre mí</p>
                             <h2 class="mb-2">Trayectoria y enfoque técnico</h2>
                         </div>
 
@@ -235,7 +188,7 @@ const blogPosts = Object.values(
                 <section id="experiencia" class="section-sm cv-2d-section">
                     <div class="container-wide">
                         <div class="mb-4">
-                            <p class="section-label">Experiencia laboral</p>
+                            <p class="section-label">02 — Experiencia</p>
                             <h2 class="mb-2">Trayectoria profesional</h2>
                             <p class="section-desc">
                                 Desarrollo Full Stack en producción combinando interfaces web y mobile con servicios backend e infraestructura contenerizada.
@@ -283,10 +236,10 @@ const blogPosts = Object.values(
                     </div>
                 </section>
 
-                <!-- PROYECTOS DESTACADOS (FILTRABLES) -->
+                <!-- PROYECTOS DESTACADOS (3 ÚLTIMOS + GALERÍA COMPLETA) -->
                 <section id="projects" class="section-sm cv-2d-section">
                     <div class="container-wide">
-                        <Skills />
+                        <Skills limit={3} />
                     </div>
                 </section>
 
@@ -294,7 +247,7 @@ const blogPosts = Object.values(
                 <section id="habilidades" class="section-sm cv-2d-section">
                     <div class="container-wide">
                         <div class="mb-4">
-                            <p class="section-label">Habilidades y tecnologías</p>
+                            <p class="section-label">04 — Stack técnico</p>
                             <h2 class="mb-2">Stack y competencias</h2>
                             <p class="section-desc">
                                 Tecnologías y competencias organizativas aplicadas en el ciclo completo de desarrollo de software.
@@ -337,7 +290,7 @@ const blogPosts = Object.values(
                 <section id="educacion" class="section-sm cv-2d-section">
                     <div class="container-wide">
                         <div class="mb-4">
-                            <p class="section-label">Educación y formación</p>
+                            <p class="section-label">05 — Formación</p>
                             <h2 class="mb-2">Formación académica</h2>
                             <p class="section-desc">
                                 Base científica y técnica en Química aplicada al rigor analítico, automatización y arquitectura de software.
@@ -374,7 +327,7 @@ const blogPosts = Object.values(
                 <section id="blog" class="section-sm cv-2d-section">
                     <div class="container-wide">
                         <div class="mb-4">
-                            <p class="section-label">Blog y publicaciones</p>
+                            <p class="section-label">06 — Publicaciones</p>
                             <h2 class="mb-2">Artículos y reflexiones</h2>
                             <p class="section-desc">
                                 Artículos técnicos sobre inteligencia artificial, protocolos web emergentes y crónicas de hackathons.
@@ -388,7 +341,9 @@ const blogPosts = Object.values(
                                         <a href={post.url} class="text-decoration-none d-block h-100">
                                             <article class="blog-card h-100 d-flex flex-column">
                                                 <div class="d-flex justify-content-between align-items-center mb-2">
-                                                    <span class="cv-period-badge">Artículo</span>
+                                                    <span class="cv-period-badge">
+                                                        {post.frontmatter?.date ?? "Artículo"}
+                                                    </span>
                                                     <span class="cv-detail-period">Por {post.frontmatter?.author ?? "Andrea Villar"}</span>
                                                 </div>
                                                 <h3 class="blog-card-title">{post.frontmatter?.title}</h3>
@@ -852,81 +807,37 @@ const blogPosts = Object.values(
             }
 
             /* =====================================================
-               ESTILOS DE LA VISTA 2D (MATERIAL DESIGN 3 CONTAINERS)
-               Sin efectos de hover "AI slop" (sin translateY en tarjetas)
+               ESTILOS CORPORATIVOS DE LA VISTA 2D (SECCIONES)
                ===================================================== */
-            .cv-2d-hero-grid {
-                grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-            }
-
-            .cv-2d-hero-actions {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 0.75rem;
-            }
-
-            .egg-2d-showcase {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-
-            .egg-2d-card {
-                width: 100%;
-                max-width: 370px;
-                background-color: var(--md-sys-color-surface-container-low);
-                border: 1px solid var(--md-sys-color-outline-variant);
-                border-radius: var(--md-sys-shape-corner-extra-large);
-                padding: 1.5rem 1.25rem 1.25rem;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .egg-2d-svg {
-                width: 100%;
-                max-width: 250px;
-                height: auto;
-            }
-
-            .egg-2d-caption {
-                display: inline-flex;
-                align-items: center;
-                gap: 0.5rem;
-                margin-top: 0.75rem;
-                font-family: var(--font-body);
-                font-size: 0.8125rem;
-                font-weight: 500;
-                color: var(--md-sys-color-on-surface-variant);
-            }
-
             .cv-2d-section {
                 border-top: 1px solid var(--md-sys-color-outline-variant);
                 padding-top: var(--space-xl);
                 padding-bottom: var(--space-xl);
             }
 
-            /* M3 Surface Container Card for "Sobre mí" Lead */
+            /* Executive Lead Card for "Sobre mí" */
             .m3-about-lead-card {
-                background-color: var(--md-sys-color-surface-container);
+                background-color: var(--md-sys-color-surface-container-low);
                 border: 1px solid var(--md-sys-color-outline-variant);
-                border-radius: var(--md-sys-shape-corner-large);
-                padding: 1.75rem;
+                border-left: 3px solid var(--md-sys-color-primary);
+                border-radius: var(--md-sys-shape-corner-medium);
+                padding: 1.75rem 2rem;
             }
 
             .m3-about-summary {
                 font-size: 1.05rem;
-                line-height: 1.7;
+                line-height: 1.75;
                 color: var(--md-sys-color-on-surface);
-                max-width: 72ch;
+                max-width: 76ch;
             }
 
-            /* M3 Surface Container Card for Experience Banner */
+            /* Executive Banner for Experience */
             .cv-exp-banner {
-                background-color: var(--md-sys-color-surface-container);
+                background-color: var(--md-sys-color-surface-container-low);
                 border: 1px solid var(--md-sys-color-outline-variant);
-                border-radius: var(--md-sys-shape-corner-large);
-                padding: 1.5rem 1.75rem;
+                border-left: 3px solid var(--md-sys-color-primary);
+                border-radius: var(--md-sys-shape-corner-medium);
+                padding: 1.65rem 1.9rem;
             }
 
             .cv-exp-role {
@@ -942,20 +853,25 @@ const blogPosts = Object.values(
                 color: var(--md-sys-color-on-surface-variant);
             }
 
-            /* M3 Static Content Card (Zero hover lift) */
+            /* Corporate Static Content Card */
             .cv-2d-card {
                 background-color: var(--md-sys-color-surface-container-low);
                 border: 1px solid var(--md-sys-color-outline-variant);
-                border-radius: var(--md-sys-shape-corner-large);
-                padding: 1.5rem;
+                border-radius: var(--md-sys-shape-corner-medium);
+                padding: 1.6rem;
                 display: flex;
                 flex-direction: column;
+                transition: border-color var(--duration-fast) var(--ease-out);
+            }
+
+            .cv-2d-card:hover {
+                border-color: var(--color-border-hover);
             }
 
             .cv-2d-card-title {
                 font-family: var(--font-display);
-                font-size: 1.2rem;
-                font-weight: 600;
+                font-size: 1.15rem;
+                font-weight: 700;
                 color: var(--md-sys-color-on-surface);
                 margin: 0;
             }
@@ -970,8 +886,8 @@ const blogPosts = Object.values(
             .cv-all-skills-box {
                 background-color: var(--md-sys-color-surface-container-low);
                 border: 1px solid var(--md-sys-color-outline-variant);
-                border-radius: var(--md-sys-shape-corner-large);
-                padding: 1.5rem;
+                border-radius: var(--md-sys-shape-corner-medium);
+                padding: 1.6rem;
             }
 
             @media (max-width: 920px) {
@@ -994,10 +910,6 @@ const blogPosts = Object.values(
                     right: 3%;
                     bottom: 10px;
                     justify-content: center;
-                }
-
-                .cv-2d-hero-grid {
-                    grid-template-columns: 1fr;
                 }
             }
         </style>
