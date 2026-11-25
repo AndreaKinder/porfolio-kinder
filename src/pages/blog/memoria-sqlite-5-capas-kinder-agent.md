@@ -2,6 +2,7 @@
 layout: ../../layouts/Layout.astro
 title: "Memoria persistente de 5 capas en SQLite para modelos locales: cómo funciona kinder-agent"
 author: Andrea Villar
+date: "2026-10-29"
 description: Arquitectura del motor de memoria jerárquica de cinco capas en SQLite, FTS5 y destilación asíncrona en Bash para ejecutar agentes conversacionales en Ollama con ventanas de contexto reducidas.
 ---
 

@@ -501,18 +501,18 @@ const stationsWithBlog: CvStation[] = cvStations.map((st) =>
         camera.position.set(0, 1.25, 8.6);
         camera.lookAt(0, -0.05, 0);
 
-        const hemiLight = new THREE.HemisphereLight("#fffaff", "#cba6c1", 2.35);
+        const hemiLight = new THREE.HemisphereLight("#ffffff", "#a3a3a3", 2.2);
         scene.add(hemiLight);
 
-        const keyLight = new THREE.DirectionalLight("#ffffff", 3.2);
+        const keyLight = new THREE.DirectionalLight("#ffffff", 3.0);
         keyLight.position.set(-4, 6, 8);
         scene.add(keyLight);
 
-        const pinkLight = new THREE.PointLight("#ff70bb", 32, 16);
-        pinkLight.position.set(3, -1, 5);
-        scene.add(pinkLight);
+        const accentLight = new THREE.PointLight("#e5e5e5", 24, 16);
+        accentLight.position.set(3, -1, 5);
+        scene.add(accentLight);
 
-        const rimLight = new THREE.DirectionalLight("#bd75b4", 1.6);
+        const rimLight = new THREE.DirectionalLight("#a3a3a3", 1.5);
         rimLight.position.set(5, -3, -6);
         scene.add(rimLight);
 
@@ -573,24 +573,26 @@ const stationsWithBlog: CvStation[] = cvStations.map((st) =>
         const sharedMoonEggGeo = buildEggGeometry(28, 36);
 
         // -----------------------------------------------------------------
-        // 1. EL SOL CENTRAL: HUEVO CON LA K (FIEL A EGG3D)
+        // 1. EL SOL CENTRAL: HUEVO MONOCROMO CON EMBLEMA <K> (ANDREAKINDER)
         // -----------------------------------------------------------------
         const sunEggGroup = new THREE.Group();
         sunEggGroup.rotation.z = -0.045;
         planetariumRoot.add(sunEggGroup);
 
         const sunShellMat = new THREE.MeshPhysicalMaterial({
-            color: "#ffdff0",
-            roughness: 0.34,
-            metalness: 0.04,
-            clearcoat: 0.48,
-            clearcoatRoughness: 0.3,
+            color: "#111111",
+            roughness: 0.36,
+            metalness: 0.08,
+            clearcoat: 0.35,
+            clearcoatRoughness: 0.35,
             transparent: true,
-            opacity: 0.38,
-            depthWrite: false,
+            opacity: 0.9,
+            depthWrite: true,
             side: THREE.DoubleSide,
         });
         sunEggGroup.add(new THREE.Mesh(sharedSunEggGeo, sunShellMat));
+
+        const sunWireMaterials: THREE.MeshBasicMaterial[] = [];
 
         function addTubeLine(
             parent: THREE.Group,
@@ -598,62 +600,67 @@ const stationsWithBlog: CvStation[] = cvStations.map((st) =>
             color: string,
             opacity: number,
             radius = 0.0055,
+            trackList?: THREE.MeshBasicMaterial[],
         ) {
             const curve = new THREE.CatmullRomCurve3(points);
+            const mat = new THREE.MeshBasicMaterial({ color, transparent: true, opacity });
+            if (trackList) trackList.push(mat);
             const mesh = new THREE.Mesh(
                 new THREE.TubeGeometry(curve, Math.max(points.length * 2, 40), radius, 4, false),
-                new THREE.MeshBasicMaterial({ color, transparent: true, opacity }),
+                mat,
             );
             parent.add(mesh);
         }
 
-        // Paralelos y meridianos serigrafiados del Huevo-K central
-        for (let index = -7; index <= 7; index++) {
+        // Paralelos y meridianos arquitectónicos finos del Huevo <K> central
+        for (let index = -6; index <= 6; index++) {
             if (index === 0) continue;
-            const latitude = index * 0.176;
+            const latitude = index * 0.19;
             const points = Array.from({ length: 85 }, (_, i) =>
                 eggPoint(latitude, (Math.PI * 2 * i) / 84, 0.008),
             );
             addTubeLine(
                 sunEggGroup,
                 points,
-                index % 2 ? "#ea54a8" : "#bd75b4",
-                index % 2 ? 0.72 : 0.5,
-                index % 3 === 0 ? 0.0065 : 0.0042,
+                index % 2 ? "#525252" : "#737373",
+                index % 2 ? 0.42 : 0.28,
+                index % 3 === 0 ? 0.005 : 0.0034,
+                sunWireMaterials,
             );
         }
-        for (let index = 0; index < 20; index++) {
-            const longitude = (Math.PI * 2 * index) / 20;
+        for (let index = 0; index < 16; index++) {
+            const longitude = (Math.PI * 2 * index) / 16;
             const points = Array.from({ length: 57 }, (_, i) =>
                 eggPoint(-Math.PI / 2 + (Math.PI * i) / 56, longitude, 0.009),
             );
             addTubeLine(
                 sunEggGroup,
                 points,
-                index % 2 ? "#e755a6" : "#bd75b4",
-                index % 2 ? 0.62 : 0.46,
-                0.0042,
+                index % 2 ? "#525252" : "#737373",
+                index % 2 ? 0.36 : 0.24,
+                0.0034,
+                sunWireMaterials,
             );
         }
 
-        // Motas serigrafiadas del Huevo-K central
+        // Motas grafito minimalistas sobre el Huevo <K> central
         const speckPositions: number[] = [];
         const speckColors: number[] = [];
         const speckPalette = [
-            new THREE.Color("#ed43a2"),
-            new THREE.Color("#a862a1"),
-            new THREE.Color("#f58cbd"),
+            new THREE.Color("#737373"),
+            new THREE.Color("#a3a3a3"),
+            new THREE.Color("#d4d4d4"),
         ];
         let seed = 17;
         const random = () => {
             seed = (seed * 16807) % 2147483647;
             return (seed - 1) / 2147483646;
         };
-        for (let i = 0; i < 520; i++) {
+        for (let i = 0; i < 420; i++) {
             const latitude = (random() - 0.5) * Math.PI * 0.84;
             const longitude = random() * Math.PI * 2;
             const point = eggPoint(latitude, longitude, 0.018);
-            if (Math.sin(longitude) > 0.35 && Math.abs(point.x) < 0.78 && Math.abs(point.y) < 0.78)
+            if (Math.sin(longitude) > 0.3 && Math.abs(point.x) < 0.85 && Math.abs(point.y) < 0.82)
                 continue;
             speckPositions.push(point.x, point.y, point.z);
             const speckColor = speckPalette[Math.floor(random() * speckPalette.length)];
@@ -666,16 +673,16 @@ const stationsWithBlog: CvStation[] = cvStations.map((st) =>
             new THREE.Points(
                 specksGeo,
                 new THREE.PointsMaterial({
-                    size: 0.014,
+                    size: 0.012,
                     vertexColors: true,
                     transparent: true,
-                    opacity: 0.72,
+                    opacity: 0.55,
                     sizeAttenuation: true,
                 }),
             ),
         );
 
-        // Silueta exterior del Huevo-K
+        // Silueta exterior del Huevo <K>
         const outlinePoints: THREE.Vector3[] = [];
         for (let i = 0; i <= 96; i++) {
             const latitude = -Math.PI / 2 + (Math.PI * i) / 96;
@@ -687,120 +694,105 @@ const stationsWithBlog: CvStation[] = cvStations.map((st) =>
             const radius = EGG_RADIUS * Math.cos(latitude) * (1 - 0.19 * Math.sin(latitude));
             outlinePoints.push(new THREE.Vector3(-radius, EGG_HEIGHT * Math.sin(latitude), 0.015));
         }
-        const sunOutlineMat = new THREE.LineBasicMaterial({ color: "#704579", linewidth: 2 });
+        const sunOutlineMat = new THREE.LineBasicMaterial({ color: "#404040", linewidth: 2 });
         sunEggGroup.add(
             new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(outlinePoints), sunOutlineMat),
         );
 
-        // Letra K pixelada extruida del Huevo-K central
-        function makeKShape(): THREE.Shape {
-            const shape = new THREE.Shape();
-            const pixel = 0.071;
-            const corners: [number, number][] = [
-                [-0.56, -0.68],
-                [-0.16, -0.68],
-                [-0.16, -0.22],
-                [0.31, -0.68],
-                [0.78, -0.68],
-                [0.16, 0],
-                [0.77, 0.68],
-                [0.29, 0.68],
-                [-0.16, 0.22],
-                [-0.16, 0.68],
-                [-0.56, 0.68],
-            ].map(([x, y]) => [Math.round(x / pixel), Math.round(y / pixel)]);
-            const start = corners[0];
-            if (start) shape.moveTo(start[0] * pixel, start[1] * pixel);
-            for (let segment = 0; segment < corners.length; segment++) {
-                const corner = corners[segment];
-                const next = corners[(segment + 1) % corners.length];
-                if (!corner || !next) continue;
-                let [x, y] = corner;
-                const [endX, endY] = next;
-                const dx = Math.abs(endX - x);
-                const dy = Math.abs(endY - y);
-                const stepX = x < endX ? 1 : -1;
-                const stepY = y < endY ? 1 : -1;
-                let error = dx - dy;
-                while (x !== endX || y !== endY) {
-                    const doubledError = 2 * error;
-                    const moveX = doubledError > -dy;
-                    const moveY = doubledError < dx;
-                    if (moveX) error -= dy;
-                    if (moveY) error += dx;
-                    if (moveX) {
-                        x += stepX;
-                        shape.lineTo(x * pixel, y * pixel);
-                    }
-                    if (moveY) {
-                        y += stepY;
-                        shape.lineTo(x * pixel, y * pixel);
-                    }
-                }
-            }
-            shape.closePath();
-            return shape;
+        // Emblema geométrico < K > extruido (fiel al nuevo logo AndreaKinder)
+        function makeCleanKShape(): THREE.Shape {
+            const s = new THREE.Shape();
+            s.moveTo(-0.32, -0.56);
+            s.lineTo(-0.14, -0.56);
+            s.lineTo(-0.14, -0.18);
+            s.lineTo(-0.07, -0.09);
+            s.lineTo(0.21, -0.56);
+            s.lineTo(0.42, -0.56);
+            s.lineTo(0.05, 0.02);
+            s.lineTo(0.39, 0.56);
+            s.lineTo(0.19, 0.56);
+            s.lineTo(-0.14, 0.07);
+            s.lineTo(-0.14, 0.56);
+            s.lineTo(-0.32, 0.56);
+            s.closePath();
+            return s;
         }
 
-        const kShape = makeKShape();
-        const backingGeo = new THREE.ExtrudeGeometry(kShape, {
-            depth: 0.12,
-            bevelEnabled: false,
-            curveSegments: 1,
-        });
-        backingGeo.translate(0, 0, 1.21);
-        const backing = new THREE.Mesh(
-            backingGeo,
-            new THREE.MeshStandardMaterial({ color: "#e63d9b", roughness: 0.38, metalness: 0.06 }),
-        );
-        backing.scale.setScalar(1.11);
-        sunEggGroup.add(backing);
+        function makeChevronShape(dir: -1 | 1): THREE.Shape {
+            const s = new THREE.Shape();
+            const xTip = dir * 0.84;
+            const xOuter = dir * 0.56;
+            const xInner = dir * 0.48;
+            const xTipInner = dir * 0.72;
+            const h = 0.28;
+            const hInner = 0.2;
+            s.moveTo(xOuter, h);
+            s.lineTo(xTip, 0);
+            s.lineTo(xOuter, -h);
+            s.lineTo(xInner, -hInner);
+            s.lineTo(xTipInner, 0);
+            s.lineTo(xInner, hInner);
+            s.closePath();
+            return s;
+        }
 
-        const faceGeo = new THREE.ExtrudeGeometry(kShape, {
-            depth: 0.14,
-            bevelEnabled: false,
-            curveSegments: 1,
+        const emblemMat = new THREE.MeshStandardMaterial({
+            color: "#ffffff",
+            roughness: 0.25,
+            metalness: 0.04,
+            emissive: "#ffffff",
+            emissiveIntensity: 0.14,
         });
-        faceGeo.translate(0, 0, 1.18);
-        const face = new THREE.Mesh(
-            faceGeo,
-            new THREE.MeshStandardMaterial({
-                color: "#ffffff",
-                roughness: 0.31,
-                metalness: 0.02,
-                emissive: "#fff7fc",
-                emissiveIntensity: 0.12,
-            }),
-        );
-        face.position.z = 0.24;
-        sunEggGroup.add(face);
 
-        // Corona astrolabio de base bajo el Huevo-K central
+        const emblemBackingMat = new THREE.MeshStandardMaterial({
+            color: "#262626",
+            roughness: 0.5,
+            metalness: 0.1,
+        });
+
+        const emblemShapes = [makeCleanKShape(), makeChevronShape(-1), makeChevronShape(1)];
+        emblemShapes.forEach((shape) => {
+            const faceGeo = new THREE.ExtrudeGeometry(shape, {
+                depth: 0.12,
+                bevelEnabled: false,
+                curveSegments: 2,
+            });
+            faceGeo.translate(0, -0.04, 1.22);
+            const faceMesh = new THREE.Mesh(faceGeo, emblemMat);
+            sunEggGroup.add(faceMesh);
+
+            const backGeo = new THREE.ExtrudeGeometry(shape, {
+                depth: 0.08,
+                bevelEnabled: false,
+                curveSegments: 2,
+            });
+            backGeo.translate(0, -0.04, 1.15);
+            const backMesh = new THREE.Mesh(backGeo, emblemBackingMat);
+            sunEggGroup.add(backMesh);
+        });
+
+        // Corona astrolabio de base bajo el Huevo <K> central
         const astrolabeBase = new THREE.Group();
         astrolabeBase.position.y = -1.62;
         planetariumRoot.add(astrolabeBase);
 
-        const baseInnerRing = new THREE.Mesh(
-            new THREE.RingGeometry(0.95, 0.98, 64),
-            new THREE.MeshBasicMaterial({
-                color: "#ed43a2",
-                side: THREE.DoubleSide,
-                transparent: true,
-                opacity: 0.45,
-            }),
-        );
+        const baseInnerRingMat = new THREE.MeshBasicMaterial({
+            color: "#525252",
+            side: THREE.DoubleSide,
+            transparent: true,
+            opacity: 0.45,
+        });
+        const baseInnerRing = new THREE.Mesh(new THREE.RingGeometry(0.95, 0.98, 64), baseInnerRingMat);
         baseInnerRing.rotation.x = -Math.PI / 2;
         astrolabeBase.add(baseInnerRing);
 
-        const baseOuterRing = new THREE.Mesh(
-            new THREE.RingGeometry(1.32, 1.34, 64),
-            new THREE.MeshBasicMaterial({
-                color: "#bd75b4",
-                side: THREE.DoubleSide,
-                transparent: true,
-                opacity: 0.32,
-            }),
-        );
+        const baseOuterRingMat = new THREE.MeshBasicMaterial({
+            color: "#737373",
+            side: THREE.DoubleSide,
+            transparent: true,
+            opacity: 0.3,
+        });
+        const baseOuterRing = new THREE.Mesh(new THREE.RingGeometry(1.32, 1.34, 64), baseOuterRingMat);
         baseOuterRing.rotation.x = -Math.PI / 2;
         astrolabeBase.add(baseOuterRing);
 
@@ -824,9 +816,14 @@ const stationsWithBlog: CvStation[] = cvStations.map((st) =>
             orbitCurvePts.push(new THREE.Vector3(Math.sin(a) * ORBIT_RX, 0, Math.cos(a) * ORBIT_RZ));
         }
         const orbitCurve = new THREE.CatmullRomCurve3(orbitCurvePts, true);
+        const orbitTrackMat = new THREE.MeshBasicMaterial({
+            color: "#525252",
+            transparent: true,
+            opacity: 0.35,
+        });
         const orbitTrackMesh = new THREE.Mesh(
-            new THREE.TubeGeometry(orbitCurve, 180, 0.007, 6, true),
-            new THREE.MeshBasicMaterial({ color: "#ed43a2", transparent: true, opacity: 0.38 }),
+            new THREE.TubeGeometry(orbitCurve, 180, 0.006, 6, true),
+            orbitTrackMat,
         );
         eclipticPlane.add(orbitTrackMesh);
 
@@ -838,14 +835,19 @@ const stationsWithBlog: CvStation[] = cvStations.map((st) =>
                 new THREE.Vector3(Math.sin(a) * (ORBIT_RX * 0.72), 0, Math.cos(a) * (ORBIT_RZ * 0.72)),
             );
         }
+        const innerTrackMat = new THREE.LineBasicMaterial({
+            color: "#737373",
+            transparent: true,
+            opacity: 0.24,
+        });
         eclipticPlane.add(
             new THREE.LineLoop(
                 new THREE.BufferGeometry().setFromPoints(innerTrackPts),
-                new THREE.LineBasicMaterial({ color: "#bd75b4", transparent: true, opacity: 0.24 }),
+                innerTrackMat,
             ),
         );
 
-        // Definición de la estética individual de cada uno de los 8 Huevos-Planeta
+        // Definición de la estética monocroma arquitectónica de cada Huevo-Planeta
         interface PlanetArchetype {
             shellTint: string;
             primaryLine: string;
@@ -856,81 +858,81 @@ const stationsWithBlog: CvStation[] = cvStations.map((st) =>
         }
 
         const planetArchetypes: PlanetArchetype[] = [
-            // 01 Perfil: Huevo Clásico Nacarado con anillo fino
+            // 01 Perfil: Huevo Grafito Clásico
             {
-                shellTint: "#ffdff0",
-                primaryLine: "#ed43a2",
-                secondaryLine: "#bd75b4",
+                shellTint: "#e5e5e0",
+                primaryLine: "#171717",
+                secondaryLine: "#737373",
                 tiltZ: 0.14,
                 baseScale: 0.25,
                 feature: "classic",
             },
-            // 02 Experiencia (Goalmed): Gigante Bandeado con doble anillo
+            // 02 Experiencia (Goalmed): Gigante Bandeado Monocromo
             {
-                shellTint: "#f6c8ea",
-                primaryLine: "#e63d9b",
-                secondaryLine: "#8e489c",
+                shellTint: "#d4d4ce",
+                primaryLine: "#0a0a0a",
+                secondaryLine: "#525252",
                 tiltZ: -0.22,
                 baseScale: 0.29,
                 feature: "banded",
             },
-            // 03 Apps & Hackathons: Huevo Saturno con anillos anchos inclinados
+            // 03 Apps & Hackathons: Huevo Saturno Arquitectónico
             {
-                shellTint: "#ffe3f4",
-                primaryLine: "#ff4db2",
-                secondaryLine: "#bd75b4",
+                shellTint: "#ededeb",
+                primaryLine: "#262626",
+                secondaryLine: "#737373",
                 tiltZ: 0.26,
                 baseScale: 0.28,
                 feature: "saturn",
             },
-            // 04 Linux & Neovim: Huevo Polar Cyber-Grid
+            // 04 Linux & Neovim: Huevo Polar Tinta
             {
-                shellTint: "#ead0f8",
-                primaryLine: "#b845f2",
-                secondaryLine: "#ed43a2",
+                shellTint: "#dcdcd6",
+                primaryLine: "#171717",
+                secondaryLine: "#525252",
                 tiltZ: -0.16,
                 baseScale: 0.26,
                 feature: "polar",
             },
-            // 05 Habilidades (Stack): Esfera Armilar / Giroscopio de 3 anillos
+            // 05 Habilidades (Stack): Esfera Armilar
             {
-                shellTint: "#ffd6ec",
-                primaryLine: "#ed43a2",
-                secondaryLine: "#9c55a8",
+                shellTint: "#e5e5e0",
+                primaryLine: "#0a0a0a",
+                secondaryLine: "#737373",
                 tiltZ: 0.1,
                 baseScale: 0.27,
                 feature: "armillary",
             },
-            // 06 Educación (Química): Huevo Molecular con átomos orbitales
+            // 06 Educación (Química): Huevo Molecular
             {
-                shellTint: "#f9d8f2",
-                primaryLine: "#d43d9a",
-                secondaryLine: "#bd75b4",
+                shellTint: "#efefec",
+                primaryLine: "#262626",
+                secondaryLine: "#737373",
                 tiltZ: -0.2,
                 baseScale: 0.25,
                 feature: "molecular",
             },
-            // 07 Blog: Huevo Editorial con meridianos densos
+            // 07 Blog: Huevo Editorial
             {
-                shellTint: "#ffe8f5",
-                primaryLine: "#e63d9b",
-                secondaryLine: "#a862a1",
+                shellTint: "#e5e5e0",
+                primaryLine: "#171717",
+                secondaryLine: "#525252",
                 tiltZ: 0.18,
                 baseScale: 0.26,
                 feature: "editorial",
             },
-            // 08 Contacto: Huevo Pulsar con halos polares
+            // 08 Contacto: Huevo Pulsar
             {
-                shellTint: "#ffd1ea",
-                primaryLine: "#ff55b5",
-                secondaryLine: "#ed43a2",
+                shellTint: "#dcdcd6",
+                primaryLine: "#0a0a0a",
+                secondaryLine: "#737373",
                 tiltZ: -0.14,
                 baseScale: 0.25,
                 feature: "pulsar",
             },
         ];
 
-        // Etiqueta compacta tipo píldora para cada Huevo-Planeta (sin tapar la geometría 3D)
+        // Etiqueta compacta tipo píldora monocroma para cada Huevo-Planeta
         function createCompactPillSprite(
             numText: string,
             labelText: string,
@@ -947,29 +949,45 @@ const stationsWithBlog: CvStation[] = cvStations.map((st) =>
                 const h = canvas.height - pad * 2;
 
                 ctx.fillStyle = isSelected
-                    ? "#ed43a2"
+                    ? isLight
+                        ? "#0a0a0a"
+                        : "#f5f5f3"
                     : isLight
-                      ? "rgba(255, 255, 255, 0.9)"
-                      : "rgba(32, 22, 38, 0.86)";
+                      ? "rgba(255, 255, 255, 0.94)"
+                      : "rgba(20, 20, 22, 0.9)";
                 ctx.strokeStyle = isSelected
-                    ? "#ffffff"
+                    ? isLight
+                        ? "#0a0a0a"
+                        : "#f5f5f3"
                     : isLight
-                      ? "rgba(189, 117, 180, 0.65)"
-                      : "rgba(232, 171, 216, 0.5)";
-                ctx.lineWidth = isSelected ? 2.5 : 1.8;
+                      ? "rgba(10, 10, 10, 0.28)"
+                      : "rgba(245, 245, 243, 0.28)";
+                ctx.lineWidth = isSelected ? 2.5 : 1.6;
                 ctx.beginPath();
-                ctx.roundRect(pad, pad, w, h, 30);
+                ctx.roundRect(pad, pad, w, h, 8);
                 ctx.fill();
                 ctx.stroke();
 
-                ctx.font = '700 22px "Pixelify Sans", monospace, sans-serif';
-                ctx.fillStyle = isSelected ? "#ffffff" : "#ed43a2";
+                ctx.font = '700 20px "IBM Plex Mono", "Courier Prime", monospace';
+                ctx.fillStyle = isSelected
+                    ? isLight
+                        ? "#ffffff"
+                        : "#0b0b0c"
+                    : isLight
+                      ? "#0a0a0a"
+                      : "#f5f5f3";
                 ctx.fillText(numText, pad + 20, pad + 38);
 
-                ctx.font = '600 21px "Plus Jakarta Sans", sans-serif';
-                ctx.fillStyle = isSelected ? "#ffffff" : isLight ? "#2a1e2e" : "#fff0f8";
+                ctx.font = '600 20px "Plus Jakarta Sans", sans-serif';
+                ctx.fillStyle = isSelected
+                    ? isLight
+                        ? "#ffffff"
+                        : "#0b0b0c"
+                    : isLight
+                      ? "#404040"
+                      : "#d4d4d8";
                 const clipped = labelText.length > 15 ? labelText.slice(0, 14) + "…" : labelText;
-                ctx.fillText(clipped, pad + 62, pad + 38);
+                ctx.fillText(clipped, pad + 64, pad + 38);
             }
 
             const tex = new THREE.CanvasTexture(canvas);
@@ -1166,9 +1184,9 @@ const stationsWithBlog: CvStation[] = cvStations.map((st) =>
                     const atom = new THREE.Mesh(
                         new THREE.SphereGeometry(0.11, 12, 12),
                         new THREE.MeshStandardMaterial({
-                            color: "#ed43a2",
-                            emissive: "#ed43a2",
-                            emissiveIntensity: 0.4,
+                            color: "#262626",
+                            emissive: "#525252",
+                            emissiveIntensity: 0.25,
                         }),
                     );
                     atom.position.set(Math.cos(ang) * 1.62, Math.sin(ang) * 0.28, Math.sin(ang) * 1.58);
@@ -1241,13 +1259,14 @@ const stationsWithBlog: CvStation[] = cvStations.map((st) =>
         eclipticPlane.add(activeMoonSystem);
 
         // Anillo de órbita lunar alrededor del Huevo-Planeta activo
+        const lunarTrackMat = new THREE.MeshBasicMaterial({
+            color: "#737373",
+            transparent: true,
+            opacity: 0.48,
+        });
         const lunarTrackRing = new THREE.Mesh(
             new THREE.TorusGeometry(0.88, 0.0045, 10, 72),
-            new THREE.MeshBasicMaterial({
-                color: "#f58cbd",
-                transparent: true,
-                opacity: 0.55,
-            }),
+            lunarTrackMat,
         );
         lunarTrackRing.rotation.x = Math.PI * 0.38;
         activeMoonSystem.add(lunarTrackRing);
@@ -1255,15 +1274,17 @@ const stationsWithBlog: CvStation[] = cvStations.map((st) =>
         const moonItemsGroup = new THREE.Group();
         activeMoonSystem.add(moonItemsGroup);
 
-        // Hilo de luz entre el Huevo Central con la K y el Huevo-Planeta activo
+        // Hilo de luz entre el Huevo Central <K> y el Huevo-Planeta activo
         const sunToPlanetBeamGeo = new THREE.BufferGeometry().setFromPoints([
             new THREE.Vector3(),
             new THREE.Vector3(),
         ]);
-        const sunToPlanetBeam = new THREE.Line(
-            sunToPlanetBeamGeo,
-            new THREE.LineBasicMaterial({ color: "#ed43a2", transparent: true, opacity: 0.52 }),
-        );
+        const sunToPlanetBeamMat = new THREE.LineBasicMaterial({
+            color: "#404040",
+            transparent: true,
+            opacity: 0.45,
+        });
+        const sunToPlanetBeam = new THREE.Line(sunToPlanetBeamGeo, sunToPlanetBeamMat);
         eclipticPlane.add(sunToPlanetBeam);
 
         interface MoonNode {
@@ -1297,16 +1318,27 @@ const stationsWithBlog: CvStation[] = cvStations.map((st) =>
                 moonEggGroup.scale.setScalar(moonScale);
                 moonEggGroup.rotation.z = 0.15;
 
+                const isLight = document.documentElement.dataset.theme === "light";
                 const moonHitMesh = new THREE.Mesh(
                     sharedMoonEggGeo,
                     new THREE.MeshPhysicalMaterial({
-                        color: isSelectedMoon ? "#ed43a2" : "#ffdff0",
-                        emissive: "#ed43a2",
-                        emissiveIntensity: isSelectedMoon ? 0.55 : 0.18,
-                        roughness: 0.25,
-                        clearcoat: 0.6,
+                        color: isSelectedMoon
+                            ? isLight
+                                ? "#0a0a0a"
+                                : "#f5f5f3"
+                            : isLight
+                              ? "#d4d4ce"
+                              : "#52525b",
+                        emissive: isSelectedMoon
+                            ? isLight
+                                ? "#171717"
+                                : "#ffffff"
+                            : "#262626",
+                        emissiveIntensity: isSelectedMoon ? 0.25 : 0.08,
+                        roughness: 0.3,
+                        clearcoat: 0.4,
                         transparent: true,
-                        opacity: isSelectedMoon ? 0.95 : 0.75,
+                        opacity: isSelectedMoon ? 0.96 : 0.78,
                     }),
                 );
                 moonHitMesh.userData = {
@@ -1321,9 +1353,13 @@ const stationsWithBlog: CvStation[] = cvStations.map((st) =>
                 const eqRing = new THREE.Mesh(
                     new THREE.TorusGeometry(1.38, 0.04, 8, 36),
                     new THREE.MeshBasicMaterial({
-                        color: isSelectedMoon ? "#ffffff" : "#ed43a2",
+                        color: isSelectedMoon
+                            ? isLight
+                                ? "#0a0a0a"
+                                : "#ffffff"
+                            : "#737373",
                         transparent: true,
-                        opacity: isSelectedMoon ? 0.9 : 0.45,
+                        opacity: isSelectedMoon ? 0.85 : 0.4,
                     }),
                 );
                 eqRing.rotation.x = Math.PI * 0.45;
@@ -1356,9 +1392,20 @@ const stationsWithBlog: CvStation[] = cvStations.map((st) =>
 
         function syncThemeColors() {
             const isLight = document.documentElement.dataset.theme === "light";
-            sunShellMat.color.set(isLight ? "#f7cfe6" : "#ffdff0");
-            sunShellMat.opacity = isLight ? 0.52 : 0.38;
-            sunOutlineMat.color.set(isLight ? "#5c3366" : "#704579");
+            sunShellMat.color.set(isLight ? "#0f0f10" : "#1c1c20");
+            sunShellMat.opacity = isLight ? 0.92 : 0.84;
+            sunOutlineMat.color.set(isLight ? "#262626" : "#a1a1aa");
+            emblemMat.color.set("#ffffff");
+            emblemBackingMat.color.set(isLight ? "#262626" : "#3f3f46");
+            sunWireMaterials.forEach((m, idx) => {
+                m.color.set(isLight ? (idx % 2 ? "#404040" : "#525252") : idx % 2 ? "#a1a1aa" : "#71717a");
+            });
+            baseInnerRingMat.color.set(isLight ? "#404040" : "#a1a1aa");
+            baseOuterRingMat.color.set(isLight ? "#737373" : "#71717a");
+            orbitTrackMat.color.set(isLight ? "#404040" : "#71717a");
+            innerTrackMat.color.set(isLight ? "#737373" : "#52525b");
+            lunarTrackMat.color.set(isLight ? "#525252" : "#a1a1aa");
+            sunToPlanetBeamMat.color.set(isLight ? "#262626" : "#d4d4d8");
             refreshPlanetBadges();
             rebuildMoonSatellites();
         }

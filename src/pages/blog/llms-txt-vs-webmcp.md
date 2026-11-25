@@ -2,6 +2,7 @@
 layout: ../../layouts/Layout.astro
 title: "llms.txt vs WebMCP: De la web legible a la web accionable por IA"
 author: Andrea Villar
+date: "2026-10-16"
 description: Análisis comparativo entre el estándar llms.txt y el protocolo WebMCP para preparar aplicaciones web en la era de los agentes de inteligencia artificial.
 ---
 

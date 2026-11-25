@@ -1,66 +1,41 @@
 ---
 import "../styles/styles.css";
 import { cvPersonalInfo } from "../data/cvData";
+
+interface Props {
+    lang?: "es" | "en";
+}
+
+const { lang = "es" } = Astro.props;
+const isEn = lang === "en";
 ---
 
-<script
-    is:inline
-    type="text/javascript"
-    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
-></script>
-<script is:inline type="text/javascript">
-    (function () {
-        if (typeof emailjs !== "undefined") {
-            emailjs.init({
-                publicKey: "hSD1VQPNhVyqiQAxx",
-            });
-        }
-    })();
-</script>
-<script is:inline type="text/javascript">
-    document.addEventListener("DOMContentLoaded", function () {
-        var form = document.getElementById("contact-form");
-        if (!form) return;
-        form.addEventListener("submit", function (event) {
-            event.preventDefault();
-            if (typeof emailjs === "undefined") return;
-            emailjs
-                .sendForm("service_84t9w75", "template_nfgerqa", this)
-                .then(
-                    function () {
-                        console.log("SUCCESS!");
-                        form.reset();
-                    },
-                    function (error) {
-                        console.log("FAILED...", error);
-                    },
-                );
-        });
-    });
-</script>
-
 <div class="mb-4">
-    <p class="section-label">Contacto</p>
-    <h2 class="mb-2">Hablemos</h2>
+    <p class="section-label">{isEn ? "07 — Contact" : "07 — Contacto"}</p>
+    <h2 class="mb-2">{isEn ? "Get in touch" : "Hablemos"}</h2>
     <p class="section-desc">
-        Puedes escribirme directamente por correo electrónico, teléfono o mediante el formulario.
+        {
+            isEn
+                ? "Reach out directly by email, phone, GitHub, or LinkedIn."
+                : "Puedes contactar conmigo directamente por correo electrónico, teléfono, GitHub o LinkedIn."
+        }
     </p>
 </div>
 
-<div class="row g-3 mb-4">
-    <div class="col-12 col-md-4">
+<div class="row g-3">
+    <div class="col-12 col-sm-6">
         <a href={cvPersonalInfo.emailHref} class="contact-quick-card">
-            <span class="contact-quick-label">Correo electrónico</span>
+            <span class="contact-quick-label">{isEn ? "Email" : "Correo electrónico"}</span>
             <strong class="contact-quick-value">{cvPersonalInfo.email}</strong>
         </a>
     </div>
-    <div class="col-12 col-md-4">
+    <div class="col-12 col-sm-6">
         <a href={cvPersonalInfo.phoneHref} class="contact-quick-card">
-            <span class="contact-quick-label">Teléfono</span>
+            <span class="contact-quick-label">{isEn ? "Phone" : "Teléfono"}</span>
             <strong class="contact-quick-value">{cvPersonalInfo.phone}</strong>
         </a>
     </div>
-    <div class="col-12 col-md-4">
+    <div class="col-12 col-sm-6">
         <a
             href={cvPersonalInfo.github}
             target="_blank"
@@ -68,98 +43,58 @@ import { cvPersonalInfo } from "../data/cvData";
             class="contact-quick-card"
         >
             <span class="contact-quick-label">GitHub</span>
-            <strong class="contact-quick-value">github.com/AndreaKinder</strong>
+            <strong class="contact-quick-value">github.com/AndreaKinder ↗</strong>
+        </a>
+    </div>
+    <div class="col-12 col-sm-6">
+        <a
+            href={cvPersonalInfo.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="contact-quick-card"
+        >
+            <span class="contact-quick-label">LinkedIn</span>
+            <strong class="contact-quick-value">Andrea Villar Torres ↗</strong>
         </a>
     </div>
 </div>
-
-<form id="contact-form" class="m3-contact-form">
-    <input type="hidden" name="contact_number" />
-    <div class="row g-3">
-        <div class="col-12 col-md-6">
-            <div class="form-group mb-0">
-                <label class="form-label" for="user_name">Nombre</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    id="user_name"
-                    name="user_name"
-                    placeholder="Tu nombre"
-                    required
-                />
-            </div>
-        </div>
-        <div class="col-12 col-md-6">
-            <div class="form-group mb-0">
-                <label class="form-label" for="user_email">Correo electrónico</label>
-                <input
-                    type="email"
-                    class="form-control"
-                    id="user_email"
-                    name="user_email"
-                    placeholder="tu@email.com"
-                    required
-                />
-            </div>
-        </div>
-        <div class="col-12">
-            <div class="form-group mb-0">
-                <label class="form-label" for="message">Mensaje</label>
-                <textarea
-                    class="form-control"
-                    id="message"
-                    name="message"
-                    rows="5"
-                    placeholder="Escribe tu mensaje..."
-                    required
-                ></textarea>
-            </div>
-        </div>
-        <div class="col-12 pt-1">
-            <button type="submit" class="btn-primary" id="submit-btn">
-                Enviar mensaje
-            </button>
-        </div>
-    </div>
-</form>
 
 <style>
     .contact-quick-card {
         display: flex;
         flex-direction: column;
-        gap: 0.25rem;
-        padding: 1rem 1.25rem;
+        gap: 0.3rem;
+        padding: 1.25rem 1.4rem;
         background-color: var(--md-sys-color-surface-container-low);
         border: 1px solid var(--md-sys-color-outline-variant);
         border-radius: var(--md-sys-shape-corner-medium);
         text-decoration: none;
         height: 100%;
-        transition: background-color var(--duration-fast) var(--ease-out);
+        transition:
+            border-color var(--duration-fast) var(--ease-out),
+            background-color var(--duration-fast) var(--ease-out);
     }
 
     a.contact-quick-card:hover {
         text-decoration: none;
+        border-color: var(--color-border-hover);
         background-color: var(--md-sys-color-surface-container);
     }
 
     .contact-quick-label {
-        font-family: var(--font-body);
-        font-size: 0.8125rem;
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
         font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
         color: var(--md-sys-color-on-surface-variant);
     }
 
     .contact-quick-value {
-        font-size: 0.9375rem;
+        font-family: var(--font-body);
+        font-size: 0.98rem;
         font-weight: 600;
         color: var(--md-sys-color-on-surface);
         word-break: break-word;
-    }
-
-    .m3-contact-form {
-        background-color: var(--md-sys-color-surface-container-low);
-        border: 1px solid var(--md-sys-color-outline-variant);
-        border-radius: var(--md-sys-shape-corner-large);
-        padding: 1.5rem;
     }
 </style>

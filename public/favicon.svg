@@ -1,4 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-  <path d="M12 2.4c-4.3 0-7.6 5.4-7.6 10.1 0 4.7 3.4 9.1 7.6 9.1s7.6-4.4 7.6-9.1C19.6 7.8 16.3 2.4 12 2.4Z" fill="#201626" stroke="#ed43a2" stroke-width="1.6"/>
-  <path d="M9.3 8v8M9.3 12.2 14.7 8M9.6 12.4l5 3.6" fill="none" stroke="#fff0f8" stroke-width="1.9" stroke-linecap="square"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="32" height="32" fill="none">
+  <style>
+    .badge { fill: #0a0a0a; }
+    .mark-stroke { stroke: #ffffff; }
+    .mark-fill { fill: #ffffff; }
+    @media (prefers-color-scheme: dark) {
+      .badge { fill: #f5f5f3; }
+      .mark-stroke { stroke: #0a0a0a; }
+      .mark-fill { fill: #0a0a0a; }
+    }
+  </style>
+  <circle class="badge" cx="50" cy="50" r="46"/>
+  <path class="mark-stroke" d="M27.5 38.5L16 50L27.5 61.5" stroke-width="6" stroke-linecap="square" stroke-linejoin="miter"/>
+  <path class="mark-stroke" d="M72.5 38.5L84 50L72.5 61.5" stroke-width="6" stroke-linecap="square" stroke-linejoin="miter"/>
+  <path class="mark-fill" d="M34 26H42V47.5L56.5 26H66L50 49.5L67 74H57.5L45 55.5L42 59.5V74H34V26Z"/>
 </svg>

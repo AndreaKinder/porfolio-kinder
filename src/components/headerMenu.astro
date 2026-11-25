@@ -1,19 +1,38 @@
 ---
 import HerderLink from "./herderLink.astro";
 import SliderTheme from "./sliderTheme.astro";
+import LogoMark from "./LogoMark.astro";
 import "../styles/styles.css";
 
-const navPlanets = [
-    { id: "inicio", label: "Inicio", href: "/#inicio" },
-    { id: "sobre-mi", label: "Sobre mí", href: "/#sobre-mi" },
-    { id: "experiencia", label: "Experiencia", href: "/#experiencia" },
-    { id: "proyectos-apps", label: "Apps", href: "/#projects" },
-    { id: "proyectos-linux", label: "Linux", href: "/#projects" },
-    { id: "habilidades", label: "Habilidades", href: "/#habilidades" },
-    { id: "educacion", label: "Educación", href: "/#educacion" },
-    { id: "blog", label: "Blog", href: "/#blog" },
-    { id: "contacto", label: "Contacto", href: "/#contact" },
-];
+interface Props {
+    lang?: "es" | "en";
+}
+
+const { lang = "es" } = Astro.props;
+const isEn = lang === "en";
+const base = isEn ? "/en" : "";
+
+const navPlanets = isEn
+    ? [
+          { id: "inicio", sectionId: "inicio", label: "Home", href: `${base}/#inicio` },
+          { id: "sobre-mi", sectionId: "sobre-mi", label: "About", href: `${base}/#sobre-mi` },
+          { id: "experiencia", sectionId: "experiencia", label: "Experience", href: `${base}/#experiencia` },
+          { id: "proyectos-apps", sectionId: "projects", label: "Projects", href: `${base}/#projects` },
+          { id: "habilidades", sectionId: "habilidades", label: "Stack", href: `${base}/#habilidades` },
+          { id: "educacion", sectionId: "educacion", label: "Education", href: `${base}/#educacion` },
+          { id: "blog", sectionId: "blog", label: "Blog", href: `${base}/#blog` },
+          { id: "contacto", sectionId: "contact", label: "Contact", href: `${base}/#contact` },
+      ]
+    : [
+          { id: "inicio", sectionId: "inicio", label: "Inicio", href: "/#inicio" },
+          { id: "sobre-mi", sectionId: "sobre-mi", label: "Sobre mí", href: "/#sobre-mi" },
+          { id: "experiencia", sectionId: "experiencia", label: "Experiencia", href: "/#experiencia" },
+          { id: "proyectos-apps", sectionId: "projects", label: "Proyectos", href: "/#projects" },
+          { id: "habilidades", sectionId: "habilidades", label: "Stack", href: "/#habilidades" },
+          { id: "educacion", sectionId: "educacion", label: "Formación", href: "/#educacion" },
+          { id: "blog", sectionId: "blog", label: "Blog", href: "/#blog" },
+          { id: "contacto", sectionId: "contact", label: "Contacto", href: "/#contact" },
+      ];
 ---
 
 <style>
@@ -23,29 +42,25 @@ const navPlanets = [
         padding-right: 1.25rem;
     }
 
-    /* M3 Navigation Bar / Rail Pill Group */
+    /* Corporate Horizontal Navigation Bar */
     .nav-planets-desktop {
         display: flex;
         align-items: center;
-        gap: 0.25rem;
-        background-color: var(--md-sys-color-surface-container-low);
-        border: 1px solid var(--md-sys-color-outline-variant);
-        border-radius: var(--md-sys-shape-corner-full);
-        padding: 0.25rem;
+        gap: 0.2rem;
     }
 
     .nav-planet-link {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        height: 32px;
-        padding: 0 0.85rem;
-        font-family: var(--font-pixel);
-        font-size: 0.8125rem;
+        height: 34px;
+        padding: 0 0.78rem;
+        font-family: var(--font-body);
+        font-size: 0.84rem;
         font-weight: 500;
         color: var(--md-sys-color-on-surface-variant);
         text-decoration: none;
-        border-radius: var(--md-sys-shape-corner-full);
+        border-radius: var(--md-sys-shape-corner-small);
         white-space: nowrap;
         transition:
             background-color var(--duration-fast) var(--ease-out),
@@ -55,25 +70,25 @@ const navPlanets = [
     .nav-planet-link:hover {
         text-decoration: none;
         color: var(--md-sys-color-on-surface);
-        background-color: color-mix(in srgb, var(--md-sys-color-on-surface) 8%, transparent);
+        background-color: color-mix(in srgb, var(--md-sys-color-on-surface) 6%, transparent);
     }
 
-    /* M3 Active Indicator Pill */
+    /* Active Indicator */
     .nav-planet-link.active-planet {
-        background-color: var(--color-accent);
-        color: #ffffff;
+        background-color: var(--md-sys-color-primary);
+        color: var(--md-sys-color-on-primary);
         font-weight: 600;
     }
 
-    /* M3 Navigation Drawer Items */
+    /* Navigation Drawer Items */
     .offcanvas .nav-link {
         color: var(--md-sys-color-on-surface-variant);
-        font-family: var(--font-pixel);
+        font-family: var(--font-mono);
         font-size: 0.9375rem;
         font-weight: 500;
         height: 48px;
         padding: 0 1rem;
-        border-radius: var(--md-sys-shape-corner-full);
+        border-radius: var(--md-sys-shape-corner-small);
         text-decoration: none;
         display: flex;
         align-items: center;
@@ -89,8 +104,8 @@ const navPlanets = [
     }
 
     .offcanvas .nav-link.active-planet {
-        background-color: var(--color-accent);
-        color: #ffffff;
+        background-color: var(--md-sys-color-primary);
+        color: var(--md-sys-color-on-primary);
         font-weight: 600;
     }
 
@@ -124,9 +139,8 @@ const navPlanets = [
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <HerderLink class="navbar-brand" href="/">
-                <span class="wordmark-icon">k</span>
-                Andrea Kinder
+            <HerderLink class="navbar-brand" href={isEn ? "/en" : "/"} aria-label={isEn ? "AndreaKinder — Home" : "AndreaKinder — Inicio"}>
+                <LogoMark size={26} showWordmark showSubtitle />
             </HerderLink>
         </div>
 
@@ -137,6 +151,7 @@ const navPlanets = [
                         class={`nav-planet-link ${idx === 0 ? "active-planet" : ""}`}
                         href={item.href}
                         data-cv-station-id={item.id}
+                        data-section-id={item.sectionId}
                     >
                         <span>{item.label}</span>
                     </a>
@@ -145,12 +160,14 @@ const navPlanets = [
         </div>
 
         <div class="d-flex align-items-center">
-            <SliderTheme />
+            <SliderTheme lang={lang} />
         </div>
 
         <div class="offcanvas offcanvas-start" tabindex="-1" id="navbarOffcanvas">
             <div class="offcanvas-header">
-                <h5 class="navbar-brand mb-0"><span class="wordmark-icon">k</span> Andrea Kinder</h5>
+                <h5 class="navbar-brand mb-0">
+                    <LogoMark size={26} showWordmark showSubtitle />
+                </h5>
                 <button
                     type="button"
                     class="btn-close"
@@ -167,6 +184,7 @@ const navPlanets = [
                                     class={`nav-link ${idx === 0 ? "active-planet" : ""}`}
                                     href={item.href}
                                     data-cv-station-id={item.id}
+                                    data-section-id={item.sectionId}
                                 >
                                     <span>{item.label}</span>
                                 </a>
@@ -228,4 +246,24 @@ const navPlanets = [
             }
         });
     });
+
+    // Scrollspy automático para la vista 2D
+    const observedSections = document.querySelectorAll<HTMLElement>('#cv-2d-view section[id]');
+    if (observedSections.length > 0 && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                if (document.documentElement.dataset.view === '3d') return;
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const secId = entry.target.id;
+                        planetLinks.forEach((link) => {
+                            link.classList.toggle('active-planet', link.dataset.sectionId === secId);
+                        });
+                    }
+                });
+            },
+            { rootMargin: '-32% 0px -55% 0px', threshold: 0 },
+        );
+        observedSections.forEach((sec) => observer.observe(sec));
+    }
 </script>

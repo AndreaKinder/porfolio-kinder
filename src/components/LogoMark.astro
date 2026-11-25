@@ -1,0 +1,100 @@
+---
+interface Props {
+    size?: number;
+    showWordmark?: boolean;
+    showSubtitle?: boolean;
+    class?: string;
+}
+
+const {
+    size = 36,
+    showWordmark = false,
+    showSubtitle = false,
+    class: className = "",
+} = Astro.props;
+---
+
+<span class={`brand-lockup ${className}`}>
+    <svg
+        width={size}
+        height={size}
+        viewBox="0 0 100 100"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="brand-circle-svg"
+        aria-hidden="true"
+    >
+        <!-- Solid circular mark -->
+        <circle cx="50" cy="50" r="46" fill="currentColor" />
+        <!-- Crisp <K> emblem centered inside circle -->
+        <path
+            d="M27.5 38.5L16 50L27.5 61.5"
+            stroke="var(--logo-ink-cutout, #ffffff)"
+            stroke-width="6"
+            stroke-linecap="square"
+            stroke-linejoin="miter"
+        />
+        <path
+            d="M72.5 38.5L84 50L72.5 61.5"
+            stroke="var(--logo-ink-cutout, #ffffff)"
+            stroke-width="6"
+            stroke-linecap="square"
+            stroke-linejoin="miter"
+        />
+        <path
+            d="M34 26H42V47.5L56.5 26H66L50 49.5L67 74H57.5L45 55.5L42 59.5V74H34V26Z"
+            fill="var(--logo-ink-cutout, #ffffff)"
+        />
+    </svg>
+
+    {
+        showWordmark && (
+            <span class="brand-wordmark-stack">
+                <span class="brand-wordmark-title">AndreaKinder</span>
+                {showSubtitle && (
+                    <span class="brand-wordmark-sub">SOFTWARE DEVELOPMENT</span>
+                )}
+            </span>
+        )
+    }
+</span>
+
+<style>
+    .brand-lockup {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.65rem;
+        color: var(--md-sys-color-on-surface);
+        line-height: 1;
+    }
+
+    .brand-circle-svg {
+        flex-shrink: 0;
+        display: block;
+    }
+
+    .brand-wordmark-stack {
+        display: inline-flex;
+        flex-direction: column;
+        gap: 0.16rem;
+    }
+
+    .brand-wordmark-title {
+        font-family: var(--font-mono);
+        font-size: 1.12rem;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        color: var(--md-sys-color-on-surface);
+        line-height: 1.05;
+    }
+
+    .brand-wordmark-sub {
+        font-family: var(--font-body);
+        font-size: 0.56rem;
+        font-weight: 500;
+        letter-spacing: 0.16em;
+        color: var(--md-sys-color-on-surface-variant);
+        text-transform: uppercase;
+        line-height: 1;
+    }
+</style>

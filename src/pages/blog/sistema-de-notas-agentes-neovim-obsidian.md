@@ -2,6 +2,7 @@
 layout: ../../layouts/Layout.astro
 title: "Un sistema de notas gobernado por contratos: Neovim, Obsidian y Agentes Locales"
 author: Andrea Villar
+date: "2026-10-18"
 description: Arquitectura de un sistema de gestión del conocimiento personal (PKM) desacoplado en cuatro capas, diseñado para convivir con agentes de IA locales sin degradar la estructura del repositorio.
 ---
 

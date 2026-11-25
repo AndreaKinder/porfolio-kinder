@@ -1,149 +1,107 @@
 ---
 import "../styles/styles.css";
 import ProjectCard from "./project-card.astro";
+import { projects, projectFilters } from "../data/projectsData";
+import { projectsEn, projectFiltersEn } from "../data/cvDataEn";
 
-const projects = [
-    {
-        title: "Construhack 2025",
-        href: "https://github.com/AndreaKinder/construhack2025",
-        description:
-            "Proyecto para ConstruHack 2025. Muestra con React Native de app para solución integral de gestión inteligente para viviendas y comunidades sostenibles.",
-        tag: "react react-native git html javascript android",
-    },
-    {
-        title: "SecureWallet",
-        description:
-            "Proyecto presentado en el Hackathon Open Gateway 2025, obteniendo el 4.º lugar en la competencia mediante integración de APIs de red y seguridad móvil.",
-        href: "https://github.com/AndreaKinder/secureWallet/tree/main",
-        tag: "react react-native git api javascript android",
-    },
-    {
-        title: "Construhack 2024",
-        href: "https://github.com/AndreaKinder/construhack2024",
-        description:
-            "Prueba piloto de una aplicación con inteligencia artificial para la clasificación automática de sobrantes de obras civiles, promoviendo un sistema de economía circular.",
-        tag: "react react-native git html javascript android",
-    },
-    {
-        title: "Portfolio Kinder",
-        href: "https://github.com/AndreaKinder/porfolio-kinder",
-        description:
-            "Portfolio y CV interactivo 3D/2D con el Huevo-K central y blog editorial, creado con Astro 5, Three.js y sistema de diseño Material 3.",
-        tag: "astro git bootstrap html javascript",
-    },
-    {
-        title: "Wowfinder",
-        href: "https://github.com/edurne85/wowfinder",
-        description:
-            "Paquete de utilidades para la campaña 'Wowfinder' (campaña de rol basada en el sistema Pathfinder 1ed y ambientada en el universo Warcraft de Blizzard).",
-        tag: "react git html javascript",
-    },
-    {
-        title: "KinderNvim",
-        description:
-            "Configuración modular de Neovim y entorno de desarrollo optimizado para Linux.",
-        href: "https://github.com/AndreaKinder/KinderNvim",
-        tag: "linux lua git nvim",
-    },
-    {
-        title: "pi-togle.nvim",
-        description:
-            "Plugin de Neovim para alternar el CLI de Pi Code en ventana dividida (split vertical u horizontal).",
-        href: "https://github.com/AndreaKinder/pi-togle.nvim",
-        tag: "linux lua git nvim",
-    },
-    {
-        title: "mcp-rag-notes",
-        description:
-            "Servidor MCP para consultar y recuperar contexto semántico de notas mediante RAG para asistentes de IA.",
-        href: "https://github.com/AndreaKinder/mcp-rag-notes",
-        tag: "python git api linux",
-    },
-    {
-        title: "skills-notes",
-        description:
-            "Conjunto de habilidades y herramientas modulares para la gestión, automatización y consulta de notas mediante agentes de IA.",
-        href: "https://github.com/AndreaKinder/skills-notes",
-        tag: "python git linux",
-    },
-    {
-        title: "templates-path-notes",
-        description:
-            "Utilidad para gestionar rutas, estructuras y plantillas estandarizadas para sistemas de toma de notas.",
-        href: "https://github.com/AndreaKinder/templates-path-notes",
-        tag: "python git linux",
-    },
-    {
-        title: "RomsManager",
-        description:
-            "Gestor de ROMs en Linux/Bash para organizar y administrar colecciones de juegos retro de forma automatizada.",
-        href: "https://github.com/AndreaKinder/RomsManager",
-        tag: "linux bash git",
-    },
-];
+interface Props {
+    limit?: number;
+    showFilters?: boolean;
+    lang?: "es" | "en";
+}
+
+const { limit, showFilters = !limit, lang = "es" } = Astro.props;
+const isEn = lang === "en";
+const list = isEn ? projectsEn : projects;
+const filters = isEn ? projectFiltersEn : projectFilters;
+const visibleProjects = typeof limit === "number" ? list.slice(0, limit) : list;
 ---
 
 <section>
     <div class="mb-4">
-        <p class="section-label">Proyectos</p>
-        <h2 class="mb-2">Aplicaciones y código abierto</h2>
+        <p class="section-label">{isEn ? "03 — Projects" : "03 — Proyectos"}</p>
+        <h2 class="mb-2">{isEn ? "Applications & Open Source" : "Aplicaciones y código abierto"}</h2>
         <p class="section-desc">
-            Selección de aplicaciones web, móviles, proyectos de hackathons y herramientas para entornos Linux y Neovim.
+            {
+                isEn
+                    ? limit
+                        ? "Featured recent GitHub projects across web dashboards, Neovim tooling, and desktop apps."
+                        : "Complete catalog of GitHub repositories: web and mobile apps, local AI agents, Neovim plugins, and Linux automation."
+                    : limit
+                      ? "Últimos proyectos publicados en GitHub sobre web, agentes de IA locales y herramientas para Linux."
+                      : "Catálogo completo de proyectos en GitHub: aplicaciones web y móviles, agentes de IA locales, plugins de Neovim y automatización Linux."
+            }
         </p>
     </div>
 
-    <div class="filter-chips mb-4" role="group" aria-label="Filtrar proyectos por tecnología">
-        <button class="filter-chip active-chip" data-filter="all">Todos</button>
-        <button class="filter-chip" data-filter="linux">Linux</button>
-        <button class="filter-chip" data-filter="bash">Bash</button>
-        <button class="filter-chip" data-filter="react">React</button>
-        <button class="filter-chip" data-filter="react-native">React Native</button>
-        <button class="filter-chip" data-filter="git">Git</button>
-        <button class="filter-chip" data-filter="html">HTML & CSS</button>
-        <button class="filter-chip" data-filter="api">APIs REST</button>
-        <button class="filter-chip" data-filter="javascript">JavaScript</button>
-        <button class="filter-chip" data-filter="astro">Astro</button>
-        <button class="filter-chip" data-filter="bootstrap">Bootstrap</button>
-        <button class="filter-chip" data-filter="android">Android</button>
-        <button class="filter-chip" data-filter="nvim">Neovim</button>
-        <button class="filter-chip" data-filter="python">Python</button>
-    </div>
+    {
+        showFilters && (
+            <div class="filter-chips mb-4" role="group" aria-label={isEn ? "Filter projects by technology" : "Filtrar proyectos por tecnología"}>
+                {filters.map((f, idx) => (
+                    <button
+                        class={`filter-chip ${idx === 0 ? "active-chip" : ""}`}
+                        data-filter={f.id}
+                    >
+                        {f.label}
+                    </button>
+                ))}
+            </div>
+        )
+    }
 
     <div class="project-grid">
         {
-            projects.map((project) => (
+            visibleProjects.map((project) => (
                 <ProjectCard
                     title={project.title}
                     href={project.href}
                     description={project.description}
                     tag={project.tag}
+                    date={project.date}
+                    homepage={project.homepage}
                 />
             ))
         }
     </div>
+
+    {
+        limit && list.length > limit && (
+            <div class="mt-4">
+                <a href={isEn ? "/en/projects" : "/galery-projects"} class="btn-secondary">
+                    {isEn ? `View all projects (${list.length}) →` : `Ver todos los proyectos (${list.length}) →`}
+                </a>
+            </div>
+        )
+    }
 </section>
 
-<script is:inline>
-    (function() {
-        const chips = document.querySelectorAll('.filter-chip');
-        const cards = document.querySelectorAll('.project-card');
-        if (!chips.length || !cards.length) return;
+{
+    showFilters && (
+        <script is:inline>
+            (function () {
+                const chips = document.querySelectorAll('.filter-chip');
+                const cards = document.querySelectorAll('.project-card');
+                if (!chips.length || !cards.length) return;
 
-        chips.forEach(function(chip) {
-            chip.addEventListener('click', function() {
-                var filter = this.dataset.filter;
+                chips.forEach(function (chip) {
+                    chip.addEventListener('click', function () {
+                        var filter = this.dataset.filter;
 
-                chips.forEach(function(c) { c.classList.remove('active-chip'); });
-                this.classList.add('active-chip');
+                        chips.forEach(function (c) {
+                            c.classList.remove('active-chip');
+                        });
+                        this.classList.add('active-chip');
 
-                cards.forEach(function(card) {
-                    var tags = card.dataset.tags || '';
-                    card.classList.remove('visible');
-                    if (filter === 'all' || tags.split(' ').indexOf(filter) !== -1) {
-                        card.classList.add('visible');
-                    }
+                        cards.forEach(function (card) {
+                            var tags = card.dataset.tags || '';
+                            card.classList.remove('visible');
+                            if (filter === 'all' || tags.split(' ').indexOf(filter) !== -1) {
+                                card.classList.add('visible');
+                            }
+                        });
+                    });
                 });
-            });
-        });
-    })();
-</script>
+            })();
+        </script>
+    )
+}
